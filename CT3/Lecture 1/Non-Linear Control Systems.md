@@ -18,7 +18,9 @@ We classify them based on external factors affecting them as:
 So in general $$x = x(t; x_0, t_0)$$
 ## Equilibrium Points
 
-$x_e \in \mathbb R^n$ is an e.p. iff $$f[x_e, t] = 0$$
+In an open loop system, ($u$ is incorporated in $x$) $x_e \in \mathbb R^n$ is an e.p. iff $$f[x_e, t] = 0$$
+- $$X_e := \{\text {all eq. points}\} = \{x\in \mathbb R^n : f[x(t; x_0\}
+
 
 
 
