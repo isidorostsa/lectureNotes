@@ -25,6 +25,18 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "Contents.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "9e83958e7e054c44",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "Lecture 1/Non-Linear Control Systems.md",
                 "mode": "source",
                 "source": false
@@ -32,7 +44,7 @@
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -160,9 +172,10 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "a7f6b3deb06fd42b",
+  "active": "9e83958e7e054c44",
   "lastOpenFiles": [
-    "Untitled.md",
-    "Contents.md"
+    "Contents.md",
+    "Resources.md",
+    "Lecture 1/Non-Linear Control Systems.md"
   ]
 }
