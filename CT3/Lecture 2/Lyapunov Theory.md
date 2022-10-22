@@ -1,3 +1,5 @@
 
 Tetragonical Lyapunov scalar function:$$V(x) = x^TCx$$ where $$C \in R^{n \times n}, \space C^T = C \succ 0$$
-- So _$V$ represents the norm of $x$ on a scaled and rotated version of the coordinate system_. Like an $x, y$ plane where 
+- So _$V$ represents the norm of $x$ on a scaled and rotated version of the coordinate system_. As a transformation, it maps the unit circle to an ellipse of arbitrary orientation and size. 
+
+- This is an effective way to approximate many systems' "natural" lyapunov function with relatively few parameters to tune.
