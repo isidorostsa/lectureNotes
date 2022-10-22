@@ -6,7 +6,7 @@ We study known input -> known output
 ### Controllers:
 - Static state feedback:$$u = u(x, t)$$
 - Dynamic state feedback:$$u = u(z, x, t), \space \dot{z} = g(z, x, t)$$
-### Non-Linear systems: (ΜΓΣΕ)
+## Non-Linear systems: (ΜΓΣΕ)
 $$\dot{x} = f[x(t), t]: \space x(t_0) = x_0$$
 - e.g. $$\dot{x} = A(t)x$$
 We classify them based on external factors affecting them as:
@@ -33,7 +33,8 @@ In an open loop system, ($u$ is incorporated in $x$) $x_e \in \mathbb R^n$ is an
 	2. It approaches a stable or semi-stable limit cycle
 	3. It is a limit cycle
 
-- In a finite region of the state space there can not be a limit cycle uless the scalar quantity $$\nabla f = \sum^n \frac {\partial f_i}{\partial x_i} $$
+- In a finite region $S$ of the state space there can not be a limit cycle uless the scalar quantity $$(\nabla f)[x] = \sum^n \frac {\partial f_i}{\partial x_i}$$changes sign or equals zero in some $x \in S$. (Bendixson theorem)
+
 
 
 

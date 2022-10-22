@@ -35,16 +35,44 @@
             "id": "9e83958e7e054c44",
             "type": "leaf",
             "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "b6224a88f70d5cc5",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          },
+          {
+            "id": "9ad9fd87609414a6",
+            "type": "leaf",
+            "state": {
               "type": "markdown",
               "state": {
-                "file": "Lecture 1/Non-Linear Control Systems.md",
+                "file": "Contents.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "54ec52caadda8870",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Lecture 2/Lyapunov Theory.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 5
       }
     ],
     "direction": "vertical"
@@ -110,7 +138,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Lecture 1/Non-Linear Control Systems.md",
+                "file": "Lecture 2/Lyapunov Theory.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +155,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Lecture 1/Non-Linear Control Systems.md",
+                "file": "Lecture 2/Lyapunov Theory.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +178,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Lecture 1/Non-Linear Control Systems.md"
+                "file": "Lecture 2/Lyapunov Theory.md"
               }
             }
           },
@@ -159,6 +187,14 @@
             "type": "leaf",
             "state": {
               "type": "reminder-list",
+              "state": {}
+            }
+          },
+          {
+            "id": "e04a3074f8bb560f",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
               "state": {}
             }
           }
@@ -172,10 +208,12 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "9e83958e7e054c44",
+  "active": "54ec52caadda8870",
   "lastOpenFiles": [
     "Contents.md",
-    "Resources.md",
-    "Lecture 1/Non-Linear Control Systems.md"
+    "Lecture 1/Non-Linear Control Systems.md",
+    "Untitled 1.md",
+    "Untitled.md",
+    "Resources.md"
   ]
 }

@@ -1,5 +1,6 @@
 [
   "obsidian-vimrc-support",
+  "obsidian-reminder-plugin",
   "obsidian-git",
-  "obsidian-reminder-plugin"
+  "calendar"
 ]
