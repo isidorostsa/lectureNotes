@@ -13,10 +13,12 @@ We classify them based on external factors affecting them as:
 
 1. Autonomus Systems: $$\dot x(t) = f[x(t)]$$
 2. Non-Autonomus Systems:$$\dot x(t)=f[x(t), t]$$
+   - e.g. $\dot x = -x + u, \space u = -x^2 sin(t)$
 
+So in general $$x = x(t; x_0, t_0)$$
+## Equilibrium Points
 
-
-
+$x_e \in \mathbb R^n$ is an e.p. iff $$f[x_e, t] = 0$$
 
 
 
