@@ -6,6 +6,15 @@ We study known input -> known output
 ### Controllers:
 - Static state feedback:$$u = u(x, t)$$
 - Dynamic state feedback:$$u = u(z, x, t), \space \dot{z} = g(z, x, t)$$
+### Non-Linear systems: (ΜΓΣΕ)
+$$\dot{x} = f[x(t), t]: \space x(t_0) = x_0$$
+- e.g. $$\dot{x} = A(t)x$$
+We classify them based on external factors affecting them as:
+
+1. Autonomus Systems: $$\dot x(t) = f[x(t)]$$
+2. Non-Autonomus Systems:$$\dot x(t)=f[x(t), t]$$
+
+
 
 
 
