@@ -28,10 +28,11 @@ In an open loop system, ($u$ is incorporated in $x$) $x_e \in \mathbb R^n$ is an
 
 - Limit Cycles always surround an E.Q. (Poincare theorem) 
 
-If an orbit of a $n = 2$ system stays in a finite region of $\mathbb R^2$ then one of the following is true:
+If an orbit of a $n = 2$ system stays in a finite region of $\mathbb R^2$ then one of the following is true: (Poincare-Bendixson theorem)
 1. It approaches an e.p.
 2. It approaches a stable or semi-stable limit cycle
 3. It is a limit cycle
+
 
 
 
