@@ -23,7 +23,8 @@ In an open loop system, ($u$ is incorporated in $x$) $x_e \in \mathbb R^n$ is an
 
 - NLS can have many such points 
 - They can present as limit cycles, meaning periodic loops.
-- 
+
+Homiomorfick 
 
 
 
