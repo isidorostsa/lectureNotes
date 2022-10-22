@@ -1,0 +1,1 @@
+The euclidian distance of two signals in the signal vector space is defined as$$d_{s_1, s_2} = ||s_1(t) - s_2(t)||=\sqrt{\varepsilon_{s_1}+\varepsilon_{s_2} - 2\sqrt{\varepsilon_{s_1}\varepsilon_{s_2}}\text{Re}({\rho_{s_1, s_2}})}$$if $\varepsilon_1 = \varepsilon_2 = \varepsilon$ then $$d_{s_1, s_2} = \sqrt{2\varepsilon(1-\text{Re}(\rho_{s_1, s_2}))}$$

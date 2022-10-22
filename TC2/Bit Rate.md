@@ -1,0 +1,1 @@
+The bit rate is calculated using the *Shannon-Hartley* formula:$$C = W log_2 (1+SNR)$$

@@ -1,0 +1,1 @@
+The [[SNR]] needed to reach some particular [[BER]] given a whole channel

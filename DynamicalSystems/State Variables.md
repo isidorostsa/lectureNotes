@@ -1,0 +1,1 @@
+A state variable $x$ describes an independant freedom of the system, e.g. speed, position or angle.

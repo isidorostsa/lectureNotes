@@ -1,0 +1,140 @@
+{
+  "main": {
+    "id": "bcde606b643fe3f0",
+    "type": "split",
+    "children": [
+      {
+        "id": "cb8113a5efb542fe",
+        "type": "leaf",
+        "state": {
+          "type": "markdown",
+          "state": {
+            "file": "weak axiom of revealed preference.md",
+            "mode": "source",
+            "source": false
+          }
+        }
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "aea90023930c1262",
+    "type": "split",
+    "children": [
+      {
+        "id": "f606d75dfae20961",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "1a6efbc12e380ee3",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {}
+            }
+          },
+          {
+            "id": "d30ba4d6a4675ec6",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "7300abdcec5c349a",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "d06fd208abd916ff",
+    "type": "split",
+    "children": [
+      {
+        "id": "6ffe75a81237b563",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "e5203d9e614fc94e",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "weak axiom of revealed preference.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "27b4f2bd452098f7",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "weak axiom of revealed preference.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f2a470d99f209845",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "ae4ba01acdcaa378",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "weak axiom of revealed preference.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "cb8113a5efb542fe",
+  "lastOpenFiles": [
+    "choice structures.md",
+    "rationality.md",
+    "utility functions.md",
+    "Choices.md",
+    "preference.md",
+    "ent.md"
+  ]
+}

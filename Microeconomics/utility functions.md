@@ -1,0 +1,1 @@
+A function $u(\cdot): X \rightarrow \mathbb{R}$ which represents a preference relation $\succsim$ . It has the defining property: $$ \forall x, y \in X$$$$x \succsim y \iff u(x) \geq u(y)$$ 

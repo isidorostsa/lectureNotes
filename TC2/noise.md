@@ -1,0 +1,1 @@
+We incorporate noise in our calculation in the form of the [[Aditive White Gaussian Noise-AWGN]]  chanel.

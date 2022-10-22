@@ -1,0 +1,1 @@
+ Denoted $\vec{x}$ a [[State Vector]] is a collection of [[State Variables]]. Usually $\vec x \in S = \mathbb{R}^D$  but the [[State Space]] can be different manifold, e.g. a cylinder in the case of a [[penduloum]].

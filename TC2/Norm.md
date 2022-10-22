@@ -1,0 +1,1 @@
+The norm of a signal is defined as the square root of its [[energy]].$$||s(t)|| = \sqrt{\epsilon_s}=\sqrt{\int_{-\infty}^{\infty}|s(t)|^2\,dx}$$

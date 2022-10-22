@@ -1,0 +1,1 @@
+$$|\langle s_1, s_2 \rangle| \leq ||s_1||\,||s_2|| $$

@@ -1,0 +1,1 @@
+Symbols are [[Signal|signals]] representing bit or byte strings 

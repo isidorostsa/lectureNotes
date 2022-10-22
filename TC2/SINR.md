@@ -1,0 +1,1 @@
+   Signal to Interference Noise Ratio (SNR): $$\text{SNR} = \frac{P_r}{P_N+P_I}$$Where $P_r$ is real signal power (integral of fourier squared) and $P_N$ is the noise power.

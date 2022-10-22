@@ -1,0 +1,1 @@
+$$Q(x)=\frac{1}{2}\text{erfc}\lparen\frac{x}{\sqrt2}\rparen$$

@@ -1,0 +1,1 @@
+Signal To Noise Ratio (SNR): $$\text{SNR} = P_r/P_n$$ Where $P_r$ is real signal power (integral of fourier squared) and $P_n$ is the noise power.

@@ -1,0 +1,1 @@
+Two signals are called orthogonal if their [[Inner Product]] is equal to zero. 

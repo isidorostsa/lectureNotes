@@ -1,0 +1,1 @@
+The simmilarity of two signals is expressed through:$$\rho_{s_1,s_2}=\frac{<s_1, s_2>}{||s_1(t)||\,||s_2(t)||}=\frac{<s_1, s_2>}{\sqrt{\epsilon_1\epsilon_2}}$$ 

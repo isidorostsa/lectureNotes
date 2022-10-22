@@ -1,0 +1,1 @@
+The dimension of a [[Signal Space]] is the maximum number of [[linear dependance|linearly independent]] signals inside it.

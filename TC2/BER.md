@@ -1,0 +1,1 @@
+Bit Error Rate: The probability of reading a bit wrongly. e.g. $$\text{BER} = 10^{-6}$$ Also we define Symbol Error Rate (SER) in the same way.
