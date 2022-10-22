@@ -4,5 +4,6 @@
   "showLineNumber": false,
   "alwaysUpdateLinks": true,
   "fileSortOrder": "byModifiedTime",
-  "promptDelete": false
+  "promptDelete": false,
+  "strictLineBreaks": true
 }

@@ -5,7 +5,9 @@ We study known input -> known output
 
 ### Controllers:
 - Static state feedback:$$u = u(x, t)$$
-- Dynamic state feedback:$$u = u(z, x, t),\newline \dot{z} = g(z, x, t)$$
+- Dynamic state feedback:$$u = u(z, x, t), \space \dot{z} = g(z, x, t)$$
+
+
 
 
 
