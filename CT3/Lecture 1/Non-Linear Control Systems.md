@@ -11,8 +11,8 @@ $$\dot{x} = f[x(t), t]: \space x(t_0) = x_0$$
 - e.g. $$\dot{x} = A(t)x$$
 We classify them based on external factors affecting them as:
 
-1. Autonomus Systems: $$\dot x(t) = f[x(t)]$$
-2. Non-Autonomus Systems:$$\dot x(t)=f[x(t), t]$$
+1. Autonomous Systems: $$\dot x(t) = f[x(t)]$$
+2. Non-Autonomous Systems:$$\dot x(t)=f[x(t), t]$$
    - e.g. $\dot x = -x + u, \space u = -x^2 sin(t)$
 
 So in general $$x = x(t; x_0, t_0)$$
@@ -24,7 +24,8 @@ In an open loop system, ($u$ is incorporated in $x$) $x_e \in \mathbb R^n$ is an
 - NLS can have many such points 
 - They can present as limit cycles, meaning periodic loops.
 
-Homiomorfick 
+Ομοιόμορφη Ευστάθεια (αγγλικός όρος λείπει): The "range" of 
+ 
 
 
 
