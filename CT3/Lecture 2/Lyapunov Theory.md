@@ -15,4 +15,6 @@ Usual Lyapunov Definitions hold:
 
 ## Region of attraction
 
-The region of attraction of some e.p. is defined:$$D(x_e) =  $$
+The region of attraction of some e.p. is defined:$$D(x_e) = \{x_0 \in \mathbb R^n: x(t; x_0, t_0) \rightarrow x_e \} $$
+# Lyapunov for Non Autonomous Systems
+$$\frac {\partial V(\vec x(t), t)}{\partial t} = \$$
