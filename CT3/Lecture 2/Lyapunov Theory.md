@@ -45,7 +45,8 @@ OR
 - there exists positive definite function $V_1$ such that:$$V(x, t) \le V_{1}(x), \space \forall t \ge t_{0}, \space x \in G_{r}$$
 For example for $V(x, t) = x_{1}^{2}+ 2x_{2}^{2}(1 + e^{-t})$ we could have $$\begin{align*}
 \phi(\|x\|) &= \|x\|^{2}+ 4\|x\|^{2}\\ \psi(\|x\|) &= \|x\|^2
-\end{align*}$$so$$\phi(\|x\|)\ge V(x, t) \ge \psi(\|x\|),\space \forall x \in \mathbb{R}^{n}, \space \forall t \ge t_{0}$$then depending on the distance from the origin $V$ is bound both up and down no matter the time, in a way that means it hits infinity 
+\end{align*}$$so$$\phi(\|x\|)\ge V(x, t) \ge \psi(\|x\|),\space \forall x \in \mathbb{R}^{n}, \space \forall t \ge t_{0}$$then depending on the distance from the origin $V$ is bound both up and down no matter the time, in a way that means it hits $\infty$ when $\|x\| \to \infty$ . 
+
 
 
 
