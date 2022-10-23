@@ -43,7 +43,9 @@ A function $V(x, t)$ is bound upwards in $G_{r}$ if:
 - there exists class-$K$ function $\phi$ such that:$$V(x, t) \le \phi(\|x\|), \space \forall t \ge t_{0}, \space x \in G_{r}$$
 OR
 - there exists positive definite function $V_1$ such that:$$V(x, t) \le V_{1}(x), \space \forall t \ge t_{0}, \space x \in G_{r}$$
-For example for $V(x, t) = x1$
+For example for $V(x, t) = x_{1}^{2}+ 2x_{2}^{2}(1 - e^{-t})$ we could have $$\begin{align*}
+\phi(y) &= y^{2}+ 4\|x\|^{2}
+\end{align*}$$ 
 
 
 
