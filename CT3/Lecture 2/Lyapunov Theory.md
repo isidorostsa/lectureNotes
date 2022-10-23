@@ -64,3 +64,5 @@ Then:
 - Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
 
 ### Exponential stability
+
+$$\dot w \le aw \implies w(t) < w(0)e^{-at}$$ Define $$a = min_{x}[\frac{-\dot V(x)}{V(x)}]$$
