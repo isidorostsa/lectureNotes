@@ -1,4 +1,5 @@
-# Autonomous Systems
+# Lyapunov for Autonomous Systems
+
 ### Quadratic Lyapunov scalar function:
 $$V(x) = x^TCx$$ where $$C \in R^{n \times n}, \space C^T = C \succ 0$$
 - So _$V$ represents the norm of $x$ on a scaled and rotated version of the coordinate system_. As a transformation, it maps the unit circle to an ellipse of arbitrary orientation and size. 
@@ -29,5 +30,6 @@ $$
 3. $\psi$ continuous and strictly increasing in $G_{r}$ 
 class-k functions are like the _norm_ except for the triangular inequality.
 
-###
+### Positive definite for N.A. systems:
+1. $V(x, t) > 0, \forall x$
 
