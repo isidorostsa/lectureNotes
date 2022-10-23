@@ -24,12 +24,13 @@ $$\begin{split}
 \end{split}
 $$
 
-#### class-k functions:
+#### class-$\KAPPA$ functions:
 1. $\psi(0) = 0$ 
 2. $\psi(||x||) > 0, \space \forall ||x||>0, \space x \in G_{r}$
 3. $\psi$ continuous and strictly increasing in $G_{r}$ 
 class-k functions are like the _norm_ except for the triangular inequality.
 
 ### Positive definite for N.A. systems:
-1. $V(x, t) > 0, \forall x$
+1. $V(0, t) = 0$
+2. $V(x, t) \ge \psi(\|x\|), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $\psi$ some class-k function
 
