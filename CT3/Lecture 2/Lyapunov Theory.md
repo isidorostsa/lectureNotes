@@ -38,4 +38,8 @@ class-k functions are like the _norm_ except for the triangular inequality.
 	- $V(x, t) \ge V_0(x), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $V_{0}(x)$ some positive definite and not radialy bound function.
 So there is a lower bound to $V$ dependant only on the state.
 
+### Upper boundedness for N.A. systems:
+A function $V(x, t)$ is bound up if there exists class-$K$ function $\phi$ such that:$$V(x, t) \le \phi(\|x\|), \space \forall t $$
+
+
 Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
