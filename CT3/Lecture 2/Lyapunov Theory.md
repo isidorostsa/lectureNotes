@@ -9,7 +9,8 @@ For $\dot x(t) = f[x(t)]$ and $V(x) = (x-x_e)^TC(x-x_e)$ (lyapunov centered at $
 Usual Lyapunov Definitions hold:
 - If $\exists r > 0:$ 
 	1. $V(x)$ definite positive in $G_r$ (sphere centered at $x_e$ with radius $r$)
-	2. $- \dot{V}(x)$ semidefinite positive in $G_r, \space \forall t \geq t_0$ 
+	2. $V(x) \rightarrow \inf$ as $||x|| \leftarrow $ 
+	3. $- \dot{V}(x)$ semidefinite positive in $G_r, \space \forall t \geq t_0$ 
 	then $x_e$ is asymptoticaly stable.
 
 
