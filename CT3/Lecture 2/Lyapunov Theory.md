@@ -37,4 +37,6 @@ class-k functions are like the _norm_ except for the triangular inequality.
 	- $V(x, t) \ge \psi(\|x\|), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $\psi$ some class-$K_\infty$ function
 	OR
 	- $V(x, t) \ge V_0(x), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $V_{0}(x)$ some positive definite and not radialy bound function.
-So there is a lower bound to $V$ 
+So there is a lower bound to $V$ dependant only on the state.
+
+Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
