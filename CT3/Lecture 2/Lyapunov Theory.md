@@ -3,7 +3,6 @@
 ### Quadratic Lyapunov scalar function:
 $$V(x) = x^TCx$$ where $$C \in R^{n \times n}, \space C^T = C \succ 0$$
 - So _$V$ represents the norm of $x$ on a scaled and rotated version of the coordinate system_. As a transformation, $C$ maps the unit circle to an ellipse of arbitrary orientation and size.
-
 - This is an effective way to approximate many systems' "natural" lyapunov function with relatively few parameters to tune.
 
 For $\dot x(t) = f[x(t)]$ and $V(x) = (x-x_e)^TC(x-x_e)$ (lyapunov centered at $x_e$):
@@ -17,10 +16,10 @@ Usual Lyapunov Definitions hold:
 
 ## Region of attraction
 
-The region of attraction of some e.p. is defined:$$D(x_e) = \{x_0 \in \mathbb R^n: x(t; x_0, t_0) \rightarrow x_e \}$$
+The region of attraction of some e.p. is defined: $$D(x_e) = \{x_0 \in \mathbb R^n: x(t; x_0, t_0) \rightarrow x_e \}$$
 # Lyapunov for Non Autonomous Systems
 $$\begin{split}
-\frac {\partial V(\vec x, t)}{\partial t} & = \frac {\partial V(\vec x, t)}{\partial \vec x}\frac{\partial \vec x(t)}{\partial t} + \frac {\partial V(\vec x, t)}{\partial t} \\ & = \text{spacial change + temporal change}
+\frac {\partial V(\vec x(t), t)}{\partial t} & = \frac {\partial V(\vec x, t)}{\partial \vec x}\frac{\partial \vec x(t)}{\partial t} + \frac {\partial V(\vec x, t)}{\partial t} \\ & = \text{spacial change + temporal change}
 \end{split}
 $$
 
@@ -29,7 +28,7 @@ $$
 2. $\psi(||x||) > 0, \space \forall ||x||>0, \space x \in G_{r}$
 3. $\psi$ continuous and strictly increasing in $G_{r}$ 
 class-k functions are like the _norm_ except for the triangular inequality.
-- If $\lim_{x\to\infty} \psi(x) = \infty$ then $\psi \in K_{\infty}$ (class $K_\infty$)  
+- If $\lim_{x\to\infty} \psi(x) = \infty$ then $\psi \in K_{\infty}$ (class $K_\infty$)
 
 ### Positive definite for N.A. systems:
 1. $V(0, t) = 0$
@@ -40,4 +39,3 @@ class-k functions are like the _norm_ except for the triangular inequality.
 So there is a lower bound to $V$ dependant only on the state.
 
 Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
-	
