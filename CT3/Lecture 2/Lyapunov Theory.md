@@ -50,16 +50,6 @@ For example for $V(x, t) = x_{1}^{2}+ 2x_{2}^{2}(1 + e^{-t})$ we could have $$\b
 ### homeomorphic stability (doesn't escape)
 If $\dot V(x(t), t) \le 0, \space \forall t \ge t_{0}$ then if we pick any arbitrary max distance $\varepsilon$ from the origin we can find some starting distance $\|{x_{0}}\| = \delta \le \varepsilon$ for which the orbit satisfies $$\|{x(t)}\| < \varepsilon ,\space \forall t \ge t_{0} ,\space \forall t \ge t_{0}$$
 #### Proof:
-For $\delta= \|{x_{0}}\|$:$$V(x(t), t) \le \phi(\delta),\space \forall t \ge t_{0}$$The max distance achievable will be $$\varepsilon: \space \psi(e) = \phi(\delta)$$so $\|{x}\|_{max}= \varepsilon = $However for $t_{1}$ such that $\|{x(t_{1})}\| > \varepsilon$ 
+For $\delta= \|{x_{0}}\|$:$$V(x(t), t) \le \phi(\delta),\space \forall t \ge t_{0} \space \space \space (1)$$The max distance achievable will be $$\varepsilon: \space \psi(\varepsilon) = \phi(\delta)$$so $\|{x}\|_{max}= \varepsilon = \psi^{-1}(\phi(\delta))$. However for $t_{1}$ such that $\|{x(t_{1})}\| > \varepsilon$, from the definition of $\psi$ it follows that: $$V(x(t_{1}), t_{1}) > \psi(\varepsilon) = \phi(\delta)$$which contradicts $(1)$.
 
-
-
-
-For $\delta = \|{x_{0}}\| = \phi^{-1}(\psi(\varepsilon))$ then we know that $V(x(t), t) \le \phi(\delta) = \psi(\varepsilon),\space \forall t \ge t_{0}$ we have that if $$\begin{align*}
-\|{x(t_{1})}\|  > \varepsilon &\implies \psi(\|{x(t)}\|) > \psi(\varepsilon)\\ &\implies V(x(t), t) > \psi(\varepsilon)
-\end{align*}
-$$
-
-
-
-Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
+- Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
