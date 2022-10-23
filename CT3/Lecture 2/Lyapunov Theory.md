@@ -47,7 +47,8 @@ For example for $V(x, t) = x_{1}^{2}+ 2x_{2}^{2}(1 + e^{-t})$ we could have $$\b
 \phi(\|x\|) &= \|x\|^{2}+ 4\|x\|^{2}\\ \psi(\|x\|) &= \|x\|^2
 \end{align*}$$so$$\phi(\|x\|)\ge V(x, t) \ge \psi(\|x\|),\space \forall x \in \mathbb{R}^{n}, \space \forall t \ge t_{0}$$then depending on the distance from the origin $V$ is bound both up and down no matter the time, in a way that means it hits $\infty$ when $\|x\| \to \infty$ . 
 
-If $\dot V(x(t), t) \le 0, \space \forall t \ge t_{0}$ then 
+### homeomorphic stability (doesn't escape)
+If $\dot V(x(t), t) \le 0, \space \forall t \ge t_{0}$ then if we pick any arbitrary max distance $\varepsilon$ from the origin we can find some starting distance $\delta$ for which the orbit never goes past $e ,\space \forall t \ge t0$
 
 
 
