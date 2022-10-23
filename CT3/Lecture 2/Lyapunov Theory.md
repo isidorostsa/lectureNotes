@@ -47,7 +47,7 @@ For example for $V(x, t) = x_{1}^{2}+ 2x_{2}^{2}(1 + e^{-t})$ we could have $$\b
 \phi(\|x\|) &= \|x\|^{2}+ 4\|x\|^{2}\\ \psi(\|x\|) &= \|x\|^2
 \end{align*}$$so$$\phi(\|x\|)\ge V(x, t) \ge \psi(\|x\|),\space \forall x \in \mathbb{R}^{n}, \space \forall t \ge t_{0}$$then depending on the distance from the origin $V$ is bound both up and down no matter the time, in a way that means it hits $\infty$ when $\|x\| \to \infty$ . 
 
-### homeomorphic stability (doesn't escape)
+### homomorphic stability (doesn't escape)
 If $\dot V(x(t), t) \le 0, \space \forall t \ge t_{0}$ then if we pick any arbitrary max distance $\varepsilon$ from the origin we can find some starting distance $\|{x_{0}}\| = \delta \le \varepsilon$ for which the orbit satisfies $$\|{x(t)}\| < \varepsilon ,\space \forall t \ge t_{0} ,\space \forall t \ge t_{0}$$
 #### Proof:
 For $\delta= \|{x_{0}}\|$:$$V(x(t), t) \le \phi(\delta),\space \forall t \ge t_{0} \space \space \space (1)$$The max distance achievable will be $$\varepsilon: \space \psi(\varepsilon) = \phi(\delta)$$so $\|{x}\|_{max}= \varepsilon = \psi^{-1}(\phi(\delta))$. However for $t_{1}$ such that $\|{x(t_{1})}\| > \varepsilon$, from the definition of $\psi$ it follows that: $$V(x(t_{1}), t_{1}) > \psi(\varepsilon) = \phi(\delta)$$which contradicts $(1)$.
@@ -56,9 +56,11 @@ For $\delta= \|{x_{0}}\|$:$$V(x(t), t) \le \phi(\delta),\space \forall t \ge t_{
 For $\dot x (t) = f[x(t), t]: x(t_{0}) = x_{0}, x_{e}= 0$ 
 If: 
 1. $V(x, t)$ positive definite in $\mathbb{R}^n$, not radially bound, upper bound in $G_{r}$ 
-2. 
+2. $\dot V(x, t) \le0,\space \forall x \in \mathbb{R}^{n},\space \forall t \ge t_{0}$ AND $- \dot V(x, t)$ positive definite in $G_{r},\space \forall r < \infty$ 
+Then:
+ $x_{e}$ is homomorphically, globally and asymptotically stable.
 
 
 - Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
 
-### Expone
+### Exponential stability
