@@ -40,3 +40,4 @@ class-k functions are like the _norm_ except for the triangular inequality.
 So there is a lower bound to $V$ dependant only on the state.
 
 Being both up and down bound by class k functions means you can have a global minimum only at 0, you can not have a global max either.
+	
