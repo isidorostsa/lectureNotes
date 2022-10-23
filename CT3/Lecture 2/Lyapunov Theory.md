@@ -33,5 +33,8 @@ class-k functions are like the _norm_ except for the triangular inequality.
 
 ### Positive definite for N.A. systems:
 1. $V(0, t) = 0$
-2. $V(x, t) \ge \psi(\|x\|), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $\psi$ some class-$K_\infty$ function
+2. 
+	- $V(x, t) \ge \psi(\|x\|), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $\psi$ some class-$K_\infty$ function
+	OR
+	- $V(x, t) \ge V_0(x), \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ for $V_{0}(x)$ some positive definite and not radialy bound function.
 So there is a lower bound to $V$ 
