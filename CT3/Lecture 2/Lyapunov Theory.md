@@ -17,6 +17,7 @@ Usual Lyapunov Definitions hold:
 
 The region of attraction of some e.p. is defined:$$D(x_e) = \{x_0 \in \mathbb R^n: x(t; x_0, t_0) \rightarrow x_e \} $$
 # Lyapunov for Non Autonomous Systems
-$$\frac {\partial V(\vec x, t)}{\partial t} = \frac {\partial V(\vec x, t)}{\partial \vec x}\frac{\partial \vec x(t)}{\partial t} + \frac {\partial V(\vec x, t)}{\partial t} = \text{spacial change + temporal change}$$
-
-
+$$\begin{split}
+\frac {\partial V(\vec x, t)}{\partial t} & = \frac {\partial V(\vec x, t)}{\partial \vec x}\frac{\partial \vec x(t)}{\partial t} + \frac {\partial V(\vec x, t)}{\partial t} \\ & = \text{spacial change + temporal change}
+\end{split}
+$$
