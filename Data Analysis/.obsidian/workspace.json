@@ -1,0 +1,160 @@
+{
+  "main": {
+    "id": "36b0ace275daeb65",
+    "type": "split",
+    "children": [
+      {
+        "id": "30b2e59e672153b3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "54ec52caadda8870",
+            "type": "leaf",
+            "state": {
+              "type": "empty",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "36e91809fec05454",
+    "type": "split",
+    "children": [
+      {
+        "id": "a48e28953561e6ad",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "973054bb7c6742ae",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "6cb7dc80c93a4ce1",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "98ac0eb471f30eed",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "right": {
+    "id": "2b2bb4e895c43ada",
+    "type": "split",
+    "children": [
+      {
+        "id": "9dc476daacfef436",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "46581299ac826b19",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "14071b80a8c1f575",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0a656ee4864aae04",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "7d442aa3067abd83",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {}
+            }
+          },
+          {
+            "id": "d3c7b1cd74663524",
+            "type": "leaf",
+            "state": {
+              "type": "reminder-list",
+              "state": {}
+            }
+          },
+          {
+            "id": "e04a3074f8bb560f",
+            "type": "leaf",
+            "state": {
+              "type": "calendar",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "ribbon": {
+    "mostRecentAction": ""
+  },
+  "active": "54ec52caadda8870",
+  "lastOpenFiles": [
+    "Lecture 2/Lyapunov Theory.md",
+    "Contents.md",
+    "Lecture 1/Non-Linear Control Systems.md",
+    "Untitled 1.md",
+    "Untitled.md",
+    "Resources.md"
+  ]
+}
