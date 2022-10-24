@@ -1,0 +1,1 @@
+A normal distribution looks like:$$f(z)=\frac {1/\sqrt{2\pi}$$
