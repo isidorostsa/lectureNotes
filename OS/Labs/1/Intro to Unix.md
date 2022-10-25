@@ -45,5 +45,16 @@ hellomake: hellomake.o hellofunc.o
 	$(CC) -o hellomake hellomake.o hellofunc.o
 ```
 
-`%.o`: Do this for all files ending in .o
-`%.o: %.c $(DEPS)$`: for hellomake for example this would 
+- `%.o`: Do this for all files ending in .o
+- `%.o: %.c $(DEPS)`: thing.o depends on thing.c and all things in DEPS.
+- `$(CC) -c -o $@ $< $(CFLAGS)`:
+	- `-c` create only object file
+	- `-o` put output of compilation 
+```Makefile
+hellomake.o: hellomake.c hellomake.h
+	...
+hellofunc.o: hellofunc.c hellomake.h
+	...
+```
+
+
