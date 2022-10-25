@@ -65,7 +65,7 @@ hellomake.o: hellomake.c hellomake.h
 hellofunc.o: hellofunc.c hellomake.h
 	gcc -c -o hellofunc.o hellofunc.c -I
 ```
-- `clean` this is called because no file with this name exists, and neither is ever created. 
+- `clean` this is called because no file with this name exists, and neither is ever created.
 
 
 
