@@ -50,7 +50,7 @@ hellomake: hellomake.o hellofunc.o
 - `$(CC) -c -o $@ $< $(CFLAGS)`:
 	- `-c` create only object file
 	- `-o` put output of compilation in `$@`
-	- 
+	- ``
 ```Makefile
 hellomake.o: hellomake.c hellomake.h
 	...
