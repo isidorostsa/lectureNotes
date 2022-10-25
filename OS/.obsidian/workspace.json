@@ -8,11 +8,15 @@
         "type": "tabs",
         "children": [
           {
-            "id": "54ec52caadda8870",
+            "id": "82aba5bfd8bd0143",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Untitled 1sadf.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -65,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -82,6 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Untitled 1sadf.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,6 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "Untitled 1sadf.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -119,7 +124,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "Untitled 1sadf.md"
+              }
             }
           },
           {
@@ -148,13 +155,14 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "54ec52caadda8870",
+  "active": "82aba5bfd8bd0143",
   "lastOpenFiles": [
+    "Labs/1/Intro To Unix.md",
+    "Untitled.md",
     "Lecture 2/Lyapunov Theory.md",
     "Contents.md",
     "Lecture 1/Non-Linear Control Systems.md",
-    "Untitled 1.md",
-    "Untitled.md",
+    "Untitled 1sadf.md",
     "Resources.md"
   ]
 }
