@@ -8,4 +8,5 @@ Sample super known commands:
 - cp
 - grep (input lines and regex to return lines matching)
 - rmdir
-- find (look through lower dirs starting )
+- find startDict -name target_filename -print (look through lower dirs, return to print )
+
