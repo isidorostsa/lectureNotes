@@ -14,8 +14,17 @@
 
 ## Redirecting outputs
 Operator: >
-
+Write to file
 - cat file1 > file2 (write contents of file1 to file2)
-- ps -e > grep msav
+
+Operator: >>
+Append to file
+
+Operator: |
+Give the output of command 1 to programs expecting input
+- ps -e | grep msav
 
 Operator: xargs
+Turn output to text and input it as a command line argument 
+- ls | xargs echo
+
