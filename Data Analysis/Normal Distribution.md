@@ -3,5 +3,5 @@ A normal distribution of variance $1$ and mean $0$ looks like:$$f(z)=\frac{1}{\s
 N.D. is important cause:
 1. Central Limit Theorem: For ${X_{i}}$ _independent_ random variables $$Y = \sum\limits X_{i} \sim N(\mu_{_{Y},}\sigma^2_{_Y})$$where $$\begin{align*}
 \mu_{_{Y}}&= \sum\mu_{_{X_{i}}}\\
-\sigma_{_{Y}}^2&= \sum\sigma_{_{X_{i}}^2}
+\sigma_{_{Y}}^2&= \sum\sigma_{X_{i}}^2
 \end{align*}$$
