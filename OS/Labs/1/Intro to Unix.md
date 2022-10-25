@@ -30,6 +30,7 @@ Turn output to text and input it as a command line argument
 
 ## Makefiles
 [A Simple Makefile Tutorial](https://cs.colby.edu/maxwell/courses/tutorials/maketutor/)
+[GNU make](https://www.gnu.org/software/make/manual/make.html#Simple-Makefile)
 
 Example:
 `hellomake.c` depends on `hellomake.h` and uses `hellofunc.c`
@@ -43,6 +44,9 @@ DEPS = hellomake.h
 
 hellomake: hellomake.o hellofunc.o 
 	$(CC) -o hellomake hellomake.o hellofunc.o
+
+clean:
+	rm hellomake.o hellofunc.o
 ```
 
 - `%.o`: Do this for all files ending in .o
@@ -50,11 +54,13 @@ hellomake: hellomake.o hellofunc.o
 - `$(CC) -c -o $@ $< $(CFLAGS)`:
 	- `-c` create only object file
 	- `-o` put output of compilation in `$@`
-	- ``
+	- We don't mention `DEPS` in the compilation step because it is already `#include`d.
+	This telescopes to:
 ```Makefile
 hellomake.o: hellomake.c hellomake.h
-	...
+	gcc -c -o hellomake.o hellomake.c
 hellofunc.o: hellofunc.c hellomake.h
+	gcc -c -o hellofunc.o hellomake.c
 	...
 ```
 
