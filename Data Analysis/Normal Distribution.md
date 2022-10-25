@@ -1,1 +1,1 @@
-A normal distribution looks like:$$f(z)=\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}$$
+A normal distribution of variance $1$ and mean $0$ looks like:$$f(z)=\frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}$$Here is is centered around $0$. We can take a normal distribution of arbitrary mean $\mu$ and variance $\sigma^2$ : $X \sim N(\mu, \sigma^2)$ and map it to $f$ with:$$Z = $$
