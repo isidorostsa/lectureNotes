@@ -34,6 +34,8 @@ Turn output to text and input it as a command line argument
 
 Example:
 `hellomake.c` depends on `hellomake.h` and uses `hellofunc.c`
+
+The `Default Target` of make will be the first thing it reads, as a result of a recipe, that doesn't have a `.`. Here It is hellomake.
 ```Makefile
 CC=gcc
 CFLAGS=-I.
