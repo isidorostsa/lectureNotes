@@ -1,0 +1,11 @@
+Sample super known commands:
+- ls
+- cd 
+- pwd
+- more (like cat but page by page)
+- mkdir
+- touch (touch -t 12312359 oldfile) -> new date is 31/12, 23:59
+- cp
+- grep (input lines and regex to return lines matching)
+- rmdir
+- find (look through lower dirs starting )

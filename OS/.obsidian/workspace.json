@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Untitled 1sadf.md",
+                "file": "Untitled.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "da94231a837dc453",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Labs/1/Intro to Unix.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Untitled 1sadf.md",
+                "file": "Labs/1/Intro to Unix.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Untitled 1sadf.md",
+                "file": "Labs/1/Intro to Unix.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Untitled 1sadf.md"
+                "file": "Labs/1/Intro to Unix.md"
               }
             }
           },
@@ -155,14 +168,14 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "82aba5bfd8bd0143",
+  "active": "da94231a837dc453",
   "lastOpenFiles": [
-    "Labs/1/Intro To Unix.md",
     "Untitled.md",
+    "Untitled 1sadf.md",
+    "Labs/1/Intro To Unix.md",
     "Lecture 2/Lyapunov Theory.md",
     "Contents.md",
     "Lecture 1/Non-Linear Control Systems.md",
-    "Untitled 1sadf.md",
     "Resources.md"
   ]
 }
