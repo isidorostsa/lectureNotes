@@ -58,10 +58,17 @@ clean:
 	This telescopes to:
 ```Makefile
 hellomake.o: hellomake.c hellomake.h
-	gcc -c -o hellomake.o hellomake.c
+	gcc -c -o hellomake.o hellomake.c -I
+	
 hellofunc.o: hellofunc.c hellomake.h
-	gcc -c -o hellofunc.o hellomake.c
-	...
+	gcc -c -o hellofunc.o hellofunc.c -I
 ```
+- `clean` this is called because no file with this name exists, and neither is ever created. 
+
+
+
+
+
+
 
 
