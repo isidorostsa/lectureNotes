@@ -29,3 +29,21 @@ Turn output to text and input it as a command line argument
 - ls | xargs echo
 
 ## Makefiles
+[A Simple Makefile Tutorial](https://cs.colby.edu/maxwell/courses/tutorials/maketutor/)
+
+Example:
+`hellomake.c` depends on `hellomake.h` and uses `hellofunc.c`
+```Makefile
+CC=gcc
+CFLAGS=-I.
+DEPS = hellomake.h
+
+%.o: %.c $(DEPS)
+	$(CC) -c -o $@ $< $(CFLAGS)
+
+hellomake: hellomake.o hellofunc.o 
+	$(CC) -o hellomake hellomake.o hellofunc.o
+```
+
+`%.o`: Do this for all files ending in .o
+`%.o: %.c $(DEPS)$`: for hellomake for example this would 
