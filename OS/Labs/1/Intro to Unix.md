@@ -28,3 +28,4 @@ Operator: xargs
 Turn output to text and input it as a command line argument 
 - ls | xargs echo
 
+## Makefiles
