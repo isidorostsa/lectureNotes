@@ -168,6 +168,8 @@ But now we have the `.o` files leftover.
 ```Makefile
 .PHONY: clean
 clean:
-	rm -f episode_rename *.o
+	rm -f episode_rename *.o *~
 ```
-So by running `make clean` we run the `rm -f episode_rename *.o` so we dele
+- Now by running `make clean` we delete all files we created, leaving behind a clean directory, with only source code.
+
+If instead we want to have only the source files and 
