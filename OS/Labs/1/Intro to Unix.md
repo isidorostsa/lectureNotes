@@ -67,10 +67,60 @@ hellofunc.o: hellofunc.c hellomake.h
 ```
 - `clean` this is called because no file with this name exists, and neither is ever created.
 
+Example for project `episode_rename`:
+- `episode_rename.c`
+```c
+#include "utilities.h"
 
+void main(int argc, char* argv[]){
 
+    if (argc != 2) {
+        fprintf(stderr, "Wrong input amount, fatal.");
+        exit(EXIT_FAILURE);
+    }
 
+    char* filename = argv[1];
+    fprintf(stdout, "\"%s\"", filename);
+    fprintf(stdout, " ");
 
+    char *new_filename = updateFilename(filename);
+    fprintf(stdout, "%s\n", new_filename);
+    free(new_filename);
+
+    return;
+}
+```
+- `utilities.h`
+```c
+#ifndef UTILITIES_H
+#define UTILITIES_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+char* updateFilename(char* filename);
+
+#endif
+```
+- `utilities.c`
+```c
+include "utilities.h"
+
+char *updateFilename(char* filename) {
+    
+    char temp1[20], temp2[20];
+    int season, episode;
+
+    char* result = (char*)malloc(7*sizeof(char));
+    sscanf(filename, "%s %d %s %d", temp1, &season, temp2, &episode);
+    sprintf(result, "S%02d_E%02d", season, episode);
+
+    return result;
+}
+```
+
+The compilation command would normaly be:
+`gcc -c -o episode_rename episode_rename.c utilities.c`
 
 
 
