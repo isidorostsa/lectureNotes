@@ -141,12 +141,27 @@ episode_rename: episode_rename.o utilities.o
 	gcc -c $@ $<
 #instructions to build .o files. It already knows so this is not needed.
 ```
-This will check if episode_rename.o is more recent than it's source file, and will only compile it then.
+This will check if `episode_rename.o` is more recent than it's source file, and will only compile it then.
 
-*BUT* 
+*BUT* both `.c` files also "depend" on `utilities.h` so we should check if that has been updated too:
+```Makefile
+%.o: %.c -----> %.o: %.c utilities.h  
+```
 
+3. Let's use parameters for scalability:
+```Makefile
+CC=gcc
+CFLAGS=-I.
+DESP
 
+episode_rename: episode_rename.o utilities.o
+	gcc $^ $-o $@
+#-o to link, $@ is file before ':', $^ is everything after ':'
 
+%.o: %.c
+	gcc -c $@ $<
+#instructions to build .o files. It already knows so this is not needed.
+```
 
 
 
