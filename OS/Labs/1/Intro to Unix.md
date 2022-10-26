@@ -58,7 +58,7 @@ clean:
 - `%.o: %.c $(DEPS)`: thing.o depends on thing.c and all things in DEPS.
 - `$(CC) -c -o $@ $< $(CFLAGS)`:
 	- `-c` create only object file
-	- `-o` put output of compilation in `$@`
+	- `-o` put output of compilation and link all stuff made into `$@`
 	- We don't mention `DEPS` in the compilation step because it is already `#include`d.
 	This telescopes to:
 ```Makefile
@@ -139,7 +139,15 @@ episode_rename: episode_rename.o utilities.o
 
 %.o: %.c
 	gcc -c $@ $<
+#instructions to build .o files. It already knows so this is not needed.
 ```
+This will check if episode_rename.o is more recent than it's source file, and will only compile it then.
+
+*BUT* 
+
+
+
+
 
 
 
