@@ -131,4 +131,16 @@ episode_rename: episode_rename.c utilities.c
 ```
 
 This solves the problem of portability, but everything is compiled everytime.
-2. 
+2. We want to specify a seperate way for each `.c` file to be compiled into an object file.
+```Makefile
+episode_rename: episode_rename.o utilities.o
+	gcc $^ $-o $@
+#-o to link, $@ is file before ':', $^ is everything after ':'
+
+%.o: %.c
+	gcc -c $@ $<
+```
+
+
+
+
