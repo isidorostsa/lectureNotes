@@ -127,7 +127,7 @@ char *updateFilename(char* filename) {
 	- This translates to the Makefile:
 ```Makefile
 episode_rename: episode_rename.c utilities.c
-	gcc -o $@ $^
+	gcc $^ -o $@ 
 #-o to link, $@ is file before ':', $^ is everything after ':'
 ```
 
@@ -177,3 +177,4 @@ If instead we want to have only the source files and the resulting program `epis
 .INTERMEDIATE: $(OBJ)
 ```
 so _make_ runs `rm $(OBJ)` after composing the `Default Target`. 
+
