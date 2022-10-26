@@ -164,8 +164,9 @@ episode_rename: $(OBJ)
 
 But now we have the `.o` files leftover.
 
-
-
-
-
-
+4. Simply add 
+```Makefile
+.PHONY: clean
+clean:
+	rm -f *.o
+```
