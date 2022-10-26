@@ -168,5 +168,6 @@ But now we have the `.o` files leftover.
 ```Makefile
 .PHONY: clean
 clean:
-	rm -f *.o
+	rm -f episode_rename *.o
 ```
+So by running `make clean` we run the `rm -f episode_rename *.o` so we dele
