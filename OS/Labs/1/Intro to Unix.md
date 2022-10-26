@@ -172,4 +172,8 @@ clean:
 ```
 - Now by running `make clean` we delete all files we created, leaving behind a clean directory, with only source code.
 
-If instead we want to have only the source files and 
+If instead we want to have only the source files and the resulting program `episode_rename` leftover after running `make` we can declare all `.o` files as `intermediate` by adding:
+```Makefile
+.INTERMEDIATE: $(OBJ)
+```
+so _make 
