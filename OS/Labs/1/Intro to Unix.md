@@ -62,10 +62,10 @@ clean:
 	This telescopes to:
 ```Makefile
 hellomake.o: hellomake.c hellomake.h
-	gcc -c -o hellomake.o hellomake.c -I
+	gcc -c -o hellomake.o hellomake.c -I.
 	
 hellofunc.o: hellofunc.c hellomake.h
-	gcc -c -o hellofunc.o hellofunc.c -I
+	gcc -c -o hellofunc.o hellofunc.c -I.
 ```
 - `clean` this is called because no file with this name exists, and neither is ever created.
 
@@ -132,6 +132,7 @@ episode_rename: episode_rename.c utilities.c
 ```
 
 This solves the problem of portability, but everything is compiled everytime.
+
 2. We want to specify a seperate way for each `.c` file to be compiled into an object file.
 ```Makefile
 episode_rename: episode_rename.o utilities.o
@@ -152,6 +153,7 @@ This will check if `episode_rename.o` is more recent than it's source file, and 
 ```Makefile
 CC=gcc
 CFLAGS=-I.
+# This looks for #include files starting in folder "."
 DEPS = utilities.h
 OBJ = episode_rename.o utilities.o
 
@@ -169,6 +171,7 @@ But now we have the `.o` files leftover.
 .PHONY: clean
 clean:
 	rm -f episode_rename *.o *~
+# *~ files are backup files made sometimes
 ```
 - Now by running `make clean` we delete all files we created, leaving behind a clean directory, with only source code.
 
@@ -177,4 +180,26 @@ If instead we want to have only the source files and the resulting program `epis
 .INTERMEDIATE: $(OBJ)
 ```
 so _make_ runs `rm $(OBJ)` after composing the `Default Target`. 
+
+So in the end we have: 
+- `Makefile`:
+```Makefile
+CC=gcc
+CFLAGS=-I.
+DEPS = utilities.h
+OBJ = episode_rename.o utilities.o
+
+#.INTERMEDIATE: $(OBJ)
+
+%.o: %.c $(DEPS)
+	$(CC) -c $@ $< $(CFLAGS)
+	
+episode_rename: $(OBJ)
+	$(CC) $^ -o $@ $(CFLAGS)
+
+
+.PHONY: clean
+clean:
+	rm -f episode_rename *.o *~
+```
 
