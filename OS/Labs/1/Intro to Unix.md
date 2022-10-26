@@ -162,6 +162,9 @@ episode_rename: $(OBJ)
 	$(CC) $^ -o $@ $(CFLAGS)
 ```
 
+But now we have the `.o` files leftover.
+
+
 
 
 
