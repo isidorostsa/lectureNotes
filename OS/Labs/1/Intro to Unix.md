@@ -122,13 +122,7 @@ char *updateFilename(char* filename) {
 1. The compilation command would normaly be:
 	- `gcc -o episode_rename episode_rename.c utilities.c`  (`-o` links the object files of the two things into one)
 	- This translates into:
-	  ```Makefile
-	   
+```Makefile
+episode_rename: episode_rename.c utilities.c
+	gcc -o $@ $^
 ```
-
-
-
-
-
-
-
