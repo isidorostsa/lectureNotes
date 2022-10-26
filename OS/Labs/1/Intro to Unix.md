@@ -152,15 +152,14 @@ This will check if `episode_rename.o` is more recent than it's source file, and 
 ```Makefile
 CC=gcc
 CFLAGS=-I.
-DESP
+DEPS = utilities.h
+OBJ = episode_rename.o utilities.o
 
-episode_rename: episode_rename.o utilities.o
-	gcc $^ $-o $@
-#-o to link, $@ is file before ':', $^ is everything after ':'
-
-%.o: %.c
-	gcc -c $@ $<
-#instructions to build .o files. It already knows so this is not needed.
+%.o: %.c $(DEPS)
+	$(CC) -c $@ $< $(CFLAGS)
+	
+episode_rename: $(OBJ)
+	$(CC) $^ -o $@ $(CFLAGS)
 ```
 
 
