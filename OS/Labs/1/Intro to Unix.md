@@ -36,6 +36,9 @@ Example:
 `hellomake.c` depends on `hellomake.h` and uses `hellofunc.c`
 
 The `Default Target` of make will be the first thing it reads, as a result of a recipe, that doesn't have a `.`. Here It is hellomake.
+
+Make will try to compose the `Default Target` by composing every one of it's dependencies, working recursively to compose each of their dependencies, until it reaches stuff that only depends on `.c` or `.h` files.  
+
 ```Makefile
 CC=gcc
 CFLAGS=-I.
@@ -126,3 +129,6 @@ char *updateFilename(char* filename) {
 episode_rename: episode_rename.c utilities.c
 	gcc -o $@ $^
 ```
+
+This solves the problem of portability, but everything is compiled everytime.
+2. 
