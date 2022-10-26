@@ -1,4 +1,3 @@
-
 ## Sample known commands
 - ls
 - cd 
@@ -32,7 +31,7 @@ Turn output to text and input it as a command line argument
 [A Simple Makefile Tutorial](https://cs.colby.edu/maxwell/courses/tutorials/maketutor/)
 [GNU make](https://www.gnu.org/software/make/manual/make.html#Simple-Makefile)
 
-Example:
+### Example 1:
 `hellomake.c` depends on `hellomake.h` and uses `hellofunc.c`
 
 The `Default Target` of make will be the first thing it reads, as a result of a recipe, that doesn't have a `.`. Here It is hellomake.
@@ -70,7 +69,8 @@ hellofunc.o: hellofunc.c hellomake.h
 ```
 - `clean` this is called because no file with this name exists, and neither is ever created.
 
-Example for project `episode_rename`:
+### Example 2:
+Project `episode_rename`:
 - `episode_rename.c`
 ```c
 #include "utilities.h"
@@ -128,14 +128,14 @@ char *updateFilename(char* filename) {
 ```Makefile
 episode_rename: episode_rename.c utilities.c
 	gcc -o $@ $^
+#-o to link, $@ is file before ':', $^ is everything after ':'
 ```
 
 This solves the problem of portability, but everything is compiled everytime.
 2. We want to specify a seperate way for each `.c` file to be compiled into an object file.
 ```Makefile
 episode_rename: episode_rename.o utilities.o
-	gcc $^ $-o $@
-#-o to link, $@ is file before ':', $^ is everything after ':'
+	gcc $^ -o $@
 
 %.o: %.c
 	gcc -c $@ $<
@@ -176,4 +176,4 @@ If instead we want to have only the source files and the resulting program `epis
 ```Makefile
 .INTERMEDIATE: $(OBJ)
 ```
-so _make 
+so _make_ runs `rm $(OBJ)` after composing the `Default Target`. 
