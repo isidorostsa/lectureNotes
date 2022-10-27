@@ -12,8 +12,6 @@ Given the directory `Images`, containing a file hierarchy with `.png/.jpg` files
 	`-0` means the args will be delimited by a `null char`.
 5. Pass them to the moving function in the correct order:
 	- `find Images/ \( -iname '\*.jpg' -o -iname '\*.png' \) -size +5242879c -print0 | xargs -0 -I {} mv {} Large-Images/`
-	`mv` needs the destination directory to be the last argument, so we specify which string `xargs` needs to replace by the list of args. `-I {}` means _replace {} with the args_. So 
-
-6. }
-
-mkdir Large-Images; find Images/ \( -iname '\*.jpg' -o -iname '\*.png' \) -size +5242879c -print0 | xargs -0 -I {} mv {} Large-Images/
+	`mv` needs the destination directory to be the last argument, so we specify which string `xargs` needs to replace by the list of args. `-I {}` means _replace {} with the args_. So `mv {} Large-Images` becomes `mv fi\le\1.jpg f\i\le\3.png (and all other files) Large-Images/`. 
+6. Make the directory in the start, and we are done:
+- `mkdir Large-Images; find Images/ \( -iname '\*.jpg' -o -iname '\*.png' \) -size +5242879c -print0 | xargs -0 -I {} mv {} Large-Images/`
