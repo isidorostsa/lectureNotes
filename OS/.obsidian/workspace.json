@@ -4,25 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "b8a58314f49cc9b5",
+        "id": "74592052339ac979",
         "type": "tabs",
         "children": [
           {
-            "id": "6c73ca9f3b0ee361",
+            "id": "7deeeb04eeb969c1",
             "type": "leaf",
             "state": {
               "type": "empty",
               "state": {}
-            }
-          },
-          {
-            "id": "a5d41191b57cd1bb",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.0.3"
-              }
             }
           }
         ]
@@ -154,10 +144,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "6c73ca9f3b0ee361",
+  "active": "7deeeb04eeb969c1",
   "lastOpenFiles": [
-    "Infamed.md",
     "Labs/1/Intro to Unix.md",
+    "Infamed.md",
     "Untitled 1sadf.md",
     "Labs/1/Intro To Unix.md",
     "Lecture 2/Lyapunov Theory.md",

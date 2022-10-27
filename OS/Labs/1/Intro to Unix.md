@@ -197,9 +197,9 @@ OBJ = episode_rename.o utilities.o
 episode_rename: $(OBJ)
 	$(CC) $^ -o $@ $(CFLAGS)
 
-
 .PHONY: clean
 clean:
 	rm -f episode_rename *.o *~
 ```
 
+`#` lines are comments.
