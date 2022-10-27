@@ -78,25 +78,7 @@ Project `episode_rename`:
 void main(int argc, char* argv[]){
 
     if (argc != 2) {
-        fprintf(stderr, "Wrong input amount,#include "utilities.h"
-
-void main(int argc, char* argv[]){
-
-    if (argc != 2) {
         fprintf(stderr, "Wrong input amount, fatal.");
-        exit(EXIT_FAILURE);
-    }
-
-    char* filename = argv[1];
-    fprintf(stdout, "\"%s\"", filename);
-    fprintf(stdout, " ");
-
-    char *new_filename = updateFilename(filename);
-    fprintf(stdout, "%s\n", new_filename);
-    free(new_filename);
-
-    return;
-} fatal.");
         exit(EXIT_FAILURE);
     }
 
