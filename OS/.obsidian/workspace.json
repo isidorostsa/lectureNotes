@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "30b2e59e672153b3",
+        "id": "b8a58314f49cc9b5",
         "type": "tabs",
         "children": [
           {
-            "id": "da94231a837dc453",
+            "id": "6c73ca9f3b0ee361",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -147,7 +147,7 @@
   "ribbon": {
     "mostRecentAction": ""
   },
-  "active": "da94231a837dc453",
+  "active": "6c73ca9f3b0ee361",
   "lastOpenFiles": [
     "Infamed.md",
     "Labs/1/Intro to Unix.md",
