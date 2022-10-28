@@ -1,7 +1,7 @@
 {
   "translucency": false,
-  "cssTheme": "Obsidian gruvbox",
+  "cssTheme": "Things",
   "baseFontSize": 16,
-  "accentColor": "",
+  "accentColor": "#180610",
   "nativeMenus": false
 }
