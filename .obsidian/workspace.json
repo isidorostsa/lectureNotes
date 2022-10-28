@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "private.md",
+                "file": "Data Analysis/Normal Distribution.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "private.md",
+                "file": "Data Analysis/Normal Distribution.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "private.md",
+                "file": "Data Analysis/Normal Distribution.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "private.md"
+                "file": "Data Analysis/Normal Distribution.md"
               }
             }
           },
@@ -154,6 +154,8 @@
   },
   "active": "54ec52caadda8870",
   "lastOpenFiles": [
+    "README.md",
+    "private.md",
     "Lecture 2/Lyapunov Theory.md",
     "Contents.md",
     "Lecture 1/Non-Linear Control Systems.md",

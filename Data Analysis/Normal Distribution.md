@@ -5,5 +5,5 @@ N.D. is important cause:
 \mu_{_{Y}}&= \sum\mu_{_{X_{i}}}\\
 \sigma_{_{Y}}^2&= \sum\sigma_{X_{i}}^2
 \end{align*}$$
-2. Consequence of (1.): For $n$ samples of $X$: $$\bar X = \frac{1}{n}\sum\limits X_{i} \sim$$
+2. Consequence of (1.): For $n$ samples of $X$: $$\bar X = \frac{1}{n}\sum\limits X_{i} \sim N(\mu_{_X}, \sigma_{_{X}}^{2}/n)$$
 
