@@ -1,6 +1,0 @@
-N = 10:10:10^5;
-for i=1:size(N,2)
-    n = N(i);
-    x = rand(n, 1) + 1;
-    m(i) = mean(x);
-    
