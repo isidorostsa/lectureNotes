@@ -20,7 +20,7 @@ plot(N,X);
 
 
 bi:\binom{#cursor}{#tab};
-sq:\sqrt{};2
+sq:\sqrt{};
 bb:\mathbb{};
 bf:\mathbf{};
 te:\text{};
