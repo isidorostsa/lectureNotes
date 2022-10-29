@@ -45,4 +45,4 @@ plot(N, M_inv);
 normcdf((3.9-4)/0.01)
 4 + norminv(0.01)
 ```
-6. 
+6. This is true because $\bar \mu = \left(\text{constant } \frac{1}{n}\right) \sum\limits x_{i}$   
