@@ -29,5 +29,14 @@ var(X(:, 1) + X(:,2))
 ```
 4. In matlab we can mimic list comprehension with: `arrayfun(@(t) 1/t, x)` 
 ```Matlab
-N = 1:
+N = 10:10:10^3;
+for i=1:size(N,2)
+    n = N(i);
+    x = rand(n, 1) + 1;
+    M(i) = 1/mean(x);
+    M_inv(i) = mean(arrayfun(@(t) 1/t, x));
+end
+plot(N, M);
+hold on;
+plot(N, M_inv);
 ```
