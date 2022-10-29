@@ -27,4 +27,7 @@ X = mvnrnd([0 0], [1 0; 0 1], N);
 var(X(:, 1)) + var(X(:,2))
 var(X(:, 1) + X(:,2))
 ```
-4. In matlab we can mimic list comprehension with: `arrayfun(@(t) 1/t, `
+4. In matlab we can mimic list comprehension with: `arrayfun(@(t) 1/t, x)` 
+```Matlab
+N = [10, ]
+```
