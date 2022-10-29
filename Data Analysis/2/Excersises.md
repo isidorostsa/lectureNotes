@@ -46,3 +46,11 @@ normcdf((3.9-4)/0.01)
 4 + norminv(0.01)
 ```
 6. This is true because $\bar \mu = \left(\text{constant } \frac{1}{n}\right) \sum\limits x_{i}$   
+```Matlab
+N = 10000;
+n = 100;
+for i=1:N
+	Y(i) = mean(rand(n, 1));
+end
+hist(Y, 100);
+```
