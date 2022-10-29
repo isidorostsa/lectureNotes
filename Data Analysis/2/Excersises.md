@@ -20,4 +20,4 @@ for i=1:N
 end
 hist(X, 30);
 ```
-3. 
+3. In multivariable normal distribution we have a p.d.f. of:$$f(v)$$
