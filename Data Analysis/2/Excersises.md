@@ -42,8 +42,8 @@ plot(N, M_inv);
 ```
 5. $$N(0, 1) = \frac{N(4, 0.01)-4}{0.01}$$
 ```Matlab
-transfer = @(x) (x-4)/0.01;
-normcdf(transfer(3.9))
+normcdf((3.9-4)/0.01)
+
 
 
 ```
