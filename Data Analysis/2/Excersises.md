@@ -11,7 +11,10 @@ for i=1:size(N,2)
 end
 plot(N,X);
 ```
-2. For $X \sim U[0, 1]$, we know $F$
+2. For $X \sim U[0, 1]$, we know $F^{-1}_{Y}(X) \sim Y$. Here $f_{X}(x)=e^{-x} \implies $
+   ```Matlab
+   
+```
 
 
 
