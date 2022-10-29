@@ -20,4 +20,4 @@ for i=1:N
 end
 hist(X, 30);
 ```
-3. In multivariable normal distribution we have a p.d.f. of:$$f(v)$$
+3. In multivariable normal distribution we have a p.d.f. of:$$f(\vec x) = \frac{1}{{(2\pi)^{\frac{p}{2}}} }$$
