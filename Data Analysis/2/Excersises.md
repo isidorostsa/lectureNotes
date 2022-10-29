@@ -14,6 +14,10 @@ plot(N,X);
 2. For $X \sim U[0, 1]$, we know $F^{-1}_{Y}(X) \sim Y$. Here $f_{Y}(y)=e^{-y} \implies F_{Y}(y)=\int_{0}^{y}f(y)dy=1-e^{-y} \implies F^{-1}_{Y}(y)=-ln(1-y)$   
 ```Matlab
 N = 1000;
-for i=1
-
+F_inv = @(y) -log(1-y);
+for i=1:N
+	X(i) = F_inv(rand);
+end
+hist(X, 30);
 ```
+3. 
