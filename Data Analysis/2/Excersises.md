@@ -20,10 +20,10 @@ for i=1:N
 end
 hist(X, 30);
 ```
-3. In multivariable normal distribution we have a p.d.f. of:$$f(\vec x) = \frac{1}{2\pi}exp(-\frac{1}{2}(x^{2}+y^{2}))$$ _MISTAKE!_
-  *Important:* Full formula is $$f(x) = \frac{1}{(2\pi)^\frac{d}{2}|\Sigma|^\frac{1}{2}}\exp(-\frac{1}{2}(x^T \Sigma^{-1} x))$$
-   In matlab we use func: `mvnrnd( means vector, covariance matrix, variable amount)`
+3. In multivariable normal distribution we have a p.d.f. of:$$f(\vec x) = \frac{1}{2\pi}exp(-\frac{1}{2}(x^{2}+y^{2}))$$ _MISTAKE KEPT HERE AS A REMINDER!_
+  *Correction:* Full formula is $$f(x) = \frac{1}{(2\pi)^\frac{d}{2}|\Sigma|^\frac{1}{2}}\exp(-\frac{1}{2}(x^T \Sigma^{-1} x))$$The _wrong_ version presents the cdf of two _uncorelated_ normal distributions so $f_{12} = f_1f_2$! If anything the function above would prove `var[x] + var[y] = var[x+y]`. To correlate the vars we set the 
 
+   In matlab we use func: `mvnrnd( means vector, covariance matrix, variable amount)`
 ```Matlab
 N = 1000;
 X = mvnrnd([0 0], [1 0; 0 1], N);
