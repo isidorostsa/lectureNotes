@@ -17,4 +17,34 @@ $$\begin{align*}
 \dot x_{1} &= \dot \theta = x_{2}\\
 \dot x_{2} &= \ddot\theta = -a \theta - k sin (\theta)     
 \end{align*}$$
-For $$V(x) = k(1- cos(x_{1}))$$
+For $$\begin{align*}
+V(x) &=  k(1- cos(x_{1})) +  \frac{x_{2}}{2}\\
+\dot V(x) &= -a x_{2}^2 
+\end{align*}$$ 
+1. $V(x) \text{ def. positive } \forall x \in G_{r}, \space r \in [0, 2\pi)$ 
+2. $\dot V(x) \le 0$
+From those two we deduce $x_{e}= 0$ is _stable_.
+But since $- \dot V$ is not definite positive, we need to invoke Lasalle:
+
+1. $\dot V = 0 \implies x_{2} = 0$
+2. $$[\begin{align*}
+\dot x_{1} &= x_{2} \\
+
+\end{align*}]$$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
