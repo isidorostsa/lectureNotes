@@ -39,14 +39,6 @@ $$But $x \in G_{r} \implies x_{1} = 0 \implies x = 0, \space \forall t \ge t_{0}
 By Lasalle: $x_{e}= 0$ is asymptoticaly stable.
 
 
-$$\exists x $$
-
-
-
-
-
-
-
 
 
 
