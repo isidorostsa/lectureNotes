@@ -78,6 +78,19 @@ Then $S_{a} \subset D(x_e)$.
 If:
 1. $f(t) \to \infty, t \to \infty$ 
 2. $\dot f(t)$ uniformly continuous (not like $\frac{1}{x}$ , values of nearby $x$ can't evolve infinitely apart)
-[Note for 2: $\dot f$ bounded
+($\dot f$ bounded $\implies f$ uniformly continuous)
 Then:
 - $\dot f (t) \to 0, t \to 0$ 
+
+## Lyapunov type Lemma
+If:
+1. $\exists k < \infty: \space V(x, t) \ge k, \forall x,t$
+2. $\dot V(x, t) \le 0$ 
+3. $\dot V$ uniformly continuous both in respect to $t$ and $x$ 
+Then:
+- $\dot V(x, t) \to 0, t \to \infty$
+### Example:
+$$\begin{align*}
+\dot e &= -e + \theta w(t)\\
+\dot \theta 
+\end{align*}$$
