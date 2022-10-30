@@ -5,6 +5,9 @@ Given a set of $n$ samples of $X$, we want to figure out it's distribution. We h
 
 ## Point Estimation
 
-The statistic value $\hat \theta$ that we calculate to determine $\theta$ given the sample data.
+The value $\hat \theta$ that we estimate $\theta$ to have given the sample data. This should make sure that data fall as close as possible to $F_X(x;\hat \theta)$ 
 
-Specifically, given $x = \set{x_{1},...,x_n}$ we estimate it using $\hat \theta = g(x)$, which is called the _estimator_. _Important:_ since $x$ is a set of samples of $X$, $\hat \theta$ is a *Random Variable*, and also $x_{1},x_{2}...$ are also _Random Variables_.
+Specifically, given $x = \set{x_{1},...,x_n}$ we estimate it using $\hat \theta = g(x)$, and $g$ is called the _estimator_.
+_Important:_ $x$ is a set of samples of $X$ so $\hat \theta$ is a *Random Variable*. Also $x_{1},x_{2}...$ are also _Random Variables_.
+
+So 
