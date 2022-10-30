@@ -5,8 +5,8 @@
 
 % 2.
 
-M = 5000;
-n = 30;
+M = 50;
+n = 70;
 lambda = 4;
 
 for sample=1:M
@@ -15,7 +15,11 @@ for sample=1:M
     end
 end
 
-mu_lambda = sum(S')/n;
+for sample=1:M
+    mu_lambda(sample) = sum(S(sample,:))/n;
+end
+
+%mu_lambda = sum(S')/n;
 mu_lambda_avg = sum(mu_lambda)/M
 hist(mu_lambda, 300);
  % no because the estimator is biased 
