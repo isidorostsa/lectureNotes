@@ -24,6 +24,7 @@ for sample=1:M
 end
 %mu_lambda = sum(S')/n;
 mu_lambda
+sum(mu_lambda)
 mu_lambda_avg = sum(mu_lambda)/M
 hist(mu_lambda, 300);
  % no because the estimator is biased 
