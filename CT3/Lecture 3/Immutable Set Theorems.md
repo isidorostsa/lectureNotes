@@ -42,6 +42,11 @@ Another way of going about this is:
 2. If $x \in \set{x: x_{2} = 0}, \space \forall t \ge t_{0} \implies \dot x_{2} = -a sin(x_{1}), \space {x \in G_{r}} \implies x_{1} = 0$ other wise $\exists t: x_{2} \neq 0$ .  
 
 
+## Immutable Set
+M is immutable if:
+$$x_{0} \in M \implies x(t) \in M, \space \forall t$$_x once in M $\implies$ x stays in M_
+
+
 
 
 
