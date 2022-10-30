@@ -8,16 +8,10 @@ function mu_lambda_avg = ex_3_2 ()
     n = 7;
     lambda = 4;
    
-    S = []
+    S = exprnd(lambda, n, M);
+
+    mu_lambda = arrayfun(@(x) n/sum(x), S(,:));
     
-    for sample=1:M
-        for i=1:n
-            S(sample, i) = exprnd(lambda);
-        end
-    end
-
-    S = S';
-
     mu_lambda = arrayfun(@(x) n/x, sum(S));
     mu_lambda_avg = sum(mu_lambda)/M
     hist(mu_lambda, 500);
