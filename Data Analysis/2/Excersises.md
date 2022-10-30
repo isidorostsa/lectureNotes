@@ -21,7 +21,7 @@ end
 hist(X, 30);
 ```
 3. In multivariable normal distribution we have a p.d.f. of:$$f(\vec x) = \frac{1}{2\pi}exp(-\frac{1}{2}(x^{2}+y^{2}))$$ _MISTAKE!_
-   
+  *Important:* Full formula is $$f(x) = \frac{1}{(2\pi)^\frac{d}{2}|\Sigma|^\frac{1}{2}}\exp(-\frac{1}{2}(x^T \Sigma^{-1} x))$$
    In matlab we use func: `mvnrnd( means vector, covariance matrix, variable amount)`
 
 ```Matlab
