@@ -26,4 +26,4 @@ Define mean square error: $MSE[\hat \theta] = b(\hat \theta )^{2}+ \sigma_{\hat 
 
 ### Finding The Estimator using Maximum Likelihood
 
-Define $L(x;\theta) = f(x_{1};\theta )...f(x_{n};\theta )$ where $f$ is the distribution we are trying to estimate. So we find $\theta$ to maximize $L$: (we maximize $log(L)$ for easier calculations)
+Define $L(x;\theta) = f(x_{1};\theta )...f(x_{n};\theta )$ where $f$ is the distribution we are trying to estimate. So we find $\theta$ to maximize $L$: (we maximize $log(L)$ for easier calculations) $$\frac{d \space logL}{d \space \theta } = 0$$
