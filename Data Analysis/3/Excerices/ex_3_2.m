@@ -4,10 +4,12 @@
 
 
 function mu_lambda_avg = ex_3_2 ()
-    M = 50;
-    n = 70;
+    M = 5000;
+    n = 7;
     lambda = 4;
    
+    S = []
+    
     for sample=1:M
         for i=1:n
             S(sample, i) = exprnd(lambda);
@@ -16,7 +18,7 @@ function mu_lambda_avg = ex_3_2 ()
 
     S = S';
 
-    mu_lambda = n/sum(S);
+    mu_lambda = arrayfun(@(x) n/x, sum(S));
     mu_lambda_avg = sum(mu_lambda)/M
-    hist(mu_lambda, 300);
+    hist(mu_lambda, 500);
 end
