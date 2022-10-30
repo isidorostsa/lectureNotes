@@ -14,4 +14,8 @@ So $\hat \theta$ has a mean and a variance.
 
 ### Important Parametric Estimators
 Mean: $$\hat \mu = \bar x = \frac{1}{n}\sum\limits^n_{i=1}x_i$$
-Variance:$$$$
+Variance:$$s^2=\frac{1}{{n-1}}\sum\limits^n_{i=1}(x_{i}-\bar x)^2$$
+_Intuition_: We use $\frac{1}{{n-1}}$ instead of $\frac{1}{n}$ because by using the estimator for the mean, instead of the true mean, we rig the data to be a little closer to what we consider the mean, so the sum is smaller that is should, and we use that substitution to compensate that.
+[Bessel's correction - Wikipedia](https://en.wikipedia.org/wiki/Bessel%27s_correction)
+
+### 
