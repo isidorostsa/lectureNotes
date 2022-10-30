@@ -18,4 +18,8 @@ Variance:$$s^2=\frac{1}{{n-1}}\sum\limits^n_{i=1}(x_{i}-\bar x)^2$$
 _Intuition_: We use $\frac{1}{{n-1}}$ instead of $\frac{1}{n}$ because by using the estimator for the mean, instead of the true mean, we rig the data to be a little closer to what we consider the mean, so the sum is smaller that is should, and we use that substitution to compensate that.
 [Bessel's correction - Wikipedia](https://en.wikipedia.org/wiki/Bessel%27s_correction)
 
-### 
+### Metrics for good estimators
+1. $E[\hat \theta ] = \theta$
+Otherwise we define bias: $b(\hat \theta) = E[\hat \theta ] - \theta$
+2. As small variance as possible.
+Define mean square error: $MSE[\hat \theta] = b(\hat \theta )^{2}+ \sigma_{\hat \theta }^{2}= E[(\hat \theta - \theta )^2]$  
