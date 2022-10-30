@@ -1,4 +1,4 @@
-## Lasalle Theorem
+## Lasalle Theorem for Asymptotic Stability
 
 In an _Autonomous System_ $$\dot x(t) = f(x(t)), \space x(t_{0}) = x_{0}, \space x_{e}= 0$$ If $\exists r > 0$:
 1. $V(x) \text{ def. positive } \forall x \in G_{r}$
@@ -57,6 +57,8 @@ Then:
 - If $x_{0} \in S_{a} \implies x \to M, \space t \to \infty$.   
 
 _IMPORTANT FOR STUDYING SYSTEMS WITH STABILITY SETS INSTEAD OF POINTS_
+
+
 
 
 
