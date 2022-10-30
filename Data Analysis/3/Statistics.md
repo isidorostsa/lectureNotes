@@ -23,3 +23,7 @@ _Intuition_: We use $\frac{1}{{n-1}}$ instead of $\frac{1}{n}$ because by using 
 Otherwise we define bias: $b(\hat \theta) = E[\hat \theta ] - \theta$
 2. As small variance as possible.
 Define mean square error: $MSE[\hat \theta] = b(\hat \theta )^{2}+ \sigma_{\hat \theta }^{2}= E[(\hat \theta - \theta )^2]$  
+
+### Finding The Estimator using Maximum Likelihood
+
+Define $L(x;\theta) = f(x_{1};\theta )...f(x_{n};\theta )$ where $f$ is the distribution we are trying to estimate. So we find $\theta$ to maximize $L$: (we maximize $log(L)$ for easier calculations)
