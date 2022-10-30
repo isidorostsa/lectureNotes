@@ -34,8 +34,7 @@ For the normal distribution:
 
 Because $\bar x$ is unbiased: 
 - $\mu_{\bar x} = E[\bar x] = \mu$ 
-It has variance: 
-
+It has variance: $$\sigma_{\bar x}^{2}= \text{var}[\bar x] = \text{var}[\frac{1}{n} \sum\limits x_{i}]= \frac{1}{n^{2}} \sum\limits\text{var} \left[ x_{i}\right] = \frac{\sigma^{2}}{n}$$and as such _S_
 
 
 
