@@ -59,3 +59,14 @@ _IMPORTANT FOR STUDYING SYSTEMS WITH STABILITY SETS INSTEAD OF POINTS_
 
 ## Lyapunov Theorem For Field of Attraction
 In an _Autonomous System_ $$\dot x(t) = f(x(t)), \space x(t_{0}) = x_{0}, \space x_{e}= 0$$
+With $S_a$ as above, if $V(x)$ $\dot V(x)$ positive definite $\forall x \in S_{a}$ then $S_{a} \subset D(x_e)$. 
+
+And the stronger version:
+If:
+1. $V(x)$ definite positive $\forall x \in S_a$ 
+2. $\dot V(x) \le 0, \space \forall x \in S_a$ 
+3. $$\left[{\begin{matrix*}
+\dot V(x(t)) = 0, \space \forall t \ge t_{0} \\
+\dot x(t) = f(x(t)) , \space \forall t \ge t_{0}\\
+x(t) \in S_{a}
+\end{matrix*}}\right] \implies x(t) =0 , \space \forall t \ge t_{0}$$
