@@ -5,6 +5,7 @@
 
 % 2.
 
+function mu_lambda_avg = ex_3_1()
 M = 50;
 n = 7;
 lambda = 4;
