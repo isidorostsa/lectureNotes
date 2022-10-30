@@ -3,4 +3,8 @@ Given a set of $n$ samples of $X$, we want to figure out it's distribution. We h
 2. Nonparametric 
 3. Resampling
 
-## Point 
+## Point Estimation
+
+The statistic value $\hat \theta$ that we calculate to determine $\theta$ given the sample data.
+
+Specifically, given $x = \set{x_{1},...,x_n}$ we estimate $\hat \theta$ 
