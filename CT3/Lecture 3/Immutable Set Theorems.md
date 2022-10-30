@@ -76,4 +76,8 @@ Then $S_{a} \subset D(x_e)$.
 ## Barbalat Lemma
 
 If:
-1. $f(t) \to \infty $
+1. $f(t) \to \infty, t \to \infty$ 
+2. $\dot f(t)$ uniformly continuous (not like $\frac{1}{x}$ , values of nearby $x$ can't evolve infinitely apart)
+[Note for 2: $\dot f$ bounded
+Then:
+- $\dot f (t) \to 0, t \to 0$ 
