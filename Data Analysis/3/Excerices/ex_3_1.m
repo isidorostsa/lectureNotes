@@ -5,7 +5,7 @@
 
 % 2.
 
-M = 1000;
+M = 5000;
 n = 30;
 lambda = 4;
 
@@ -17,4 +17,5 @@ end
 
 mu_lambda = sum(S')/n;
 mu_lambda_avg = sum(mu_lambda)/M
-hist(mu_lambda, 200);
+hist(mu_lambda, 300);
+ % no because the estimator is biased 
