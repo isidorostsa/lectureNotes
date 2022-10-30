@@ -9,3 +9,12 @@ x(t) &\in G_{r}
 \end{align*}}\rbrack \implies x(t) =0 , \space \forall t \ge t_{0}$$
 
 Then $x_{e}$ is _asymptoticaly stable_.
+
+- If $G_{r} = \mathbb{R}$ then the stability is _Global_ 
+
+### Example:
+$$\begin{align*}
+\dot x_{1} &= \dot \theta = x_{2}\\
+\dot x_{2} &= \ddot\theta = -a \theta - k sin (\theta)     
+\end{align*}$$
+For $$V(x) = k(1- cos(x_{1}))$$
