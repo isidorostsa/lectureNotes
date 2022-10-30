@@ -6,19 +6,19 @@
 % 2.
 
 function mu_lambda_avg = ex_3_1()
-M = 50;
-n = 7;
-lambda = 4;
-S = [];
-
-for sample=1:M
-    for i=1:n
-        S(sample, i) = poissrnd(lambda);
+    M = 50;
+    n = 7;
+    lambda = 4;
+   
+    for sample=1:M
+        for i=1:n
+            S(sample, i) = poissrnd(lambda);
+        end
     end
+
+    S = S';
+
+    mu_lambda = sum(S)/n;
+    mu_lambda_avg = sum(mu_lambda)/M
+    hist(mu_lambda, 300);
 end
-
-S = S';
-
-mu_lambda = sum(S)/n;
-mu_lambda_avg = sum(mu_lambda)/M
-hist(mu_lambda, 300);
