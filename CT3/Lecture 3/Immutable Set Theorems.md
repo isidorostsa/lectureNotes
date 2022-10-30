@@ -30,7 +30,7 @@ But since $- \dot V$ is not definite positive, we need to invoke Lasalle:
 1. $\dot V = 0 \implies x_{2} = 0$
 2. $$\left[\begin{matrix*}
 \dot x_{1} = x_{2} \\
-x_{2} = -a x_{2} - k sin (x_{1}) \\
+\dot x_{2} = -a x_{2} - k sin (x_{1}) \\
 x_{2} = 0
 \end{matrix*}\right]
 \implies
@@ -38,10 +38,8 @@ x_{1} = 0, \pi, 2\pi, 3\pi ...
 $$But $x \in G_{r} \implies x_{1} = 0 \implies x = 0, \space \forall t \ge t_{0}$. 
 By Lasalle: $x_{e}= 0$ is asymptoticaly stable.
 
-
-
-
-
+Another way of going about this is: 
+2. If $x \in \set{x: x_{2} = 0}, \space \forall t \ge t_{0} \implies \dot x_{2} = -a sin(x_{1}), \space {x \in G_{r}} \implies x_{1} = 0 $  
 
 
 
