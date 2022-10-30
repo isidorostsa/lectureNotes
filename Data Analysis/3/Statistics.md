@@ -30,4 +30,34 @@ Define $L(x;\theta) = f(x_{1};\theta )...f(x_{n};\theta )$ where $f$ is the dist
 For the normal distribution:
 #TODO 
 
+## Estimating range of confidence
+
+Because $\bar x$ is unbiased: 
+- $\mu_{\bar x} = E[\bar x] = \mu$ 
+It has variance: 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
