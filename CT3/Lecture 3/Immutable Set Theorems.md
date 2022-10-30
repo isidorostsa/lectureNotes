@@ -78,7 +78,7 @@ Then $S_{a} \subset D(x_e)$.
 If:
 1. $f(t) \to \infty, t \to \infty$ 
 2. $\dot f(t)$ uniformly continuous (not like $\frac{1}{x}$ , values of nearby $x$ can't evolve infinitely apart)
-($\dot f$ bounded $\implies f$ uniformly continuous)
+*($\dot f$ bounded $\implies f$ uniformly continuous)*
 Then:
 - $\dot f (t) \to 0, t \to 0$ 
 
@@ -95,4 +95,7 @@ $$\begin{align*}
 \dot \theta &= -e w(t), \space \space w(t) < k, \space k < \infty 
 \end{align*}$$
 With $$V = e^{2} + \theta ^2$$
-
+1. $V(t) > 0$
+2. $\dot V = -2e^{2}\le 0$ 
+1, 2 $\implies V(t) \le V(0) \implies e, \theta$ bounded
+3. $\ddot V =  -4e(-e+\theta w)$ is bounded $\implies \dot V$
