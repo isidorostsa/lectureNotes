@@ -51,7 +51,12 @@ In an _Autonomous System_ $$\dot x(t) = f(x(t)), \space x(t_{0}) = x_{0}, \space
 Let $V(x)$:
 1. $$S_{a}= \set{x \in \mathbb{R}^n:V(x)<a}$$is a bounded region.
 2. $$\dot V(x) \le 0, \space \forall x \in S_{a}$$
-3. $$Z(S_{a}) = \set{x \in S_{a}:}$$
+3. $$Z(S_{a}) = \set{x \in S_{a}: \dot V(x) = 0}$$
+4. $M_{Z(S_a)}$ is the biggest of all immutable sets within $Z(S_{a})$ 
+Then:
+- If $x_{0} \in S_{a} \implies x \to M, \space t \to \infty$.   
+
+_IMPORTANT FOR STUDYING SYSTEMS WITH STABILITY SETS INSTEAD OF POINTS_
 
 
 
