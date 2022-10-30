@@ -16,8 +16,11 @@ for sample=1:M
 end
 
 for sample=1:M
+    
     mu_lambda(sample) = sum(S(sample,:))/n;
 end
+
+S
 
 %mu_lambda = sum(S')/n;
 mu_lambda_avg = sum(mu_lambda)/M
