@@ -74,3 +74,6 @@ Then $S_{a} \subset D(x_e)$.
 
 
 ## Barbalat Lemma
+
+If:
+1. $f(t) \to \infty $
