@@ -3,10 +3,11 @@
 In an _Autonomous System_ $$\dot x(t) = f(x(t)), \space x(t_{0}) = x_{0}, \space x_{e}= 0$$ If $\exists r > 0$:
 1. $V(x) \text{ def. positive } \forall x \in G_{r}$
 2. $\dot V (x) \le 0, \space \forall x \in G_{r}, \space \forall t \ge t_{0}$ 
-3. $$\lbrack{\begin{align*}
-\dot V(x(t)) &= 0, \space \forall t \ge t_{0} \\
-x(t) &\in G_{r}
-\end{align*}}\rbrack \implies x(t) =0 , \space \forall t \ge t_{0}$$
+3. $$\left[{\begin{matrix*}
+\dot V(x(t)) = 0, \space \forall t \ge t_{0} \\
+\dot x(t) = f(x(t)) , \space \forall t \ge t_{0}\\
+x(t) \in G_{r}
+\end{matrix*}}\right] \implies x(t) =0 , \space \forall t \ge t_{0}$$
 
 Then $x_{e}$ is _asymptoticaly stable_.
 
@@ -27,10 +28,10 @@ From those two we deduce $x_{e}= 0$ is _stable_.
 But since $- \dot V$ is not definite positive, we need to invoke Lasalle:
 
 1. $\dot V = 0 \implies x_{2} = 0$
-2. $$[\begin{align*}
-\dot x_{1} &= x_{2} \\
+2. $$\left[\begin{matrix*}
+\dot x_{1} = x_{2} \\
 
-\end{align*}]$$
+\end{matrix*}\right]$$
 
 
 
