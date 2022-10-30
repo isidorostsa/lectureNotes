@@ -5,7 +5,15 @@
 
 % 2.
 
-M = 1000;
+M = 10000;
+n = 30;
+lambda = 4;
+
+for sample=1:
+mu_lambda_avg = sum(mu_lambda)/M;
+
+hist(mu_lambda, 400);
+
 n = 30;
 lambda = 4;
 
@@ -15,7 +23,6 @@ for sample=1:M
     end
 end
 
-mu_lambda = sum(S)/n;
+mu_lambda = sum(S')/n;
 mu_lambda_avg = sum(mu_lambda)/M;
-
 hist(mu_lambda, 100);
