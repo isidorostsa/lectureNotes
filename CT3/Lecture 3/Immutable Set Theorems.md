@@ -70,3 +70,7 @@ If:
 \dot x(t) = f(x(t)) , \space \forall t \ge t_{0}\\
 x(t) \in S_{a}
 \end{matrix*}}\right] \implies x(t) =0 , \space \forall t \ge t_{0}$$
+Then $S_{a} \subset D(x_e)$.
+
+
+## Barbalat Lemma
