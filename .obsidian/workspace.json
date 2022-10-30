@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "57702a5b03cf5e52",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Analysis/3/Statistics.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -69,8 +82,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -86,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Analysis/2/Excersises.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Analysis/2/Excersises.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Analysis/2/Excersises.md"
+                "file": "Data Analysis/3/Statistics.md"
               }
             }
           },
@@ -154,13 +166,13 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "e484bf1a36475109",
+  "active": "57702a5b03cf5e52",
   "lastOpenFiles": [
+    "Data Analysis/2/Excersises.md",
     "CT3/Lecture 3/Immutable Set Theorems.md",
     "CT3/Untitled.md",
     "Data Analysis/2/Normal Distribution.md",
     "Data Analysis/Untitled.md",
-    "Data Analysis/2/Excersises.md",
     "README.md",
     "private.md",
     "Lecture 2/Lyapunov Theory.md",

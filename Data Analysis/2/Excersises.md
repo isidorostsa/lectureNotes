@@ -25,9 +25,11 @@ hist(X, 30);
    In matlab we use func: `mvnrnd( means vector, covariance matrix, variable amount)`
 ```Matlab
 N = 1000;
-s1 = 
-s12 = 
-X = mvnrnd([0 0], [1 0; 0 1], N);
+s1 = 1;
+s2 = 1;
+rho = 0.85;
+s12 = rho*s1*s2;
+X = mvnrnd([0 0], [s1 s12; s12 s2], N);
 var(X(:, 1)) + var(X(:,2))
 var(X(:, 1) + X(:,2))
 ```
