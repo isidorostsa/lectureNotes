@@ -98,4 +98,5 @@ With $$V = e^{2} + \theta ^2$$
 1. $V(t) > 0$
 2. $\dot V = -2e^{2}\le 0$ 
 1, 2 $\implies V(t) \le V(0) \implies e, \theta$ bounded
-3. $\ddot V =  -4e(-e+\theta w)$ is bounded $\implies \dot V$
+3. $\ddot V =  -4e(-e+\theta w)$ is bounded $\implies \dot V$ uniformly continuous
+So from _Lyapunov Lemma_: $\dot V \to 0, t \to \infty \implies e \to 0, t \to \infty$ 

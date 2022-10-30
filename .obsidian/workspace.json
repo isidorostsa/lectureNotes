@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "30b2e59e672153b3",
+        "id": "bc174ac87f449cb8",
         "type": "tabs",
         "children": [
           {
-            "id": "54ec52caadda8870",
+            "id": "e484bf1a36475109",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CT3/Lecture 3/Immutable Set Theorems.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -69,8 +65,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -154,7 +149,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "54ec52caadda8870",
+  "active": "973054bb7c6742ae",
   "lastOpenFiles": [
     "CT3/Untitled.md",
     "Data Analysis/2/Normal Distribution.md",
