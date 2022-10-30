@@ -16,13 +16,14 @@ for sample=1:M
 end
 
 for sample=1:M
-    
-    mu_lambda(sample) = sum(S(sample,:))/n;
+    ac = 0
+    for i=1:n
+        ac = ac + S(sample, i)
+    end
+    mu_lambda(sample) = ac/n;
 end
-
-S
-
 %mu_lambda = sum(S')/n;
+mu_lambda
 mu_lambda_avg = sum(mu_lambda)/M
 hist(mu_lambda, 300);
  % no because the estimator is biased 
