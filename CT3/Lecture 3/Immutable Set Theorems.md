@@ -86,11 +86,13 @@ Then:
 If:
 1. $\exists k < \infty: \space V(x, t) \ge k, \forall x,t$
 2. $\dot V(x, t) \le 0$ 
-3. $\dot V$ uniformly continuous both in respect to $t$ and $x$ 
+3. $\dot V$ uniformly continuous both in respect to $t$ 
 Then:
 - $\dot V(x, t) \to 0, t \to \infty$
 ### Example:
 $$\begin{align*}
 \dot e &= -e + \theta w(t)\\
-\dot \theta 
+\dot \theta &= -e w(t), \space \space w(t) < k, \space k < \infty 
 \end{align*}$$
+With $$V = e^{2} + \theta ^2$$
+
