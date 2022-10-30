@@ -20,7 +20,10 @@ for i=1:N
 end
 hist(X, 30);
 ```
-3. In multivariable normal distribution we have a p.d.f. of:$$f(\vec x) = \frac{1}{2\pi}exp(-\frac{1}{2}(x^{2}+y^{2}))$$ In matlab we use func: `mvnrnd( means vector, covariance matrix, variable amount)`
+3. In multivariable normal distribution we have a p.d.f. of:$$f(\vec x) = \frac{1}{2\pi}exp(-\frac{1}{2}(x^{2}+y^{2}))$$ _MISTAKE!_
+   
+   In matlab we use func: `mvnrnd( means vector, covariance matrix, variable amount)`
+
 ```Matlab
 N = 1000;
 X = mvnrnd([0 0], [1 0; 0 1], N);

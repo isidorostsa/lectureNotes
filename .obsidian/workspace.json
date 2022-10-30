@@ -11,8 +11,12 @@
             "id": "e484bf1a36475109",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "Data Analysis/2/Excersises.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT3/Lecture 3/Immutable Set Theorems.md",
+                "file": "Data Analysis/2/Excersises.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CT3/Lecture 3/Immutable Set Theorems.md",
+                "file": "Data Analysis/2/Excersises.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -121,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CT3/Lecture 3/Immutable Set Theorems.md"
+                "file": "Data Analysis/2/Excersises.md"
               }
             }
           },
@@ -149,8 +153,9 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
+  "active": "e484bf1a36475109",
   "lastOpenFiles": [
+    "CT3/Lecture 3/Immutable Set Theorems.md",
     "CT3/Untitled.md",
     "Data Analysis/2/Normal Distribution.md",
     "Data Analysis/Untitled.md",
@@ -159,7 +164,6 @@
     "private.md",
     "Lecture 2/Lyapunov Theory.md",
     "Contents.md",
-    "Lecture 1/Non-Linear Control Systems.md",
-    "Untitled 1.md"
+    "Lecture 1/Non-Linear Control Systems.md"
   ]
 }
