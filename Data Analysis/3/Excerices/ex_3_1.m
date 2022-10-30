@@ -4,4 +4,15 @@
 % QED
 
 % 2.
-functi
+
+M = 100;
+n = 30;
+lambda = 4;
+
+for sample=1:M
+    for i=1:n
+        S(sample, i) = poissrnd(lambda);
+    end
+end
+
+mu_lambda = sum(S)/n
