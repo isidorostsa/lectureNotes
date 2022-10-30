@@ -10,13 +10,13 @@ function mu_lambda_avg = ex_3_2 ()
    
     for sample=1:M
         for i=1:n
-            S(sample, i) = exprnd(lambda);
+            S(sample, i) = poissrnd(lambda);
         end
     end
 
     S = S';
 
-    mu_lambda = n/sum(S);
+    mu_lambda = sum(S)/n;
     mu_lambda_avg = sum(mu_lambda)/M
     hist(mu_lambda, 300);
 end
