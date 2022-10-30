@@ -46,6 +46,12 @@ Another way of going about this is:
 M is immutable if:
 $$x_{0} \in M \implies x(t) \in M, \space \forall t$$_x once in M $\implies$ x stays in M_
 
+### Immutable Set Theorem:
+In an _Autonomous System_ $$\dot x(t) = f(x(t)), \space x(t_{0}) = x_{0}, \space x_{e}= 0$$
+Let $V(x)$:
+1. $$S_{a}= \set{x \in \mathbb{R}^n:V(x)<a}$$is a bounded region.
+2. $$\dot V(x) \le 0, \space \forall x \in S_{a}$$
+3. $$Z(S_{a}) = \set{x \in S_{a}:}$$
 
 
 
