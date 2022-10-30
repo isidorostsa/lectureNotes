@@ -10,4 +10,8 @@ The value $\hat \theta$ that we estimate $\theta$ to have given the sample data.
 Specifically, given $x = \set{x_{1},...,x_n}$ we estimate it using $\hat \theta = g(x)$, and $g$ is called the _estimator_.
 _Important:_ $x$ is a set of samples of $X$ so $\hat \theta$ is a *Random Variable*. Also $x_{1},x_{2}...$ are also _Random Variables_.
 
-So 
+So $\hat \theta$ has a mean and a variance. 
+
+### Important Parametric Estimators
+Mean: $$\hat \mu = \bar x = \frac{1}{n}\sum\limits^n_{i=1}x_i$$
+Variance:$$$$
