@@ -53,7 +53,7 @@ $$\begin{align*}
 So
 $$\begin{align*}
 &P(\bar{x} - k \le \mu \le \bar{x} + k) &=  \\
-&P\left(-\frac{k}{s / \sqrt{n}} \le t \le \frac {k}{s / \sqrt{n}}\right)&= \\
+&P\left(-\frac{k}{s / \sqrt{n}} \le t_{n-1} \le \frac {k}{s / \sqrt{n}}\right)&= \\
 &P()
 \end{align*}$$
 
