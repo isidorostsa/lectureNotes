@@ -69,3 +69,13 @@ V &= x^{T}Px\\
 \dot V &= -x^{T}\tilde Q x + 2b^TPxu_{d}\\
 &\le ...   
 \end{align*}$$
+
+## 4.
+$$\begin{align*}
+\dot x_{1} &= x_{2}\\
+\dot x_{2} &= -x_{1} - 3x_{2} +0,25x_{3} ^2\\
+\dot x_{3} &= x_{1} x_{3} -x_{3} 
+\end{align*}
+$$
+So we have 3 e.p. : $(0, 0, 0), \space (1, 0 ,2), \space (1, 0, -2)$ and we find out if they are stable by calculating the eigenvalues of the Jacobian around each point. $$...$$
+
