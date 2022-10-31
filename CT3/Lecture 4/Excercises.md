@@ -62,6 +62,9 @@ u &= \text{sat}(ky)
 \end{align*}$$
 1. $$\begin{align*}
 \dot x &= Ax + b \text{sat}(ky) \\
-&= Ax + kby + b (\text{sat}(ky) - ky)\\
+&= Ax + kbc^{T}x + b (\text{sat}(ky) - ky)\\
 &= \tilde A x + b u_{d} \text{    (just grouping stuff)}
+\end{align*}$$ So $\tilde A$ system is easy around $x=0$. $$\begin{align*}
+V &= x^{T}Px\\
+\dot V &= -x^{T}\tilde Q x + 2b^TPxu_{d}  
 \end{align*}$$
