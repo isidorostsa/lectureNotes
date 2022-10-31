@@ -36,7 +36,7 @@ V &=  x^TPx\\
 &\le -\lambda_{min}(Q)\|{x}\|^{2}+ 2\|{x}\|\|{P}\| \|{g(x)}\| \\
 &\le -\lambda_{min}(Q) \|{x}\|^{2}+2\|{x}\|^{2} \|{P}\|\mu\\
 &= \|{x}\|^{2}(2\|{P}\|\mu -\lambda_{min}(Q)) 
-\end{align*}$$ So we want $\mu$ to make this $< 0$ ..... 
+\end{align*}$$ So we want $\mu$ to make this $< 0$ ..... taking $Q = I$ and solving the lyapunov eq. 
 2. To make this asymptotically stable we want $$\dot V  \le -a \|{x}\|^2 $$so solve again for $\mu$.
 3. prove that $x_{e}= 0$ of following system is exponentially stable$$\begin{align*}
 \dot x &=  \left[\begin{matrix*}
@@ -50,4 +50,4 @@ x_{2}(\sin (x_{2}) -5)\\
 x_{2} \sin (x_{2} )\\
 \frac{x_{1}}{{x_{2}^{2} + 1}}
 \end{matrix*}\right]
-\end{align*}$$ take the second vector $=g(x)$ and prove that $\|{g(x)}\| \le \|{x}\|^2$, so $\mu = 1$ and we can easilly prove that it covers the requirements 
+\end{align*}$$ take the second vector $=g(x)$ and prove that $\|{g(x)}\| \le \|{x}\|^2$, so $\mu = 1$ and we can easilly prove that it covers the requirements of 1. and 2., solving for $Q = I$ and $P$ with the lyapunov equation. (Note: we take $Q = aI$ almost always because we want all states to tend to 0 )
