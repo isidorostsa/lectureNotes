@@ -39,7 +39,9 @@ Because $\bar x$ is unbiased:
 It has variance: $$\sigma_{\bar x}^{2}= \text{var}[\bar x] = \text{var}[\frac{1}{n} \sum\limits x_{i}]= \frac{1}{n^{2}} \sum\limits\text{var} \left[ x_{i}\right] = \frac{1}{n^{2}} (n \sigma ^{2}) = \frac{\sigma^{2}}{n}$$and as such _Standar deviation_: $\sigma_{\bar x} = \frac{\sigma}{\sqrt{n}}$
 _This is the standard deviation of $\bar x$ from $\mu$ depending on our sample size $n$_
 
-From the _Central Limit Theorem_, because $\bar x$ is just a sum of independant random variables divided by a constant we know that it will follow a normal distribution $N(\mu, \frac{{\sigma ^ 2}}{n})$. _BUT_ we have no way of definitevely knowing $\sigma$, so we have to use the sample diaspora $s^{2}$. This means that we have to 
+From the _Central Limit Theorem_, because $\bar x$ is just a sum of independant random variables divided by a constant we know that it will follow a normal distribution $N(\mu, \frac{{\sigma ^ 2}}{n})$. _BUT_ we have no way of definitevely knowing $\sigma$, so we have to use the sample diaspora $s^{2}$. The distribution this follows is _NOT_ the normal, but _Student distribution n - 1_. 
+
+The normalized $\bar x$: $\frac{\bar x - \mu}{s / \sqrt{n}} \sim t_{n-1}$  
 
 
 
