@@ -1,3 +1,4 @@
+## 1 
 $$\dot x =Ax + bu$$
 $$A = [-1,0;0,-2], b=[1;1]$$
 
@@ -20,5 +21,12 @@ And we take $$p_{12}=0$$
 V &= x^{T}Px\\
 \dot V &= ...=x^T(A^{T}P+PA)x+2ub^TPx\\
 &= -x^{T}Qx+ 2ub^TPx
-\end{align*}$$ since $u$ is a scalar $$\frac{\partial{J}}{\partial{u}}= 2b^TPx+2u$$so it has a minimum at $u=-b^TPx$, which somewhat minimizes usage of our controller and $\dot V$ meaning time to reach the 
+\end{align*}$$ since $u$ is a scalar $$\frac{\partial{J}}{\partial{u}}= 2b^TPx+2u$$so it has a minimum at $u=-b^TPx$, which somewhat minimizes usage of our controller and $\dot V$ meaning time to reach the $V=0$
 (Note: All matrix expressions that result in a scalar are equal to their transpose)
+
+## 2
+$$\dot x =Ax + g(x)$$
+$$x ,g(x) \in \mathbb{R}^{n}, \space A\in \mathbb{R}^{n \times n} $$
+$A$ is asymptotically stable, $$\|{g(x)}\| \le \mu \|{x}\|, \space \mu >0  $$
+1. Is $x_{e}$ asymptotically stable?
+$$V = x^TPx$$ 
