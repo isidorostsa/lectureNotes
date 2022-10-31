@@ -41,9 +41,9 @@ _This is the standard deviation of $\bar x$ from $\mu$ depending on our sample s
 
 From the _Central Limit Theorem_, because $\bar x$ is just a sum of independant random variables divided by a constant we know that it will follow a normal distribution $N(\mu, \frac{{\sigma ^ 2}}{n})$. _BUT_ we have no way of definitevely knowing $\sigma$, so we have to use the sample diaspora $s^{2}$. The distribution this follows is _NOT_ the normal, but _Student distribution n - 1_. 
 
-The normalized $\bar x$: $\frac{\bar x - \mu}{s / \sqrt{n}} \sim t_{n-1}$  
+The normalized $\bar x$: $\frac{\bar x - \mu}{s / \sqrt{n}} \sim t_{n-1}$ which is a squished-down and spread out, more uncertain version of the normal distribution, which for large enough $n$ ($\ge 30$) approaches it.
 
-
+The above means: $$P()$$
 
 
 
