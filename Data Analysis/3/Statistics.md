@@ -54,7 +54,9 @@ So
 $$\begin{align*}
 P(\bar{x} - k \le \mu \le \bar{x} + k) 
 &= P\left(-\frac{k}{s / \sqrt{n}} \le t_{n-1} \le \frac {k}{s / \sqrt{n}}\right) \\
-\end{align*}$$ and that is equal to $1-a$ so we define 
+\end{align*}$$ and that is equal to $1-a$ so we define $$\frac{k}{s / \sqrt{n}} = t_{n-1,1 - {a}/{2}}$$ which we can then find in tables.
+
+All in all: $$P\left(\bar{x} -\frac{k}{s / \sqrt{n}} \le t_{n-1} \le \frac {k}{s / \sqrt{n}}\right)$$
 
 
 
