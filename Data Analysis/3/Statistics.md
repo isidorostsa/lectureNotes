@@ -48,7 +48,11 @@ For $t = \frac{\bar x - \mu}{s / \sqrt{n}}$: $$P(k \le t \le \lambda) = \int_k^{
 \bar{x} -k &\le \mu &\le \bar{x} + k\\
 -k  &\le \mu -\bar{x} &\le k\\
 -\frac{k}{s / \sqrt{n}} &\le t &\le \frac {k}{s / \sqrt{n}}
-\end{align*}$$So $$P(\bar{x} - k \le \mu \le \bar{x} + k) = $$
+\end{align*}$$So $$\begin{align*}
+&P(\bar{x} - k \le \mu \le \bar{x} + k) &=  \\
+&P\left(-\frac{k}{s / \sqrt{n}} \le t \le \frac {k}{s / \sqrt{n}}\right)&= \\
+&P()
+\end{align*}$$
 
 
 
