@@ -2,7 +2,7 @@ function ex_3_3()
     n = 15;
     M = 1000;
     
-    lambda = 1/15;
+    lambda = 15;
     
     s = exprnd(lambda, n, M);
     
