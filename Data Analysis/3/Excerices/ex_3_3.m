@@ -1,6 +1,6 @@
 function ex_3_3()
-    n = 5;
-    M = 100000;
+    n = 15;
+    M = 1000;
     
     lambda = 1/15;
     
@@ -8,7 +8,9 @@ function ex_3_3()
     
     cnt = 0;
     for sample=1:M
-        cnt = cnt + ttest(s(:,sample), 1/lambda);
+        s(:, sample)
+        1/lambda;
+        cnt = cnt + ttest(s(:,sample)', 1/lambda);
     end
-    cnt/M
+    cnt
 end
