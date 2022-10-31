@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
+                "file": "Data Analysis/2/Normal Distribution.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
+                "file": "Data Analysis/2/Normal Distribution.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
+                "file": "Data Analysis/2/Normal Distribution.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CT3/Lecture 4/???.md"
+                "file": "Data Analysis/2/Normal Distribution.md"
               }
             }
           },
@@ -178,7 +178,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
+  "active": "d2e5a8f1ea32e893",
   "lastOpenFiles": [
     "Data Analysis/3/Statistics.md",
     "CT3/Lecture 4/???.md",
