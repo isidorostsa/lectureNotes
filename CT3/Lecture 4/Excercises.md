@@ -29,10 +29,13 @@ $$\dot x =Ax + g(x)$$
 $$x ,g(x) \in \mathbb{R}^{n}, \space A\in \mathbb{R}^{n \times n} $$
 $A$ is asymptotically stable, $$\|{g(x)}\| \le \mu \|{x}\|, \space \mu >0$$
 define $$A^{T}P+ PA = -Q > 0$$
-1. Is $x_{e}$ asymptotically stable?
+1. Find $\mu$ so $x_{e}$ asymptotically stable
 $$\begin{align*}
 V &=  x^TPx\\
 \dot V &= ... = -x^{T}Qx + 2x^{T}Pg(x) \\
 &\le -\lambda_{min}(Q)\|{x}\|^{2}+ 2\|{x}\|\|{P}\| \|{g(x)}\| \\
-&\le -\lambda_{min} \|{x}\|^{2}+2\|{x}\| \|{P}\|\mu       
-\end{align*}$$ 
+&\le -\lambda_{min}(Q) \|{x}\|^{2}+2\|{x}\|^{2} \|{P}\|\mu\\
+&= \|{x}\|^{2}(2\|{P}\|\mu -\lambda_{min}(Q)) 
+\end{align*}$$ So we want $\mu$ to make this $< 0$ ..... 
+2. To make this asymptotically stable we want $$\dot V  \le -a \|{x}\|^2 $$so solve again for $\mu$.
+3. 
