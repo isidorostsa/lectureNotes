@@ -1,64 +1,35 @@
 {
   "main": {
-    "id": "36b0ace275daeb65",
+    "id": "3349facfb1fa8ba6",
     "type": "split",
     "children": [
       {
-        "id": "bc174ac87f449cb8",
+        "id": "d9a969edbf867868",
         "type": "tabs",
         "children": [
           {
-            "id": "e484bf1a36475109",
+            "id": "b441a80c5552171c",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Data Analysis/2/Excersises.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "57702a5b03cf5e52",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CT3/Lecture 3/Immutable Set Theorems.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "d2e5a8f1ea32e893",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "CT3/Lecture 4/???.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "36e91809fec05454",
+    "id": "aa8454a66a302921",
     "type": "split",
     "children": [
       {
-        "id": "a48e28953561e6ad",
+        "id": "e0836369bbd63e3a",
         "type": "tabs",
         "children": [
           {
-            "id": "973054bb7c6742ae",
+            "id": "4db3904771eba1cf",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -68,7 +39,7 @@
             }
           },
           {
-            "id": "6cb7dc80c93a4ce1",
+            "id": "1ce1586300c0b006",
             "type": "leaf",
             "state": {
               "type": "search",
@@ -83,7 +54,7 @@
             }
           },
           {
-            "id": "98ac0eb471f30eed",
+            "id": "9890f50991f9acbd",
             "type": "leaf",
             "state": {
               "type": "starred",
@@ -94,23 +65,22 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "2b2bb4e895c43ada",
+    "id": "2b6d4b062f0bb0fc",
     "type": "split",
     "children": [
       {
-        "id": "9dc476daacfef436",
+        "id": "0c67f05d53ae2b54",
         "type": "tabs",
         "children": [
           {
-            "id": "46581299ac826b19",
+            "id": "dc337f1ebb6aed84",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -122,19 +92,18 @@
             }
           },
           {
-            "id": "14071b80a8c1f575",
+            "id": "9a2880ab82cff9f1",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "0a656ee4864aae04",
+            "id": "e595461b3d367cd2",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -145,50 +114,20 @@
             }
           },
           {
-            "id": "7d442aa3067abd83",
+            "id": "c1298cc726603bbe",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "CT3/Lecture 4/???.md"
-              }
-            }
-          },
-          {
-            "id": "d3c7b1cd74663524",
-            "type": "leaf",
-            "state": {
-              "type": "reminder-list",
-              "state": {}
-            }
-          },
-          {
-            "id": "e04a3074f8bb560f",
-            "type": "leaf",
-            "state": {
-              "type": "calendar",
               "state": {}
             }
           }
-        ],
-        "currentTab": 5
+        ]
       }
     ],
     "direction": "horizontal",
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
-  "lastOpenFiles": [
-    "Data Analysis/3/Statistics.md",
-    "CT3/Lecture 4/???.md",
-    "Data Analysis/2/Normal Distribution.md",
-    "CT3/Lecture 3/Immutable Set Theorems.md",
-    "Data Analysis/2/Excersises.md",
-    "CT3/Untitled.md",
-    "Data Analysis/Untitled.md",
-    "README.md",
-    "private.md",
-    "Lecture 2/Lyapunov Theory.md"
-  ]
+  "active": "b441a80c5552171c",
+  "lastOpenFiles": []
 }

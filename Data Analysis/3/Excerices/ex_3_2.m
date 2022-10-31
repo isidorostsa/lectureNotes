@@ -17,4 +17,5 @@ function mu_lambda_avg = ex_3_2 ()
 
     mu_lambda_avg = sum(mu_lambda)/M
     hist(mu_lambda, 500);
-end
+    end4
+    
