@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CT3/Lecture 4/???.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CT3/Lecture 4/???.md"
+                "file": "Data Analysis/3/Statistics.md"
               }
             }
           },
@@ -180,9 +180,9 @@
   },
   "active": "d2e5a8f1ea32e893",
   "lastOpenFiles": [
+    "CT3/Lecture 4/???.md",
     "Data Analysis/2/Normal Distribution.md",
     "Data Analysis/3/Statistics.md",
-    "CT3/Lecture 4/???.md",
     "CT3/Lecture 3/Immutable Set Theorems.md",
     "Data Analysis/2/Excersises.md",
     "CT3/Untitled.md",
