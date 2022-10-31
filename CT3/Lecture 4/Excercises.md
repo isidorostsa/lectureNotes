@@ -92,4 +92,4 @@ $$f_{u}=\left[\begin{align*}
 0\\
 1
 \end{align*}\right]$$
-so we study the simple system $\dot x = f_{X}(0)x + $
+so we study the simple system $\dot x = f_{X}(0)x + f_{u}u$ taking $u = Fx$ ....
