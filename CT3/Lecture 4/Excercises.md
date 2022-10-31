@@ -27,6 +27,12 @@ V &= x^{T}Px\\
 ## 2
 $$\dot x =Ax + g(x)$$
 $$x ,g(x) \in \mathbb{R}^{n}, \space A\in \mathbb{R}^{n \times n} $$
-$A$ is asymptotically stable, $$\|{g(x)}\| \le \mu \|{x}\|, \space \mu >0  $$
+$A$ is asymptotically stable, $$\|{g(x)}\| \le \mu \|{x}\|, \space \mu >0$$
+define $$A^{T}P+ PA = -Q > 0$$
 1. Is $x_{e}$ asymptotically stable?
-$$V = x^TPx$$ 
+$$\begin{align*}
+V &=  x^TPx\\
+\dot V &= ... = -x^{T}Qx + 2x^{T}Pg(x) \\
+&\le -\lambda_{min}(Q)\|{x}\|^{2}+ 2\|{x}\|\|{P}\| \|{g(x)}\| \\
+&\le -\lambda_{min} \|{x}\|^{2}+2\|{x}\| \|{P}\|\mu       
+\end{align*}$$ 
