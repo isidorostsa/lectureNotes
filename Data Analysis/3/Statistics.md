@@ -36,7 +36,7 @@ For the normal distribution:
 
 Because $\bar x$ is unbiased: 
 - $\mu_{\bar x} = E[\bar x] = \mu$ 
-It has variance: $$\sigma_{\bar x}^{2}= \text{var}[\bar x] = \text{var}[\frac{1}{n} \sum\limits x_{i}]= \frac{1}{n^{2}} \sum\limits\text{var} \left[ x_{i}\right] = \frac{\sigma^{2}}{n}$$and as such _Standar deviation_: $\sigma_{\bar x} = \frac{\sigma}{\sqrt{n}}$
+It has variance: $$\sigma_{\bar x}^{2}= \text{var}[\bar x] = \text{var}[\frac{1}{n} \sum\limits x_{i}]= \frac{1}{n^{2}} \sum\limits\text{var} \left[ x_{i}\right] = \frac{1}{n^{2}} (n \sigma ^{2}) = \frac{\sigma^{2}}{n}$$and as such _Standar deviation_: $\sigma_{\bar x} = \frac{\sigma}{\sqrt{n}}$
 _This is the standard deviation of $\bar x$ from $\mu$ depending on our sample size $n$_
 
 From the _Central Limit Theorem_, because $\bar x$ is just a sum of random variables divided by a constant we know that 
