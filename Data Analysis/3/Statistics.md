@@ -30,12 +30,13 @@ Define $L(x;\theta) = f(x_{1};\theta )...f(x_{n};\theta )$ where $f$ is the dist
 For the normal distribution:
 #TODO 
 
-## Estimating range of confidence
+## Estimating confidence intervals
 
 Because $\bar x$ is unbiased: 
 - $\mu_{\bar x} = E[\bar x] = \mu$ 
 It has variance: $$\sigma_{\bar x}^{2}= \text{var}[\bar x] = \text{var}[\frac{1}{n} \sum\limits x_{i}]= \frac{1}{n^{2}} \sum\limits\text{var} \left[ x_{i}\right] = \frac{\sigma^{2}}{n}$$and as such _Standar deviation_: $\sigma_{\bar x} = \frac{\sigma}{\sqrt{n}}$
 _This is the standard deviation of $\bar x$ from $\mu$ depending on our sample size $n$_
+
 
 
 
