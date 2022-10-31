@@ -61,5 +61,7 @@ u, y &\in \mathbb{R}  \\
 u &= \text{sat}(ky)
 \end{align*}$$
 1. $$\begin{align*}
-\dot x &= 
+\dot x &= Ax + b \text{sat}(ky) \\
+&= Ax + kby + b (\text{sat}(ky) - ky)\\
+&= \tilde A x + b u_{d} \text{    (just grouping stuff)}
 \end{align*}$$
