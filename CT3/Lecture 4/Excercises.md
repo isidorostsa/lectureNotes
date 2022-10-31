@@ -1,5 +1,7 @@
 $$\dot x =Ax + bu$$
 $$A = [-1,0;0,-2], b=[1;1]$$
+
+1. For the closed loop system we have:
 $$A^{T}P+PA=-Q \space \space (1)$$
 - $$P^{T}  = P >0$$so $$\begin{align*}
 p_{11} > 0\\
@@ -14,3 +16,8 @@ p_{11}=\frac{q_{1}}{2}\\
 p_{22}=\frac{-q_{2}}{2}
 \end{align*}$$
 And we take $$p_{12}=0$$
+2. We want to minimize the total integral of$$J = \dot V  + u^2$$We assume a quadratic lyapunov:$$\begin{align*}
+V &= x^{T}Px\\
+\dot V &= ...=x^T(A^{T}P+PA)x+2ub^T
+\end{align*}$$
+(Note: All matrix expressions that result in a scalar are equal to their transpose)
