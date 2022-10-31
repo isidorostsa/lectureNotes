@@ -50,4 +50,16 @@ x_{2}(\sin (x_{2}) -5)\\
 x_{2} \sin (x_{2} )\\
 \frac{x_{1}}{{x_{2}^{2} + 1}}
 \end{matrix*}\right]
-\end{align*}$$ take the second vector $=g(x)$ and prove that $\|{g(x)}\| \le \|{x}\|^2$, so $\mu = 1$ and we can easilly prove that it covers the requirements of 1. and 2., solving for $Q = I$ and $P$ with the lyapunov equation. (Note: we take $Q = aI$ almost always because we want all states to tend to 0 )
+\end{align*}$$ take the second vector $=g(x)$ and prove that $\|{g(x)}\| \le \|{x}\|^2$, so $\mu = 1$ and we can easilly prove that it covers the requirements of 1. and 2., solving for $Q = I$ and $P$ with the lyapunov equation. (Note: we take $Q = aI$ almost always because we want all states to tend to 0 with the same uniform speed).
+
+## 3. 
+$$\begin{align*}
+\dot x &= Ax + bu\\
+y &= c^{T}x\\
+x,b,c &\in \mathbb{R}^{n},\space A \in \mathbb{R}^{n \times n}\\
+u, y &\in \mathbb{R}  \\
+u &= \text{sat}(ky)
+\end{align*}$$
+1. $$\begin{align*}
+\dot x &= 
+\end{align*}$$
