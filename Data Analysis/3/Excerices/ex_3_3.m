@@ -1,16 +1,18 @@
 function ex_3_3()
-    n = 15;
+    n = 100;
     M = 1000;
     
-    lambda = 15;
+    lambda = 1/15;
     
-    s = exprnd(lambda, n, M);
+    s = exprnd(1/lambda, n, M);
     
     cnt = 0;
     for sample=1:M
         s(:, sample)
         1/lambda;
-        cnt = cnt + ttest(s(:,sample)', 1/lambda);
+        cnt = cnt + ttest(s(:,sample)', lambda);
     end
-    cnt
+    cnt/M
 end
+
+% for n = 5 we get  0.442, for n = 100 we get 1
