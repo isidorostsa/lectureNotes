@@ -38,16 +38,16 @@ V &=  x^TPx\\
 &= \|{x}\|^{2}(2\|{P}\|\mu -\lambda_{min}(Q)) 
 \end{align*}$$ So we want $\mu$ to make this $< 0$ ..... 
 2. To make this asymptotically stable we want $$\dot V  \le -a \|{x}\|^2 $$so solve again for $\mu$.
-3. $$\begin{align*}
+3. prove that $x_{e}= 0$ of following system is exponentially stable$$\begin{align*}
 \dot x &=  \left[\begin{matrix*}
-x_{2}(sin (x_{2}) -5)\\
+x_{2}(\sin (x_{2}) -5)\\
 -3x_{2} + x_{1} \left(6+\frac{1}{x_{2}^{2}+1}\right)
 \end{matrix*}\right] \\
-&= [\begin{matrix*}
+&= \left[\begin{matrix*}
 0 & -5\\
 6 & -3
-\end{matrix*}] x + \[begin{matrix*}
-x_{2} sin (x_{2} )\\
+\end{matrix*}\right] x + \left[\begin{matrix*}
+x_{2} \sin (x_{2} )\\
 \frac{x_{1}}{{x_{2}^{2} + 1}}
-\end{matrix*}\]
-\end{align*}$$
+\end{matrix*}\right]
+\end{align*}$$ take the second vector $=g(x)$ and prove that $\|{g(x)}\| \le \|{x}\|^2$, so $\mu = 1$ and we can easilly prove that it covers the requirements 
