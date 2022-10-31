@@ -64,7 +64,8 @@ u &= \text{sat}(ky)
 \dot x &= Ax + b \text{sat}(ky) \\
 &= Ax + kbc^{T}x + b (\text{sat}(ky) - ky)\\
 &= \tilde A x + b u_{d} \text{    (just grouping stuff)}
-\end{align*}$$ So $\tilde A$ system is easy around $x=0$. $$\begin{align*}
+\end{align*}$$ So $\tilde A$ system is easy around $x=0$, also $u_d$ is bounded by $\|{ky}\|$, and also we can change the eigenvalues of $\tilde A$. $$\begin{align*}
 V &= x^{T}Px\\
-\dot V &= -x^{T}\tilde Q x + 2b^TPxu_{d}  
+\dot V &= -x^{T}\tilde Q x + 2b^TPxu_{d}\\
+&\le ...   
 \end{align*}$$
