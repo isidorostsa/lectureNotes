@@ -78,4 +78,11 @@ $$\begin{align*}
 \end{align*}
 $$
 So we have 3 e.p. : $(0, 0, 0), \space (1, 0 ,2), \space (1, 0, -2)$ and we find out if they are stable by calculating the eigenvalues of the Jacobian around each point. $$...$$
+## 5.
+$$\begin{align*}
+\dot x_{1} &= x_{1} + 2 x_{2} + x_{1} x_{2} ^{2}\\
+\dot x_{2} &= 2x_{1} +x_{2} -x_{1} ^{2}x_{2} + u
+\end{align*}$$
+so $$f_{X}=\begin{matrix*}
 
+\end{matrix*}$$
