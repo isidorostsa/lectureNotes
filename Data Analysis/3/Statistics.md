@@ -43,7 +43,8 @@ From the _Central Limit Theorem_, because $\bar x$ is just a sum of independant 
 
 The normalized $\bar x$: $\frac{\bar x - \mu}{s / \sqrt{n}} \sim t_{n-1}$ which is a squished-down and spread out, more uncertain version of the normal distribution, which for large enough $n$ ($\ge 30$) approaches it.
 
-The above means: $$P()$$
+The above means: 
+For $Y = \frac{\bar x - \mu}{s / \sqrt{n}}$: $$P(k \le Y \le \lambda) = \int_k^{\lambda} t_{n-1}dY$$
 
 
 
