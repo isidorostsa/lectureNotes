@@ -83,6 +83,13 @@ $$\begin{align*}
 \dot x_{1} &= x_{1} + 2 x_{2} + x_{1} x_{2} ^{2}\\
 \dot x_{2} &= 2x_{1} +x_{2} -x_{1} ^{2}x_{2} + u
 \end{align*}$$
-so $$f_{X}=\begin{matrix*}
-
-\end{matrix*}$$
+so the Jacobian of the _closed loop system_ is $$f_{X}=\left[\begin{matrix*}
+1+x_{2} ^{2} & 2 + 2x_{1} x_{2} \\
+2- 2 x_{1} x_{2} & 1-x_{1} ^2
+\end{matrix*}\right]$$
+1. Create $u$ s.t. $0$ is asymptotically stable and the eigenvalues of the system around $0$ to be
+$$f_{u}=\left[\begin{align*}
+0\\
+1
+\end{align*}\right]$$
+so we study the simple system $\dot x = f_{X}(0)x + $
