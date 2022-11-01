@@ -1,1 +1,1 @@
-- [ ] Ex 3.4, 5 Data Anal
+- [ ] Ex 3.4 - 3.8 Data Anal
