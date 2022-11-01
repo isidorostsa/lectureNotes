@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "CT3/Lecture 4/Excercises.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "844a3d50e143d327",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Data Analysis/3/Excerices/Untitled.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "Data Analysis/3/Excerices/Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "Data Analysis/3/Excerices/Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Analysis/3/Statistics.md"
+                "file": "Data Analysis/3/Excerices/Untitled.md"
               }
             }
           },
@@ -153,13 +166,13 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
+  "active": "844a3d50e143d327",
   "lastOpenFiles": [
     "CT3/Lecture 4/Excercises.md",
+    "CT3/Resources.md",
+    "Data Analysis/3/Statistics.md",
     "CT3/Contents.md",
     "CT3/Lecture 4/???.md",
-    "Data Analysis/3/Statistics.md",
-    "CT3/Resources.md",
     "Data Analysis/2/Normal Distribution.md",
     "CT3/Lecture 3/Immutable Set Theorems.md",
     "Data Analysis/2/Excersises.md",
