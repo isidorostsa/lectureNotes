@@ -10,7 +10,7 @@ function mu_lambda_avg = ex_3_2 ()
     lambda = 4;
    
     % M columns of n rows
-    S = exprnd(lambda, n, M);
+    S = exprnd(1/lambda, n, M);
 
     % sum(S) returns vector of the sums of columns
     mu_lambda = arrayfun(@(x) n/x, sum(S));
