@@ -11,5 +11,5 @@ x,y,z > 0
 We want the experssion on the L.H.S. to match $xy^2z^3$. So we set $$\begin{align*}
 \delta_{1}&= \frac{1}{3}\\
 \delta_{2}&= 1\\
-\delta_{}
+\delta_{3}&= 3
 \end{align*}$$
