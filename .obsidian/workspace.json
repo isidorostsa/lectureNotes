@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Optimization Techniques/3/Untitled.md",
+                "file": "Optimization Techniques/3/Theorems and Proofs.md",
                 "mode": "source",
                 "source": false
               }
@@ -180,7 +180,8 @@
   },
   "active": "281a5f2846d39405",
   "lastOpenFiles": [
-    "Optimization Techniques/3/Untitled.md",
+    "Optimization Techniques/3/Theorems and Proofs.md",
+    "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/2/Maths Prerequisites.md",
     "CT3/Lecture 4/Excercises.md",
     "Data Analysis/3/Statistics.md",
@@ -188,7 +189,6 @@
     "OS/Lectures/2.md",
     "OS/Lectures/Untitled.md",
     "Optimization Techniques/Untitled.md",
-    "Data Analysis/4/Resampling.md",
-    "TC2/BER.md"
+    "Data Analysis/4/Resampling.md"
   ]
 }
