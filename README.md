@@ -1,2 +1,2 @@
 # lectureNotes
-Mostly obsidian vaults for now. Inside each vault are also the configuration files.
+Mostly obsidian vaults for now. Also all configuration files.
