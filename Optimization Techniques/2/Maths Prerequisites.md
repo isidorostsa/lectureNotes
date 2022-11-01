@@ -1,4 +1,7 @@
 ## 1. Norms
 
 1. _Vector Norm_: ...
-2. _Induced Matrix Norm_: $$\|{A}\| = \sup \frac{|Ax|}{|x|} $$
+2. _Induced Matrix Norm_: $$\|{A}\| = \sup_{x \in R^{n}} \frac{|Ax|}{|x|} = \sup_{|x|=1} |Ax|$$Which is the largest a unit vector can get by transforming it by $A$. This is the magnitude of the largest eigenvalue. Some useful 
+	1. 
+
+3. __
