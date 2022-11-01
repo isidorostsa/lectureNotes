@@ -8,8 +8,15 @@ x,y,z > 0
 - For $\delta_{i}: \sum\limits \delta_{i}= 1$ this gives: $$\begin{align*}
 \delta_{1}x^{3}+ \delta_{2}y^{2}+ \delta_{3}z &\ge (x)^{3\delta_1}(y^{2})^{\delta_2}(z^3)^{\frac{1}{3}\delta_3}
 \end{align*}$$
-We want the experssion on the L.H.S. to match $xy^2z^3)$. So we set $$\begin{align*}
-\delta_{1}&= \frac{1}{3}\\
-\delta_{2}&= 1\\
-\delta_{3}&= 3
+We want the experssion on the L.H.S. to match $(xy^2z^3)^ \text{some k}$. So we solve:
+$$\begin{align*}
+3\delta_{1} = \delta_{2}&= \frac{1}{3}\delta_{3}\\
+\delta_{1}+\delta_{2}+\delta_{3} &= 1
 \end{align*}$$
+and we get $$\begin{align*}
+\delta_{1}&= \frac{1}{13}\\
+\delta_{2}&= \frac{3}{13}\\
+\delta_{3}&= \frac{9}{13}\\
+\end{align*}$$
+
+
