@@ -28,8 +28,11 @@ _Proof_:
 
 ## Alpha Gamma Inequality
 
-For $$\begin{align*}
-x_{i}, \delta_{i} \in \mathbb{R}^{+}, \space i = 1, ... , n \\
-\sum\limits \delta_{i} = 1\\
-\prod{x_{i}^{\delta_{i}}}\le 
-\end{align*}$$, 
+For: 
+- $x_{i}, \delta_{i} \in \mathbb{R}^{+}, \space i = 1, ... , n$
+- $\sum\limits \delta_{i} = 1$
+Then:
+- $\prod{x_{i}^{\delta_{i}}}\le \sum\limits \delta_{i} x_{i}$
+
+_Proof_: 
+- Consider $\phi (t) = - \ln t$, $\phi$ is strictly convex. 
