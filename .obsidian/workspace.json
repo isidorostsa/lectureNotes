@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md"
+                "file": "Data Analysis/3/Statistics.md"
               }
             }
           },
@@ -168,9 +168,9 @@
   },
   "active": "784ec489b066003f",
   "lastOpenFiles": [
+    "CT3/Lecture 4/Excercises.md",
     "Data Analysis/2/Normal Distribution.md",
     "Data Analysis/3/Statistics.md",
-    "CT3/Lecture 4/Excercises.md",
     "Microeconomics/weak axiom of revealed preference.md",
     "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/3/Theorems and Proofs.md",
