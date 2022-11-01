@@ -7,5 +7,29 @@ _Proof_:
 	- For $$\begin{align*}
 \lambda_{1}&= \frac{|x|_{p}}{{|x|_{p} + |y|_{p}}} \\
 \lambda_{2}&= \frac{|y|_{p}}{{|x|_{p} + |y|_{p}}} 
-\end{align*}$$with $\lambda_{1}+\lambda_{2}= 1$, using 
-	   
+\end{align*}$$with $\lambda_{1}+\lambda_{2}= 1$, then .... #TODO 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Alpha Gamma Inequality
+
+For $$\begin{align*}
+x_{i}, \delta_{i} \in \mathbb{R}^{+}, \space i = 1, ... , n \\
+\sum\limits \delta_{i} = 1\\
+\prod{x_{i}^{\delta_{i}}}\le 
+\end{align*}$$, 
