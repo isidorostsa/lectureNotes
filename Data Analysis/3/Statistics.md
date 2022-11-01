@@ -57,8 +57,8 @@ P(\bar{x} - k \le \mu \le \bar{x} + k)
 \end{align*}$$ and that is equal to $1-a$ so we define $$\frac{k}{s / \sqrt{n}} = t_{n-1,1 - {a}/{2}}$$ which we can then find in tables.
 
 All in all: $$P\left(\bar{x} -t_{n-1, 1 - a/2}\frac{s}{\sqrt{n}} \le \mu \le \bar{x} + t_{n-1, 1 - a/2}\frac{s}{\sqrt{n}}\right)=1-a$$
-
-
+## Confidence intervals for $\sigma^2$
+The normalized  
 
 
 
