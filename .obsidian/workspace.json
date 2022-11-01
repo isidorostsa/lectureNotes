@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Analysis/4/Resampling.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "mode": "source",
                 "source": false
               }
@@ -82,7 +82,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -98,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Analysis/4/Resampling.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Analysis/4/Resampling.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Analysis/4/Resampling.md"
+                "file": "Data Analysis/3/Statistics.md"
               }
             }
           },
@@ -168,6 +169,7 @@
   },
   "active": "1b1a084b9b7bb7e1",
   "lastOpenFiles": [
+    "Data Analysis/4/Resampling.md",
     "Data Analysis/3/Statistics.md",
     "TODOS.md",
     "CT3/Lecture 4/Excercises.md",
@@ -176,7 +178,6 @@
     "CT3/Contents.md",
     "CT3/Lecture 4/???.md",
     "Data Analysis/2/Normal Distribution.md",
-    "CT3/Lecture 3/Immutable Set Theorems.md",
-    "Data Analysis/2/Excersises.md"
+    "CT3/Lecture 3/Immutable Set Theorems.md"
   ]
 }

@@ -67,3 +67,4 @@ The normalized $(n-1)s^2/\sigma^2$ follows a distribution of $\chi ^ 2$ with $n-
 
 
 
+
