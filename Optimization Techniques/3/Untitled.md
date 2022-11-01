@@ -35,4 +35,9 @@ Then:
 - $\prod{x_{i}^{\delta_{i}}}\le \sum\limits \delta_{i} x_{i}$
 
 _Proof_: 
-- Consider $\phi (t) = - \ln t$, $\phi$ is strictly convex. 
+- Consider $\phi (t) = - \ln t$, $\phi$ is strictly convex. ... 3.1.3 proves this.
+
+
+
+
+

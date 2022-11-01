@@ -30,9 +30,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "281a5f2846d39405",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Optimization Techniques/3/Excercises.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Optimization Techniques/3/Untitled.md",
+                "file": "Optimization Techniques/3/Excercises.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Optimization Techniques/3/Untitled.md",
+                "file": "Optimization Techniques/3/Excercises.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Optimization Techniques/3/Untitled.md"
+                "file": "Optimization Techniques/3/Excercises.md"
               }
             }
           },
@@ -166,11 +178,11 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "784ec489b066003f",
+  "active": "281a5f2846d39405",
   "lastOpenFiles": [
+    "Optimization Techniques/3/Untitled.md",
     "Optimization Techniques/2/Maths Prerequisites.md",
     "CT3/Lecture 4/Excercises.md",
-    "Optimization Techniques/3/Untitled.md",
     "Data Analysis/3/Statistics.md",
     "OS/Lectures/2/OS Control Structures.md",
     "OS/Lectures/2.md",
