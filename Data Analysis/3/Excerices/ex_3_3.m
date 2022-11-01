@@ -9,7 +9,7 @@ function ex_3_3()
     cnt = 0;
     for sample=1:M
         1/lambda;
-        cnt = cnt + ttest(s(:,sample)', lambda);
+        cnt = cnt + ttest(s(:,sample), lambda);
     end
     cnt/M
 end
