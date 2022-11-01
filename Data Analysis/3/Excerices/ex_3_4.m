@@ -1,7 +1,7 @@
 function ex_3_4()
     s = [41 48 50 52 46 50 50 52 47 50 50 53 47 50 50 53 48 50 52 53 50 50 52 53 50 50 53 53 50 50 53 53 50 52 53 54 50 52 53 54 50 53 53 55 50 55 57 68];
-    disp("95% interval");
-    [H p ci] = vartest(s, 5);
+    disp("95% interval of variance");
+    [H p ci] = vartest(s, 5^2);
     if(H)
         disp("variance of 5kv is within the interval")
     else
