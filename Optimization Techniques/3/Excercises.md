@@ -18,5 +18,7 @@ and we get $$\begin{align*}
 \delta_{2}&= \frac{3}{13}\\
 \delta_{3}&= \frac{9}{13}\\
 \end{align*}$$
-
+Leading to: $$\begin{align*}
+13\left(\frac{1}{13}x^{3}+ \frac{3}{13} \frac{y^{2}}{3}+ \frac{9}{13} \frac{z}{9}\right) &\ge 13\left((x^{3})^{\frac{1}{13}} + (\frac{y^{2}}{3})^\frac{3}{13}\right)
+\end{align*}$$
 
