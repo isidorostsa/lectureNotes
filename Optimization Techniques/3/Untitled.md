@@ -1,0 +1,1 @@
+$$\left(\sum|x_{i}+y_{i}|^{p}\right) \le \left(\sum|x_{i}|^{p}\right)^{\frac{1}{p}}$$
