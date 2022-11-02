@@ -37,7 +37,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Parallel Systems/Bitonic Sorting.md",
+                "file": "Parallel & Distributed Systems/Bitonic Sorting.md",
                 "mode": "source",
                 "source": false
               }
@@ -110,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Parallel Systems/Bitonic Sorting.md",
+                "file": "Parallel & Distributed Systems/Bitonic Sorting.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Parallel Systems/Bitonic Sorting.md",
+                "file": "Parallel & Distributed Systems/Bitonic Sorting.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Parallel Systems/Bitonic Sorting.md"
+                "file": "Parallel & Distributed Systems/Bitonic Sorting.md"
               }
             }
           },
@@ -178,7 +178,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "aec4a315ac7edace",
+  "active": "973054bb7c6742ae",
   "lastOpenFiles": [
     "TODOS.md",
     "Data Analysis/3/Statistics.md",
