@@ -1,1 +1,4 @@
 - [ ] Ex 3.4 - 3.8 Data Anal
+- [ ] Catch up Opt. Tech.
+- [ ] CT3 Project A is out
+
