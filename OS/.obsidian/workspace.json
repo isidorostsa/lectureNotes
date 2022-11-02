@@ -1,0 +1,143 @@
+{
+  "main": {
+    "id": "81a26c8aaffa1ba9",
+    "type": "split",
+    "children": [
+      {
+        "id": "69f477660c9fa7b2",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "3fe24304c7f12355",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Labs/1/Excersise.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "4edb4097009c6ff3",
+    "type": "split",
+    "children": [
+      {
+        "id": "5a8cb1fa5df1debb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "08b3c7cfa1ffb51c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "e86fc95f33bd4385",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "030fc7ce90da67e5",
+            "type": "leaf",
+            "state": {
+              "type": "starred",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "06f0b9b0d2cb6a9d",
+    "type": "split",
+    "children": [
+      {
+        "id": "2a3bbd1ba6d507ce",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "62e18f7b99d0d896",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "Labs/1/Excersise.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "0434d16e9c7da37a",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Labs/1/Excersise.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "34e86cc43bef48bb",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "bb464970d04f5455",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "Labs/1/Excersise.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "active": "3fe24304c7f12355",
+  "lastOpenFiles": [
+    "Labs/1/Intro to Unix.md"
+  ]
+}
