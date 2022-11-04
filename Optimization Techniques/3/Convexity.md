@@ -32,5 +32,14 @@ If $f$ is _Convex_ local minima of $f$ are also global. If $f$ is _strictly conv
 ### Theorem 3.1.5
 $f$ is _Convex_ iff:$$\nabla f^{T}(x_{1})(x_{1} - x_{2}) \le f(x_{2}) - f(x_{1}) ,\forall x_{1}, x_{2} \in S$$
 - _strictly convex_ if the equality is true for $x_{1} = x_{2}$
-(This is saying that the )
+(This is saying that the derivative is increasing, think Mean Value Theorem)
+
+
+### Theorem 3.1.6
+If the matrix $\nabla^{2}f > 0$ (positive definite) then $f$ is convex.
+(Using this we can easily prove the convexity of multivariable funcs)
+
+
+### Theorem 3.1.7
+The sum of $n$ convex functions is convex
 
