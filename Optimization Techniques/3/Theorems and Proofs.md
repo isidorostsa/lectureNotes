@@ -10,22 +10,6 @@ _Proof_:
 \end{align*}$$with $\lambda_{1}+\lambda_{2}= 1$, then .... #TODO 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Alpha Gamma Inequality
 
 For: 
