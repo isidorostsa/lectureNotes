@@ -3,3 +3,4 @@
 - [ ] CT3 Project A is out
 - [x] PICK SUBJECTS AND BOOKS!!!
 - [ ] Look into neural networks todos
+- [ ] os lab 2
