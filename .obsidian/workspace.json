@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md",
+                "file": "Optimization Techniques/2/Maths Prerequisites.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md",
+                "file": "Optimization Techniques/2/Maths Prerequisites.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md",
+                "file": "Optimization Techniques/2/Maths Prerequisites.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md"
+                "file": "Optimization Techniques/2/Maths Prerequisites.md"
               }
             }
           },
@@ -156,6 +156,7 @@
   "active": "784ec489b066003f",
   "lastOpenFiles": [
     "Optimization Techniques/3/Theorems and Proofs.md",
+    "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/2/Maths Prerequisites.md",
     "OS/Lectures/2/OS Control Structures.md",
     "README.md",
@@ -163,7 +164,6 @@
     "Parallel & Distributed Systems/Bitonic Sorting.md",
     "Microeconomics/rationality.md",
     "Microeconomics/Choices.md",
-    "Microeconomics/choice structures.md",
-    "Data Analysis/3/Excerices/Untitled.md"
+    "Microeconomics/choice structures.md"
   ]
 }

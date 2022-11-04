@@ -7,4 +7,5 @@
 	3. $\|{AB}\| \le \|{A}\| \|{B}\|$
 
 Generally useful norms use the notation:
-- $|x|_{\infty}= \max_$  
+- $|x|_{\infty}= \max{|x_{i}|}$  
+- $\|{}\| $ 
