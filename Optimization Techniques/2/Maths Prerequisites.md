@@ -14,6 +14,9 @@
 
 ## Other Definitions
 
-For $A \in R^{n \times n}$:
-### Positive Definite Matrix $A$:
+### Positive Definite Symmetric Matrix $A\in R^{n \times n}$:
 $$x^{T}A x > 0, \space \forall x \in R^{n}$$
+This is true if any of the following propositions is true:
+1. All $A$ eigenvalues are positive (They are definitely real since $A^T=A$)
+2. $\exists A_{1}: \det(A_{1}) \neq 0, \space A = A_{1}A_{1}^{T}$ 
+3. All leading princip
