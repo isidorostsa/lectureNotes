@@ -43,3 +43,5 @@ If the matrix $\nabla^{2}f > 0$ (positive definite) then $f$ is convex.
 ### Theorem 3.1.7
 The sum of $n$ convex functions is convex
 
+
+
