@@ -13,3 +13,9 @@
 - $\|{A}\|_{2} = \sqrt{\lambda_{max}(A^{T}A)}$ 
 
 ## Other Definitions
+
+1. Positive Definite:$$\begin{align*}
+A \in \mathbb{R}^{n \times n} \text{ is positive definite} 
+\end{align*}$$
+
+GEIA SOU 
