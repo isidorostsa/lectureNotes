@@ -26,6 +26,11 @@ f\left(\sum\limits \lambda_{i} x_{i}\right) \le \sum \lambda_{i}f(x_{i})\\\\
 \end{align*}$$
 - If $f$ is _strictly convex_ then the equality is true iff: $x_{1} = x_{2} =...=x_{n}$.
 
-### Theorem 
- Local minima of $f$ are also global. If $f$ is _strictly convex_ they are also unique.
+### Theorem 3.1.4
+If $f$ is _Convex_ local minima of $f$ are also global. If $f$ is _strictly convex_ they are also unique.
+
+### Theorem 3.1.5
+$f$ is _Convex_ iff:$$\nabla f^{T}(x_{1})(x_{1} - x_{2}) \le f(x_{2}) - f(x_{1}) ,\forall x_{1}, x_{2} \in S$$
+- _strictly convex_ if the equality is true for $x_{1} = x_{2}$
+(This is saying that the )
 
