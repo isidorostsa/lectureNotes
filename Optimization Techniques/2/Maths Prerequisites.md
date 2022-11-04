@@ -14,8 +14,6 @@
 
 ## Other Definitions
 
-1. Positive Definite:$$\begin{align*}
-A \in \mathbb{R}^{n \times n} \text{ is positive definite} 
-\end{align*}$$
-
-Γεια σου χριστ´νια, τι κάνεις καυλούλα μου;
+For $A \in R^{n \times n}$:
+### Positive Definite Matrix $A$:
+$$x^{T}A x > 0, \space \forall x \in R^{n}$$
