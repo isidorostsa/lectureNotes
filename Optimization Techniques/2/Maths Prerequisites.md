@@ -6,8 +6,9 @@
 	3. $\|{AB}\| \le \|{A}\| \|{B}\|$
 2. _Generally useful norms_:
 - $|x| := |x|_{2} = (\sum_{i}x_{i}^{2})^\frac{1}{2}$
-- $|x|_{\infty}= \max{|x_{i}|}$  
 - $|{x}|_{1} = \sum_i |x_{i}|$ 
+- $|x|_{\infty}= \max{|x_{i}|}$  
+- $|x|_{p} := (\sum_{i}x_{i}^{p})^\frac{1}{p}$ 
 - $\|{A}\|_{\infty}= \max_{i}\sum_{j}|a_{ij}|$ (sum of row elements)
 - $\|{A}\|_{1}= \max_{j}\sum_{i}|a_{ij}|$ (sum of column elements)
 - $\|{A}\|_{2} = \sqrt{\lambda_{max}(A^{T}A)}$ 
