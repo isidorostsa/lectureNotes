@@ -13,13 +13,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md",
+                "file": "Optimization Techniques/3/Theorems and Proofs.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "fff0280c8976bcb6",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Optimization Techniques/3/Untitled.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md",
+                "file": "Optimization Techniques/3/Untitled.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md",
+                "file": "Optimization Techniques/3/Untitled.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Optimization Techniques/3/Excercises.md"
+                "file": "Optimization Techniques/3/Untitled.md"
               }
             }
           },
@@ -153,7 +166,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "784ec489b066003f",
+  "active": "fff0280c8976bcb6",
   "lastOpenFiles": [
     "Optimization Techniques/3/Theorems and Proofs.md",
     "Optimization Techniques/3/Excercises.md",
