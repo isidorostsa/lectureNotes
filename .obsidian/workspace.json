@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "TODOS.md",
                 "mode": "source",
                 "source": false
               }
@@ -43,8 +43,7 @@
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -110,7 +109,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "TODOS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -127,7 +126,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "TODOS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -150,7 +149,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Analysis/3/Statistics.md"
+                "file": "TODOS.md"
               }
             }
           },
@@ -178,10 +177,10 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
+  "active": "c215963c42c4a994",
   "lastOpenFiles": [
-    "TODOS.md",
     "Data Analysis/3/Statistics.md",
+    "TODOS.md",
     "CT3/Lecture 4/Excercises.md",
     "Data Analysis/2/Normal Distribution.md",
     "Microeconomics/weak axiom of revealed preference.md",
