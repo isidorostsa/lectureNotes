@@ -7,7 +7,7 @@ This sum is called a _Convex combination of $x_{1}...x_{n}$_
 
 ## Convex Function
 For $f: S\to R$ where $S \subseteq R^{n}$ is convex, $f$ is called convex if:
-- $f(\lambda x + (1-\lambda) y) \le \lambda f(x) + (1-)$
+- $f(\lambda x + (1-\lambda) y) \le \lambda f(x) + (1-\lambda) f(y)$ 
 
 
 $$\begin{align*}
