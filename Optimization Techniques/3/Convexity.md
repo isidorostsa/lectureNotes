@@ -6,7 +6,11 @@ This sum is called a _Convex combination of $x_{1}...x_{n}$_
 - The set of the _convex combinations_ of any $n$ vectors of $R^k$ is the hyper-polygon traced by them
 
 ## Convex Function
-For $f: S\to R$ where $S \subseteq R^{n}$ is convex, $f$ is called convex if:$$\begin{align*}
+For $f: S\to R$ where $S \subseteq R^{n}$ is convex, $f$ is called convex if:
+- $f(\lambda x + (1-\lambda) y) \le \lambda f(x) + (1-)$
+
+
+$$\begin{align*}
 f\left(\sum\limits \lambda_{i} x_{i}\right) \le \sum \lambda_{i}f(x_{i})\\\\
 
 \forall x_{i} \in S,\lambda_{i} > 0, \sum \lambda_{i} = 1
