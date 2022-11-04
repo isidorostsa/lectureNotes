@@ -11,5 +11,7 @@ f\left(\sum\limits \lambda_{i} x_{i}\right) \le \sum \lambda_{i}f(x_{i})\\\\
 
 \forall x_{i} \in S,\lambda_{i} > 0, \sum \lambda_{i} = 1
 \end{align*}$$
-- If $f$ is _strictly convex_ 
+- If $f$ is _strictly convex_ then the equality is true iff: $x_{1} = x_{2} =...=x_{n}$.
+- Local minima of $f$ are also global. If $f$ is _strictly convex_ they are also unique.
+- 
 
