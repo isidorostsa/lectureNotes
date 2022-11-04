@@ -11,6 +11,13 @@ For $f: S\to R$ where $S \subseteq R^{n}$ is _convex_, $f$ is called:
 2. _Strictly convex_ if the equality is only true for $x = y$
 3. _Quasi-Convex_:$$f(\lambda x + (1-\lambda)y) \le \max(f(x), f(y))$$
 4. _Strictly quasi-convex_ if the equality is only true for $x = y$
+5. _Pseudo-Convex_: #TODO Only if it is ever needed
+
+
+### Theorem 3.1.2
+$f$ convex $\implies$ $f$ continuous
+
+
 
 
 
