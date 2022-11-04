@@ -18,4 +18,4 @@
 A \in \mathbb{R}^{n \times n} \text{ is positive definite} 
 \end{align*}$$
 
-GEIA SOU 
+Γεια σου χριστ´νια, τι κάνεις καυλούλα μου;
