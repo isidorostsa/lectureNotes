@@ -69,4 +69,4 @@ So to calculate the confidence interval: $$\left[\frac {(n-1)s^{2}}{\chi^{2}_{n-
 ## Hypothesis Control
 
 Null Hypothesis: $H_{0}: \mu = \mu_{0}$ . Assuming this is true we get $$\bar t = \frac{\bar{x} - \mu_{0}}{s/\sqrt{n}} \sim t_{n-1}$$
-After having defined some area of  $R$ in which we reject 
+After having defined some area of  $R$ in which we reject $\bar t$  
