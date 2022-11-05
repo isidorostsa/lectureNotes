@@ -60,7 +60,7 @@ All in all: $$P\left(\bar{x} -t_{n-1, 1 - a/2}\frac{s}{\sqrt{n}} \le \mu \le \ba
 ## Confidence intervals for $\sigma^2$
 Given a population $\set{x_{1}...x_{n}}$ we can estimate the variance as $s^{2}=\frac{1}{{n-1}}\sum {(x_{i}-\bar{x})^{2}}$. We want to find the distribution of $s^2$ for different populations. How accurate is our estimation?
 
-We define the 
+A normalized version of variance would be 
 The normalized $(n-1)s^2/\sigma^2$ follows a distribution of $\chi ^ 2$ with $n-1$ degrees of freedom.
 
 
