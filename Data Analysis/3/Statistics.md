@@ -64,4 +64,7 @@ A normalized version of variance would be
 The normalized $(n-1)s^2/\sigma^2$ follows a distribution of $\chi ^ 2$ with $n-1$ degrees of freedom. (the $n-1$ factor is to let the distribution change between sample sizes be appearent only within $\chi_{n-1}$)
 
 
-So to calculate the confidence interval: $$[\frac {(n-1)s^{2}}{\chi^{2}_{n-1,1-a /s2}}]$$
+So to calculate the confidence interval: $$\left[\frac {(n-1)s^{2}}{\chi^{2}_{n-1,1-a / 2 }},  \frac {(n-1)s^{2}}{\chi^{2}_{n-1,a / 2}}\right]$$
+
+## Hypothesis Control
+
