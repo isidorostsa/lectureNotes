@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TODOS.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TODOS.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TODOS.md",
+                "file": "Data Analysis/3/Statistics.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TODOS.md"
+                "file": "Data Analysis/3/Statistics.md"
               }
             }
           },
@@ -155,15 +155,15 @@
   },
   "active": "784ec489b066003f",
   "lastOpenFiles": [
+    "Data Analysis/4/Resampling.md",
     "Optimization Techniques/3/Convexity.md",
-    "Optimization Techniques/3/Theorems and Proofs.md",
+    "Data Analysis/3/Statistics.md",
     "TODOS.md",
+    "Optimization Techniques/3/Theorems and Proofs.md",
     "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/2/Maths Prerequisites.md",
     "OS/Lectures/2/OS Control Structures.md",
     "README.md",
-    "Parallel & Distributed Systems/Bitonic Sorting.md",
-    "Microeconomics/rationality.md",
-    "Microeconomics/Choices.md"
+    "Parallel & Distributed Systems/Bitonic Sorting.md"
   ]
 }
