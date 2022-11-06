@@ -13,4 +13,3 @@ function ex_3_5()
     sigma_sq_w89 = var(w89);
 
     
-    
