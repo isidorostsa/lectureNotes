@@ -69,4 +69,4 @@ So to calculate the confidence interval: $$\left[\frac {(n-1)s^{2}}{\chi^{2}_{n-
 ## Hypothesis Control
 
 Null Hypothesis: $H_{0}: \mu = \mu_{0}$ . Assuming this is true we get $$\bar t = \frac{\bar{x} - \mu_{0}}{s/\sqrt{n}} \sim t_{n-1}$$
-We accept this if the real $\mu$ is 'close' to $\bar t$. The rest is some area $R$ in which we reject $\bar t$. The likelyhood of of encountering the sample with statistical mean of $\bar{x}$ given that our real mean is $\mu_{0}$ , is $a$.
+We accept this if the real $\mu$ is 'close' to $\bar t$. The rest is some area $R$ in which we reject $\bar t$. The likelyhood of of encountering the sample with statistical mean of $\bar{x}$ given that our real mean is $\mu_{0}$ , is $a$.The lowest $a$ with which we accept $H_{0}$ is called its $p$-value. 
