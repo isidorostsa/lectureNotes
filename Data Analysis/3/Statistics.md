@@ -81,4 +81,5 @@ The same is true for $\chi^{2}$.
 
 ## $\chi^2$  goodnes-of-fit test
 
-We want to see how likely some population fits a known distribution. To do that we will compare their cdf. First we descritize our data. Then define $O_{j} = \text{ Frequency of data in bin \#j}$, then we define the test statisctic 
+We want to see how likely some population fits a known distribution. To do that we will compare their cdf. First we descritize our data. Then define $O_{j} = \text{ Frequency of data in bin \#j}$, then we define the test statistic$$\chi^{2}= \sum\limits_{j=1}^{K} \frac{{(O_{j}-E_{j})^{2}}}{{E_{j}}}$$
+with $$E_{j}= n(F_{x}(x_{j}^{\text{up limit}}) - F_{x}(x_{j}^{\text{down limit}}))$$
