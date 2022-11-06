@@ -1,8 +1,9 @@
 function ex_3_5() 
-    Table = readtable('eruption.dat')
+    table = readtable('eruption.dat')
 
-    w1989 = Table(:,1);
-    d1989 = Table(:,2);
-    w2006 = Table(:,3);
+    w1989 = table2array(table(:,1));
+    d1989 = table2array(table(:,2));
+    w2006 = table2array(table(:,3));
 
+    n = size(w1989, 2)
     
