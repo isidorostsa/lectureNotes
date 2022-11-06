@@ -72,10 +72,13 @@ Four cenaria:
 1. Correct decision: Accepting $H_0$ and it is correct $$P(\text {Accepted } H_{0}|H_{0}\text{ Correct} ) = 1-a$$
 2. Type $II$ Error: Accepting $H_{0}$ without it being correct $$P(\text {Accepted } H_{0}|H_{0}\text{ Wrong} ) = \beta$$
 3. Type $I$ Error: Rejecting $H_0$ while it is correct. $$P(\text {Rejected } H_{0}|H_{0}\text{ Correct} ) = a$$
-4. Correct decision: Rejecting $H_{0}$ while it is Wrong
-
+4. Correct decision: Rejecting $H_{0}$ while it is wrong$$P(\text {Rejected } H_{0}|H_{0}\text{ Wrong} ) = 1 - \beta $$
+### Mean Value Hypothesis
 Null Hypothesis: $H_{0}: \mu = \mu_{0}$ . Assuming this is true we get $$\bar t = \frac{\bar{x} - \mu_{0}}{s/\sqrt{n}} \sim t_{n-1}$$
 We accept this if the real $\mu$ is 'close' to $\bar t$. The rest is some area $R$ in which we reject $\bar t$. The likelyhood of of encountering the sample with statistical mean of $\bar{x}$ given that our real mean is $\mu_{0}$ , is $a$.The lowest $a$ with which we accept $H_{0}$ is called its $p$-value. So $p = 2P(t > |\bar t|)$.
 
 The same is true for $\chi^{2}$. 
 
+## $\chi^2$  goodnes-of-fit test
+
+We want to see how likely some population fits a known distribution. To do that we will compare their cdf. First we descritize our data. Then define $O_{j} = \text{ Frequency of data in bin \#j}$, then we define the test statisctic 
