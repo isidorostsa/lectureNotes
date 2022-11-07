@@ -6,17 +6,16 @@ a = 0.05;
 bins = M/10;
 
 X = normrnd(0, 1, n, M);
-%X = X.^2;
+X = X.^2;
 
 bs_var = zeros(B, M);
 ci_par = zeros(2, M);
 ci_bs = zeros(2, M);
 for m=1:M
-    s2 = var(X(:,m));
-
-    lo_par = (n-1)*s2/(chi2inv(0.975, n-1));
-    hi_par = (n-1)*s2/(chi2inv(0.025, n-1));
-
+    [h p ci] = ttest(X(:,m));
+    lo_par = ci(1);
+    hi_par = ci(2);
+    
     ci_par(1, m) = lo_par;
     ci_par(2, m) = hi_par;
 
@@ -26,7 +25,7 @@ for m=1:M
         bs_var(b, m) = var(sample);
     end
     
-    bs_sorted = sort(bs_var(:,m));
+    bs_sorted = sort(bs_v(:,m));
 
     k = floor((B + 1)*a/2);
 
