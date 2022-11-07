@@ -5,7 +5,8 @@ B = 100;
 a = 0.05;
 bins = M/10;
 
-X = normrnd(0, 1, n, M);
+X = normrnd(0, 1, n, M););
+X = X.^2;
 
 bs_mu = zeros(B, M);
 ci_par = zeros(2, M);
@@ -41,19 +42,23 @@ end
 % parametric
 subplot(2, 2, 1);
 hist(ci_par(1,:), bins);
+title('Parametric low bound');
 hold on;
 
 subplot(2, 2, 2);
 hist(ci_par(2,:), bins);
+title('Parametric high bound');
 hold on;
 
 % bootstrap
 subplot(2, 2, 3);
 hist(ci_bs(1,:), bins);
+title('Bootstrap low bound');
 hold on;
 
 subplot(2, 2, 4);
 hist(ci_bs(2,:), bins);
+title('Bootstrap high bound');
 hold on;
 
 end 
