@@ -6,7 +6,7 @@ a = 0.05;
 bins = M/10;
 
 X = normrnd(0, 1, n, M);
-%X = X.^2;
+% X = X.^2;
 
 bs_var = zeros(B, M);
 ci_par = zeros(2, M);
