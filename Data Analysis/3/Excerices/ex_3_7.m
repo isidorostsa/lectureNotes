@@ -7,5 +7,6 @@ bs_mu = zeros(n, M);
 bs_var = zeros(n, M);
 
 for i=1:M
-    
+    bs_mu =         sample = randsample(X, 10, true);
+
     
