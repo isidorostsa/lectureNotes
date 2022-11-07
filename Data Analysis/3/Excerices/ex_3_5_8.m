@@ -6,10 +6,9 @@ a = 0.05;
 bins = M/10;
 
 X = normrnd(0, 1, n, M);
-% uncomment for c)
-% X = X.^2;
+X = X.^2;
 
-bs_mu = zeros(B, M);
+bs_var = zeros(B, M);
 ci_par = zeros(2, M);
 ci_bs = zeros(2, M);
 for m=1:M
