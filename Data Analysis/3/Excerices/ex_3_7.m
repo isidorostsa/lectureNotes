@@ -26,7 +26,9 @@ for m=1:M
         bs_mu(b, m) = mean(sample);
     end
     
-    lo_bs = sort(bs_mu)()
+    bs_sorted = sort(bs_mu);
+
+    lo_bs = bs_sorted(size)
 
 end 
 
