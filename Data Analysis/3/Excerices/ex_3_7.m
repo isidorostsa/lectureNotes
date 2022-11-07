@@ -1,8 +1,9 @@
 function ex_3_7()
-M = 100;
+M = 1000;
 n = 10;
 B = 100;
 a = 0.05;
+bins = M/10;
 
 X = normrnd(0, 1, n, M);
 
@@ -37,11 +38,22 @@ for m=1:M
     ci_bs(2, m) = hi_bs;
 end 
 
+% parametric
 subplot(2, 2, 1);
-hist(ci_par())
+hist(ci_par(1,:), bins);
+hold on;
 
-ci_par
-ci_bs
+subplot(2, 2, 2);
+hist(ci_par(2,:), bins);
+hold on;
 
+% bootstrap
+subplot(2, 2, 3);
+hist(ci_bs(1,:), bins);
+hold on;
+
+subplot(2, 2, 4);
+hist(ci_bs(2,:), bins);
+hold on;
 
 end 
