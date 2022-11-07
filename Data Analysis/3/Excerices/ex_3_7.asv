@@ -26,9 +26,15 @@ for m=1:M
         bs_mu(b, m) = mean(sample);
     end
     
-    bs_sorted = sort()
+    bs_sorted = sort(bs_mu(:,m));
 
-    lo_bs = sort(bs_mu)()
+    k = floor((B + 1)*a/2);
+
+    lo_bs = bs_sorted(k);
+    hi_bs = bs_sorted(B+1-k);
+
+    ci_bs(1, m) = lo_bs;
+    ci_bs(2, m) = hi_bs;
 
 end 
 

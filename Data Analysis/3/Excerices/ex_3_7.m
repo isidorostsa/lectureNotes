@@ -1,10 +1,10 @@
 function ex_3_7()
 M = 100;
 n = 10;
-B = 1000;
+B = 100;
 a = 0.05;
 
-X = normnd(0, 1, n, M);
+X = normrnd(0, 1, n, M);
 
 bs_mu = zeros(B, M);
 ci_par = zeros(2, M);
@@ -26,10 +26,22 @@ for m=1:M
         bs_mu(b, m) = mean(sample);
     end
     
-    bs_sorted = sort(bs_mu);
+    bs_sorted = sort(bs_mu(:,m));
 
-    lo_bs = bs_sorted(size)
+    k = floor((B + 1)*a/2);
 
+    lo_bs = bs_sorted(k);
+    hi_bs = bs_sorted(B+1-k);
+
+    ci_bs(1, m) = lo_bs;
+    ci_bs(2, m) = hi_bs;
 end 
+
+subplot(2, 2, 1);
+hist(ci_par())
+
+ci_par
+ci_bs
+
 
 end 
