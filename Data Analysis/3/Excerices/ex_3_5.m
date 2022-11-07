@@ -26,6 +26,7 @@ function ex_3_5()
     [h p ci] = ttest(d89);
     sprintf("The 95 confidence interval of the mean of the duration is:\n[%0.5g, %0.5g]", ci(1), ci(2))
     
+   
     
 end
 
