@@ -15,4 +15,4 @@ function ex_3_5()
     lo = (n-1)*sigma_sq_w89/(chi2inv(0.975, n-1))
     hi = (n-1)*sigma_sq_w89/(chi2inv(0.025, n-1))
 
-    disp()
+    if (lo < sigma_sq_w89 &)
