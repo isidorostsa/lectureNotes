@@ -10,11 +10,13 @@ function ex_3_5()
     
     % var normalizes with n-1 by default, so it gives s
 
-    sigma_sq_w89 = var(w89)
+    sigma2_w89 = var(w89)
 
-    lo = (n-1)*sigma_sq_w89/(chi2inv(0.975, n-1))
-    hi = (n-1)*sigma_sq_w89/(chi2inv(0.025, n-1))
+    lo = (n-1)*sigma2_w89/(chi2inv(0.975, n-1))
+    hi = (n-1)*sigma2_w89/(chi2inv(0.025, n-1))
 
-    if (lo < sigma_sq_w89 & sigma_sq_w89 < hi)
+    if (lo < sigma2_w89 & sigma2_w89 < hi)
         sprintf("The 95 confidence interval is:\n[%0.5g, %0.5g]", lo, hi)
     end 
+
+    % H0: sigma2u = 10 
