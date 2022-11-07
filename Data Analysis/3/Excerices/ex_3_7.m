@@ -3,6 +3,9 @@ M = 100;
 n = 10;
 X = norrnd(0, 1, n, M);
 
-bs_mu = zeros()
+bs_mu = zeros(n, M);
+bs_var = zeros(n, M);
 
 for i=1:M
+    
+    
