@@ -20,6 +20,7 @@ function ex_3_5()
     hi_s2_d89 = (n-1)*sigma2_d89/(chi2inv(0.025, n-1));
     sprintf("The 95 confidence interval of the standard deviation of the duration is:\n[%0.5g, %0.5g]", sqrt(lo_s2_d89), sqrt(hi_s2_d89))
 
+    z
     % H0: sigma2u = 10
     
     
