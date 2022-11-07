@@ -8,7 +8,7 @@ function ex_3_5()
 
     n = size(w89, 1);
     
-    % var normalizes with n-1 by default, so it gives s
+    % var normalizes with n-1 by default, so it gives s^2
 
     sigma2_w89 = var(w89)
 

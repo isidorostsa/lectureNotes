@@ -15,9 +15,10 @@ function ex_3_5()
     lo = (n-1)*sigma2_w89/(chi2inv(0.975, n-1))
     hi = (n-1)*sigma2_w89/(chi2inv(0.025, n-1))
 
-    if (lo < sigma2_w89 & sigma2_w89 < hi)
-        sprintf("The 95 confidence interval is:\n[%0.5g, %0.5g]", lo, hi)
-    end 
+    sprintf("The 95 confidence interval is:\n[%0.5g, %0.5g]", lo, hi)
+
+
+    sigma2_d89 = var(d89)
 
     % H0: sigma2u = 10
     
