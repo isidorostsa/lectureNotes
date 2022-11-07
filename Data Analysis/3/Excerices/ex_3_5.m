@@ -11,16 +11,14 @@ function ex_3_5()
     % var normalizes with n-1 by default, so it gives s^2
 
     sigma2_w89 = var(w89);
-
     lo_s2_w89 = (n-1)*sigma2_w89/(chi2inv(0.975, n-1))
     hi_s2_w89 = (n-1)*sigma2_w89/(chi2inv(0.025, n-1))
-
     sprintf("The 95 confidence interval of the variance of the waiting period is:\n[%0.5g, %0.5g]", lo_s2_w89, hi_s2_w89)
 
+    sigma2_d89 = var(d89);
     lo_s2_d89 = (n-1)*sigma2_d89/(chi2inv(0.975, n-1))
     hi_s2_d89 = (n-1)*sigma2_d89/(chi2inv(0.025, n-1))
-    
-    sigma2_d89 = var(d89);
+    sprintf("The 95 confidence interval of the variance of the duration is:\n[%0.5g, %0.5g]", lo_s2_d89, hi_s2_d89)
 
 
     % H0: sigma2u = 10
