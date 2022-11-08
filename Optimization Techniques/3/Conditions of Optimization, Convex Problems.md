@@ -17,3 +17,7 @@ We call $MF$:$$\begin{align*}
 \end{align*}$$This is the greatest lower bound (infimum) of $f$'s value in $F$.
 
 - If $f, X, g_{i} \forall i$ are all convex then the problem is called _convex_
+
+### Example 3.2.1
+$$x \in R: \text{Minimizes } f(x)=e^{x} \text{ and satisfies } g_{1}(x)=x \le 0$$
+Here $\mathcal{F} = \set{x \in R: x \le 0}$ so $$\text{} $$   
