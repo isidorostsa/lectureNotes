@@ -7,4 +7,5 @@ Sample Problem:$$\text{Find } x \in X \subset R^{n} \text{ to minimize } f(x) \t
 - If $F \neq 0$ The Problem is called _Consistent_
 - If $\exists x \in F : g_{i}<0, \space i = 1,2,\dots,m$ the problem is called _super - consistent_. 
 
-If $\exists x^{\star} \in F: f(xstar)$ 
+If $\exists x^{\star} \in F: f(x^{\star}) \le f(x), \space  \forall x \in F$ then $x^{\star}$ is called a _Solution_ to the problem.
+
