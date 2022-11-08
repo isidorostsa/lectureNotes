@@ -23,5 +23,5 @@ Here $\mathcal{F} = \set{x \in R: x \le 0}$ so $$\text{MF} = \inf_{x \le 0} {e^{
 
 
 ## MF sensitivity to restraints
-
+Knowing the $MF$ of some problem, we want to examine the problem: $$\text{MF}(z) = \inf_{x \in X, \space g_{i}(x) - z_{i} \le 0} f(x) $$
 
