@@ -13,5 +13,7 @@ If $\exists x^{\star} \in F: f(x^{\star}) \le f(x), \space  \forall x \in F$ the
 ## MF
 
 We call $MF$:$$\begin{align*}
-\text{MF}  =  &\infty 
-\end{align*}$$
+\text{MF}  =  &\inf_{x \in X, \space g_{i}(x) \le 0} {f(x)} 
+\end{align*}$$This is the greatest lower bound (infimum) of $f$'s value in $F$.
+
+- If $f, X, g_{i} \forall i$ are all convex then the problem is called _convex_
