@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "Optimization Techniques/2/Maths Prerequisites.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "Optimization Techniques/2/Maths Prerequisites.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Data Analysis/3/Statistics.md",
+                "file": "Optimization Techniques/2/Maths Prerequisites.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Data Analysis/3/Statistics.md"
+                "file": "Optimization Techniques/2/Maths Prerequisites.md"
               }
             }
           },
@@ -155,15 +155,15 @@
   },
   "active": "784ec489b066003f",
   "lastOpenFiles": [
-    "Data Analysis/4/Resampling.md",
+    "Optimization Techniques/3/Excercises.md",
+    "Parallel & Distributed Systems/Bitonic Sorting.md",
+    "Optimization Techniques/3/Theorems and Proofs.md",
+    "Optimization Techniques/2/Maths Prerequisites.md",
     "Data Analysis/3/Statistics.md",
+    "Data Analysis/4/Resampling.md",
     "Optimization Techniques/3/Convexity.md",
     "TODOS.md",
-    "Optimization Techniques/3/Theorems and Proofs.md",
-    "Optimization Techniques/3/Excercises.md",
-    "Optimization Techniques/2/Maths Prerequisites.md",
     "OS/Lectures/2/OS Control Structures.md",
-    "README.md",
-    "Parallel & Distributed Systems/Bitonic Sorting.md"
+    "README.md"
   ]
 }
