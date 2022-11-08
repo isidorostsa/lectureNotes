@@ -20,4 +20,4 @@ We call $MF$:$$\begin{align*}
 
 ### Example 3.2.1
 $$x \in R: \text{Minimizes } f(x)=e^{x} \text{ and satisfies } g_{1}(x)=x \le 0$$
-Here $\mathcal{F} = \set{x \in R: x \le 0}$ so $$\text{} $$   
+Here $\mathcal{F} = \set{x \in R: x \le 0}$ so $$\text{MF} = \inf_{x \le 0} {e^{x}} =0$$But the problem has no solution.
