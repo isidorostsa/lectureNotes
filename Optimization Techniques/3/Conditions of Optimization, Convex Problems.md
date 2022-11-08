@@ -9,3 +9,9 @@ Sample Problem:$$\text{Find } x \in X \subset R^{n} \text{ to minimize } f(x) \t
 
 If $\exists x^{\star} \in F: f(x^{\star}) \le f(x), \space  \forall x \in F$ then $x^{\star}$ is called a _Solution_ to the problem.
 
+
+## MF
+
+We call $MF$:$$\begin{align*}
+\text{MF}  =  &\infty 
+\end{align*}$$
