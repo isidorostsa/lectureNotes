@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TODOS.md",
+                "file": "OS/Labs/1/Excersise.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "TODOS.md",
+                "file": "OS/Labs/1/Excersise.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "TODOS.md",
+                "file": "OS/Labs/1/Excersise.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "TODOS.md"
+                "file": "OS/Labs/1/Excersise.md"
               }
             }
           },
@@ -168,9 +168,9 @@
   },
   "active": "3ea981d1c57c4df0",
   "lastOpenFiles": [
+    "TODOS.md",
     "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/3/Convexity.md",
-    "TODOS.md",
     "Optimization Techniques/3/Conditions of Optimization, Convex Problems.md",
     "Optimization Techniques/3/Theorems and Proofs.md",
     "Optimization Techniques/2/Maths Prerequisites.md",
