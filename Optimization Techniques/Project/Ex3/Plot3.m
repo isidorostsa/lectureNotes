@@ -4,7 +4,7 @@ clear all;
 
 %% Parameters
 bounds = [-1 3];
-max_iter = 50;
+epsilon = 0.0001;
 
 foldername = 'figs/';
 
@@ -18,7 +18,7 @@ lambda_list = linspace(0.0001, 0.004, lambda_sample_amount);
 
 lambda_sample_amount_iters = 500;
 % same as above for lambda
-lambda_iters_list = linspace(0.0001, 0.04, lambda_sample_amount_iters);
+lambda_iters_list = linspace(0.0001, 0.004, lambda_sample_amount_iters);
 
 % the functions we will be minimizing
 f1 = @(x) (x-2)^2 + x*log(x+3);
@@ -39,9 +39,9 @@ f3_y = arrayfun(f3, x);
 
 % the number of iterations of the algorithm for each of the functions given a large sample of lambda values
 for i = 1:lambda_sample_amount_iters
-    [a a a f1_iter_iters_lambda(i)] = ex_1_2(f1, bounds(1), bounds(2), lambda_iters_list(i), max_iter)
-    [a a a f2_iter_iters_lambda(i)] = ex_1_2(f2, bounds(1), bounds(2), lambda_iters_list(i), max_iter);
-    [a a a f3_iter_iters_lambda(i)] = ex_1_2(f3, bounds(1), bounds(2), lambda_iters_list(i), max_iter);
+    [a a a f1_iter_iters_lambda(i)] = ex_1_3(f1, bounds(1), bounds(2), lambda_iters_list(i), epsilon)
+    [a a a f2_iter_iters_lambda(i)] = ex_1_3(f2, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
+    [a a a f3_iter_iters_lambda(i)] = ex_1_3(f3, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
 end
 
 % the lower and upper bounds in each step of the algorithm for each of the functions for the different lambdas
@@ -55,9 +55,9 @@ f3_lb_lambda = cell(1, lambda_sample_amount);
 f3_ub_lambda = cell(1, lambda_sample_amount);
 
 for i = 1:lambda_sample_amount
-    [f1_sol_lambda(i) f1_lb_lambda{i} f1_ub_lambda{i} f1_iter_lambda(i)] = ex_1_2(f1, bounds(1), bounds(2), lambda_list(i), max_iter)
-    [f2_sol_lambda(i) f2_lb_lambda{i} f2_ub_lambda{i} f2_iter_lambda(i)] = ex_1_2(f2, bounds(1), bounds(2), lambda_list(i), max_iter);
-    [f3_sol_lambda(i) f3_lb_lambda{i} f3_ub_lambda{i} f3_iter_lambda(i)] = ex_1_2(f3, bounds(1), bounds(2), lambda_list(i), max_iter);
+    [f1_sol_lambda(i) f1_lb_lambda{i} f1_ub_lambda{i} f1_iter_lambda(i)] = ex_1_3(f1, bounds(1), bounds(2), lambda_list(i), epsilon);
+    [f2_sol_lambda(i) f2_lb_lambda{i} f2_ub_lambda{i} f2_iter_lambda(i)] = ex_1_3(f2, bounds(1), bounds(2), lambda_list(i), epsilon);
+    [f3_sol_lambda(i) f3_lb_lambda{i} f3_ub_lambda{i} f3_iter_lambda(i)] = ex_1_3(f3, bounds(1), bounds(2), lambda_list(i), epsilon);
 end
 
 %% Visualizations
