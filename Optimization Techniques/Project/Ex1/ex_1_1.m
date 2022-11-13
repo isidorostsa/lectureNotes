@@ -1,12 +1,15 @@
-function [sol lb_list ub_list] = ex_1_1(func, lower_bound, upper_bound, epsilon, limit_width, limit_iterations)
+function [sol lb_list ub_list iter] = ex_1_1(func, lower_bound, upper_bound, epsilon, limit_width, max_iterations)
     x1 = 0;
     x2 = 0;
 
     iter = 1;
 
-    while upper_bound - lower_bound > limit_width && iter < limit_iterations
-        lb_list(iter) = lower_bound;
-        ub_list(iter) = upper_bound;
+    lb_list = [];
+    ub_list = [];
+
+    while upper_bound - lower_bound > limit_width && iter < max_iterations
+        lb_list = [lb_list lower_bound];
+        ub_list = [ub_list upper_bound];
 
         x1 = (upper_bound + lower_bound) / 2 - epsilon;
         x2 = (upper_bound + lower_bound) / 2 + epsilon;
