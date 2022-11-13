@@ -1,15 +1,11 @@
 %% clean
 clear all;
 
-
 %% Parameters
 bounds = [-1 3];
-epsilon = 0.0001;
+max_iter = 1000;
 
 foldername = 'figs/';
-
-% number of detail points for the plots
-nx = 1000;
 
 lambda_sample_amount = 3;
 lambda = 0.0;
@@ -21,27 +17,25 @@ lambda_sample_amount_iters = 500;
 lambda_iters_list = linspace(0.0001, 0.04, lambda_sample_amount_iters);
 
 % the functions we will be minimizing
-f1 = @(x) (x-2)^2 + x*log(x+3);
-f2 = @(x) 5^x + (2-cos(x))^2;
-f3 = @(x) exp(x)*(x^3-1)+(x-1)*sin(x);
+syms f1(x) f2(x) f3(x);
+
+f1 = (x-2)^2 + x*log(x+3);
+f2 = 5^x + (2-cos(x))^2;
+f3 = exp(x)*(x^3-1)+(x-1)*sin(x);
+
+f1_prime = diff(f1, x);
+f2_prime = diff(f2, x);
+f3_prime = diff(f3, x);θέλω 
 
 % to keep track of figures
 fignum = 0;
 
 %% Calculations
-x = linspace(bounds(1), bounds(2), nx);
-
-% functions applied elementwise to the x vector
-f1_y = arrayfun(f1, x);
-f2_y = arrayfun(f2, x);
-f3_y = arrayfun(f3, x);
-
-
 % the number of iterations of the algorithm for each of the functions given a large sample of lambda values
 for i = 1:lambda_sample_amount_iters
-    [a a a f1_iter_iters_lambda(i)] = ex_1_3(f1, bounds(1), bounds(2), lambda_iters_list(i), epsilon)
-    [a a a f2_iter_iters_lambda(i)] = ex_1_3(f2, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
-    [a a a f3_iter_iters_lambda(i)] = ex_1_3(f3, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
+    [a a a f1_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f1), matlabFunction(f1_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
+    [a a a f2_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f2), matlabFunction(f2_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
+    [a a a f3_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f3), matlabFunction(f3_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
 end
 
 % the lower and upper bounds in each step of the algorithm for each of the functions for the different lambdas
@@ -55,9 +49,9 @@ f3_lb_lambda = cell(1, lambda_sample_amount);
 f3_ub_lambda = cell(1, lambda_sample_amount);
 
 for i = 1:lambda_sample_amount
-    [f1_sol_lambda(i) f1_lb_lambda{i} f1_ub_lambda{i} f1_iter_lambda(i)] = ex_1_3(f1, bounds(1), bounds(2), lambda_list(i), epsilon);
-    [f2_sol_lambda(i) f2_lb_lambda{i} f2_ub_lambda{i} f2_iter_lambda(i)] = ex_1_3(f2, bounds(1), bounds(2), lambda_list(i), epsilon);
-    [f3_sol_lambda(i) f3_lb_lambda{i} f3_ub_lambda{i} f3_iter_lambda(i)] = ex_1_3(f3, bounds(1), bounds(2), lambda_list(i), epsilon);
+    [f1_sol_lambda(i) f1_lb_lambda{i} f1_ub_lambda{i} f1_iter_lambda(i)] = ex_1_4(matlabFunction(f1), matlabFunction(f1_prime), bounds(1), bounds(2), lambda_list(i), max_iter);
+    [f2_sol_lambda(i) f2_lb_lambda{i} f2_ub_lambda{i} f2_iter_lambda(i)] = ex_1_4(matlabFunction(f2), matlabFunction(f2_prime), bounds(1), bounds(2), lambda_list(i), max_iter);
+    [f3_sol_lambda(i) f3_lb_lambda{i} f3_ub_lambda{i} f3_iter_lambda(i)] = ex_1_4(matlabFunction(f3), matlabFunction(f3_prime), bounds(1), bounds(2), lambda_list(i), max_iter);
 end
 
 %% Visualizations
@@ -212,4 +206,3 @@ print(hfig,fname,'-dpdf','-painters','-fillpage');
 
 %% Finish 
 close all;
-                    
