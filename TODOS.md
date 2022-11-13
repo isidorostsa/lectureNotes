@@ -4,4 +4,4 @@
 - [x] PICK SUBJECTS AND BOOKS!!!
 - [ ] Look into neural networks todos
 - [ ] os lab 2
-- [ ] Opt. Tech. Project 1 is out
+- [x] Opt. Tech. Project 1 is out
