@@ -39,9 +39,9 @@ f3_y = arrayfun(f3, x);
 
 % the number of iterations of the algorithm for each of the functions given a large sample of lambda values
 for i = 1:lambda_sample_amount_iters
-    [a a a f1_iter_iters_lambda(i)] = ex_1_3(f1, bounds(1), bounds(2), lambda_iters_list(i), epsilon)
-    [a a a f2_iter_iters_lambda(i)] = ex_1_3(f2, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
-    [a a a f3_iter_iters_lambda(i)] = ex_1_3(f3, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
+    [f1_sol_iters_lambda(i) a a f1_iter_iters_lambda(i)] = ex_1_3(f1, bounds(1), bounds(2), lambda_iters_list(i), epsilon)
+    [f2_sol_iters_lambda(i) a a f2_iter_iters_lambda(i)] = ex_1_3(f2, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
+    [f3_sol_iters_lambda(i) a a f3_iter_iters_lambda(i)] = ex_1_3(f3, bounds(1), bounds(2), lambda_iters_list(i), epsilon);
 end
 
 % the lower and upper bounds in each step of the algorithm for each of the functions for the different lambdas

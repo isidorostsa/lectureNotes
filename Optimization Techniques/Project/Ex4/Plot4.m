@@ -25,7 +25,7 @@ f3 = exp(x)*(x^3-1)+(x-1)*sin(x);
 
 f1_prime = diff(f1, x);
 f2_prime = diff(f2, x);
-f3_prime = diff(f3, x);θέλω 
+f3_prime = diff(f3, x); 
 
 % to keep track of figures
 fignum = 0;
@@ -33,9 +33,9 @@ fignum = 0;
 %% Calculations
 % the number of iterations of the algorithm for each of the functions given a large sample of lambda values
 for i = 1:lambda_sample_amount_iters
-    [a a a f1_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f1), matlabFunction(f1_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
-    [a a a f2_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f2), matlabFunction(f2_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
-    [a a a f3_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f3), matlabFunction(f3_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
+    [f1_sol_iters_lambda(i) a a f1_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f1), matlabFunction(f1_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
+    [f2_sol_iters_lambda(i) a a f2_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f2), matlabFunction(f2_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
+    [f3_sol_iters_lambda(i) a a f3_iter_iters_lambda(i)] = ex_1_4(matlabFunction(f3), matlabFunction(f3_prime), bounds(1), bounds(2), lambda_iters_list(i), max_iter);
 end
 
 % the lower and upper bounds in each step of the algorithm for each of the functions for the different lambdas

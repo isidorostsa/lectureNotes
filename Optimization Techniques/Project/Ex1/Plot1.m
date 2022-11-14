@@ -21,7 +21,7 @@ lambda = 0.0;
 % same as above for lambda
 lambda_list = linspace(0.0001, 0.004, lambda_sample_amount);
 
-lambda_sample_amount_iters = 50;
+lambda_sample_amount_iters = 500;
 % same as above for lambda
 lambda_iters_list = linspace(0.0001, 0.04, lambda_sample_amount_iters);
 
@@ -82,9 +82,9 @@ end
 % algorithm
 
 for i = 1:lambda_sample_amount_iters
-    [a a a f1_iter_iters_lambda(i)] = ex_1_1(f1, bounds(1), bounds(2), epsilon, lambda_iters_list(i), max_iter)
-    [a a a f2_iter_iters_lambda(i)] = ex_1_1(f2, bounds(1), bounds(2), epsilon, lambda_iters_list(i), max_iter);
-    [a a a f3_iter_iters_lambda(i)] = ex_1_1(f3, bounds(1), bounds(2), epsilon, lambda_iters_list(i), max_iter);
+    [f1_sol_iters_lambda(i) a a f1_iter_iters_lambda(i)] = ex_1_1(f1, bounds(1), bounds(2), epsilon, lambda_iters_list(i), max_iter)
+    [f2_sol_iters_lambda(i) a a f2_iter_iters_lambda(i)] = ex_1_1(f2, bounds(1), bounds(2), epsilon, lambda_iters_list(i), max_iter);
+    [f3_sol_iters_lambda(i) a a f3_iter_iters_lambda(i)] = ex_1_1(f3, bounds(1), bounds(2), epsilon, lambda_iters_list(i), max_iter);
 end
 
 %% Visualizations
