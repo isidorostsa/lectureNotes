@@ -1,18 +1,20 @@
 using MatrixMarket;
 using SparseArrays;
 using Graphs;
+using Compose;
 using GraphPlot;
 
 # Load the matrix
-A = mmread("matrices/celegansneural/celegansneural.mtx");
+graphMatrix = mmread("matrices/celegansneural/celegansneural.mtx");
 
-# The adjacency matrix is symmetric, so we need to convert it to a
-# directed graph
-G = DiGraph(A);
+# convert graphMatrix to a sparse matrix object
+graphMatrix = sparse(graphMatrix);
 
+# convert graphMatrix to a directed graph object
+graph = DiGraph(graphMatrix);
 
-# plot and display the graph using GraphPlot
-gplot(G, nodelabel=1:nv(G), nodefillc=:lightblue, nodesize=0.1)
+# plot the graph
+gplot(graph, nodelabel=1:nv(graph), nodefillc=:lightblue, nodesize=0.1)
 
-
-
+# save the graph
+savefig("celegansneural.png")

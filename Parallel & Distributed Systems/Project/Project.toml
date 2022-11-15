@@ -1,4 +1,5 @@
 [deps]
+Compose = "a81c6b42-2e10-5240-aca2-a61377ecd94b"
 GraphPlot = "a2cc645c-3eea-5389-862e-a155d0052231"
 Graphs = "86223c79-3864-5bf0-83f7-82e725a168b6"
 MatrixMarket = "4d4711f2-db25-561a-b6b3-d35e7d4047d3"
