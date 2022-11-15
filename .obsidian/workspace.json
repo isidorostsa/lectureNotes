@@ -94,7 +94,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Optimization Techniques/3/Convexity.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +110,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Optimization Techniques/3/Convexity.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -133,9 +131,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Optimization Techniques/3/Convexity.md"
-              }
+              "state": {}
             }
           },
           {
@@ -162,14 +158,14 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
+  "active": "3ea981d1c57c4df0",
   "lastOpenFiles": [
+    "Optimization Techniques/3/Convexity.md",
     "Parallel & Distributed Systems/Bitonic Sorting.md",
     "OS/Labs/1/Excersise.md",
     "OS/Labs/1/Intro to Unix.md",
     "TODOS.md",
     "Optimization Techniques/3/Excercises.md",
-    "Optimization Techniques/3/Convexity.md",
     "Optimization Techniques/3/Conditions of Optimization, Convex Problems.md",
     "Optimization Techniques/3/Theorems and Proofs.md",
     "Optimization Techniques/2/Maths Prerequisites.md",
