@@ -19,5 +19,4 @@ gplot(graph, nodelabel=1:nv(graph), nodefillc=:"lightblue", nodesize=0.1)
 # set of the neighboors of node 1
 neighbors(graph, 1)
 
-# graph with the neighboors of node 1
-gplot(graph, nodelabel=1:nv(graph), nodefillc=:"lightblue", nodesize=0.1, edgelabel=1:ne(graph), edgestrokec=:"lightblue", edgestrokewidth=0.1, highlight=neighbors(graph, 1))
+# undirected graph containing the same edges as graph
