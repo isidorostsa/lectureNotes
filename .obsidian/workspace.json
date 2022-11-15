@@ -4,17 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "bc174ac87f449cb8",
+        "id": "ac37f845ee3fa3e2",
         "type": "tabs",
         "children": [
           {
-            "id": "3ea981d1c57c4df0",
+            "id": "f763b5449e07d595",
             "type": "leaf",
             "state": {
-              "type": "pdf",
-              "state": {
-                "file": "Optimization Techniques/Project/TsaousisSeiras_Isidoros_10042_lab01.pdf"
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -151,7 +149,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "3ea981d1c57c4df0",
+  "active": "973054bb7c6742ae",
   "lastOpenFiles": [
     "Optimization Techniques/3/Convexity.md",
     "Parallel & Distributed Systems/Bitonic Sorting.md",
