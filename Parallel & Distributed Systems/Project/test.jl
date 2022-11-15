@@ -14,7 +14,4 @@ graphMatrix = sparse(graphMatrix);
 graph = DiGraph(graphMatrix);
 
 # plot the graph
-gplot(graph, nodelabel=1:nv(graph), nodefillc=:lightblue, nodesize=0.1)
-
-# save the graph
-savefig("celegansneural.png")
+gplot(graph, nodelabel=1:nv(graph), nodefillc=:"lightblue", nodesize=0.1)
