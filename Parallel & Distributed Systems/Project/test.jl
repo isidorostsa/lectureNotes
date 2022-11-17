@@ -51,8 +51,21 @@ end
 
 trimGraphOnce!(g)
 
+# get adjecency matrix of g
+adjMatrix = adjacency_matrix(g)
+
 while trimGraphOnce!(g)
 end
 
 # plot g
 gplot(g, nodelabel=1:nv(g), nodefillc=:"lightblue", nodesize=0.1)
+
+function ColorSCC(graph)
+    while trimGraphOnce!(graph)
+    end
+
+    # get adjecency matrix of g
+    adjMatrix = adjacency_matrix(graph)
+        
+end
+
