@@ -64,16 +64,11 @@ end
 function colorSCC(graph)
     SCC = []
 
-
-    # the number of nodes in the graph
     n = nv(graph)
-    
-    # the colors of the nodes
     colors = zeros(Int64, n)
     
     gplot(graph, nodelabel=1:nv(graph), nodefillc=:"lightblue", nodesize=0.1)
 
-    # the nodes that have not been colored yet
     vertices_left = [vertices(graph)...]
 
     for node_to_trim in trimedVertices(graph)
@@ -131,7 +126,6 @@ function colorSCC(graph)
 
     end
     return SCC
-    # while there are still nodes left to color
 end
 
 scc = colorSCC(g)
@@ -139,7 +133,6 @@ scc = colorSCC(g)
 am = adjacency_matrix(g)
 
 # bfs as sparse matrix multiplication with a vector
-# using copy and min instead of adition and multiplication
 function bfs_matrix(adjecency_matrix, source)
 
     current = source
@@ -175,9 +168,12 @@ function colorSCC_matrix(adjecency_matrix)
     am = copy(adjecency_matrix)
 
     trimGraph_matrix!(am)
-    
 
-end
+    n = am.n
 
-function test(m)
+    colors = zeros(Int64, size(am, 1))
+
+    while sum(am) != 0
+
+
 end
