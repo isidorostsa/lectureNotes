@@ -64,6 +64,8 @@ function ColorSCC(graph)
 
     SCC = []
 
+    gplot(graph, nodelabel=1:nv(graph), nodefillc=:"lightblue", nodesize=0.1)
+
     while length(vertices_left) > 0
 
         while trimGraphOnce!(graph)
