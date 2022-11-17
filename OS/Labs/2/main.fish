@@ -1,4 +1,3 @@
-
 function sort_files
     # create dirs
     mkdir -p $argv[2]/bytes $argv[2]/kilobytes $argv[2]/megabytes $argv[2]/gigabytes

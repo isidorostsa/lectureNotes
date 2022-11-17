@@ -11,8 +11,12 @@
             "id": "f763b5449e07d595",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "TODOS.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -81,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Optimization Techniques/Project/TsaousisSeiras_Isidoros_10042_lab01.pdf",
+                "file": "TODOS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Optimization Techniques/Project/TsaousisSeiras_Isidoros_10042_lab01.pdf",
+                "file": "TODOS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -121,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Optimization Techniques/Project/TsaousisSeiras_Isidoros_10042_lab01.pdf"
+                "file": "TODOS.md"
               }
             }
           },
@@ -149,7 +153,7 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "973054bb7c6742ae",
+  "active": "f763b5449e07d595",
   "lastOpenFiles": [
     "Optimization Techniques/3/Convexity.md",
     "Parallel & Distributed Systems/Bitonic Sorting.md",
