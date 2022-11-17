@@ -171,9 +171,12 @@ function colorSCC_matrix(adjecency_matrix)
 
     n = am.n
 
+    vleft = [1:n...]
+
     colors = zeros(Int64, size(am, 1))
 
-    while sum(am) != 0
+    while length(vleft) > 0
+
 
 
 end
