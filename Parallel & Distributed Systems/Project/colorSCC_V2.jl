@@ -67,6 +67,8 @@ function colorSCC_matrix(M, DEBUG = false)
     n = M.n
 
     SCC = []
+    SCC_id = zeros(Int64, n)
+    SCCs_found = 0
     #bitmap of vetrices left:
     vleft = ones(Bool, n)
 
@@ -109,8 +111,11 @@ function colorSCC_matrix(M, DEBUG = false)
     # above are not needed cause we can just use M.rowval and M_tr.rowval
 
     for v in trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
-        vleft[v] = false
-        push!(SCC, [v])
+        #vleft[v] = false
+        #push!(SCC, [v])
+
+        SCCs_found += 1
+        SCC_id[v] = SCCs_found
     end
 
     if DEBUG
@@ -157,7 +162,8 @@ function colorSCC_matrix(M, DEBUG = false)
                                 made_change = true
                             end
                         end
-                    end=#
+                    end
+=#
                     for j in inb[inb_ptr[i]:(inb_ptr[i+1]-1)]
                         if vleft[j]
                             if colors[i] < colors[j]
@@ -196,7 +202,10 @@ function colorSCC_matrix(M, DEBUG = false)
             #vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
             vertices_in_rev_bfs = bfs_sparse(inb, inb_ptr, color, Vc)
 
-            push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
+            SCCs_found += 1
+            SCC_id[vertices_in_rev_bfs] .= SCCs_found
+
+            #push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
             
             if DEBUG
                 println("finished bfs")
@@ -209,7 +218,7 @@ function colorSCC_matrix(M, DEBUG = false)
             vleft = vleft .& .!vertices_in_rev_bfs
         end
     end
-    return length(SCC), test
+    return length(unique(SCC_id)), SCCs_found
 end
 
 
@@ -217,10 +226,13 @@ end
 @time colorSCC_matrix(fol, false)
 @profview colorSCC_matrix(lang, false)
 
+@profview colorSCC_matrix(eu, true)
+
 
 lang = mmread("matrices/language/language.mtx")
 cel = mmread("matrices/celegansneural/celegansneural.mtx")
 fol = mmread("matrices/foldoc/foldoc.mtx")
+eu = mmread("matrices/eu-2005/eu-2005.mtx")
 
 function tenTimes(f, args...)
     times = []
