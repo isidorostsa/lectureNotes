@@ -3,6 +3,7 @@ using SparseArrays;
 using Graphs;
 using Compose;
 using GraphPlot;
+using SparseMatricesCSR;
 
 # example graph 
 g = DiGraph(6)
@@ -84,7 +85,7 @@ function colorSCC(graph)
         for node in vertices(graph)
             colors[node] = node
             if node ∉ vertices_left
-                colors[node] = 0
+                colors[node] = 2^63-1
             end
         end
 
@@ -94,31 +95,35 @@ function colorSCC(graph)
         while made_change 
             made_change = false
             for node in vertices_left
-                for neighbor in neighbors(graph, node)
-                    if colors[neighbor] < colors[node] && colors[neighbor] != 0
-                        colors[neighbor] = colors[node]
-                        made_change = true
-                    end
+
+                potential_color = min([colors[neighboring_node] for neighboring_node in inneighbors(graph, node)]...)
+                if potential_color < colors[node]
+                    colors[node] = potential_color
+                    made_change = true
                 end
+                #for neighbor in inneighbors(graph, node)
+                #    if colors[neighbor] < colors[node] && colors[neighbor] != 0
+                #        colors[neighbor] = colors[node]
+                #        made_change = true
+                #    end
+                #end
             end
         end
 
         for color in unique(colors)
-            if color == 0
+            if color == 2^63-1
                 continue
             end
 
             Vc = [vertices_left[i] for i in findall(node -> colors[node] == color, vertices_left)]
-
-
-            print("hello")
 
             subgraph_with_same_color, map_to_og = induced_subgraph(graph, Vc)
             
             # find node that gave the color
             source = findfirst(node_in_og -> node_in_og == color, map_to_og)
 
-            connected_component_vertices_in_subgraph = bfs(reverse(subgraph_with_same_color), source)
+            println("source: ", source)
+            connected_component_vertices_in_subgraph = bfs((reverse(subgraph_with_same_color)), source)
 
             push!(SCC, [map_to_og[node_in_subgraph] for node_in_subgraph in connected_component_vertices_in_subgraph])
 
@@ -208,7 +213,45 @@ function trimedVertices_matrix(am)
     return trimedVertices
 end
 
-function colorSCC_matrix(adjecency_matrix)
+function trimedVertices_vecs(in_nb, out_nb)
+    trimedVertices = []
+    made_change = true
+    while made_change
+        made_change = false
+        for i in 1:length(in_nb)
+            if i in trimedVertices
+                continue
+            end
+            if count(x -> x ∉ trimedVertices, in_nb[i]) == 0 ||\
+                count(x -> x ∉ trimedVertices, out_nb[i]) == 0
+                made_change = true
+                push!(trimedVertices, i)
+            end
+        end
+    end
+    return trimedVertices
+end
+
+function trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
+    trimedVertices = []
+    made_change = true
+    while made_change
+        made_change = false
+        for i in 1:length(inb_ptr)-1
+            if i in trimedVertices
+                continue
+            end
+            if count(x -> x ∉ trimedVertices, inb[inb_ptr[i]:inb_ptr[i+1]-1]) == 0 || count(x -> x ∉ trimedVertices, onb[onb_ptr[i]:onb_ptr[i+1]-1]) == 0
+                made_change = true
+                push!(trimedVertices, i)
+            end
+        end
+    end
+    return trimedVertices
+end
+
+# delete element 1, 1 in a sparce matrix a
+function colorSCC_matrix(adjecency_matrix, DEBUG = false)
     M = copy(adjecency_matrix)
 
     n = M.n
@@ -217,42 +260,81 @@ function colorSCC_matrix(adjecency_matrix)
     #bitmap of vetrices left:
     vleft = ones(Bool, n)
 
-    for v in trimedVertices_matrix(M)
+    colors = zeros(Int64, size(M, 1))
+    MAX_COLOR = 2^63-1
+
+    inb = Vector{Int64}(undef, length(M.nzval))
+    inb_ptr = Vector{Int64}(undef, M.n+1)
+    inb_ptr[1] = 1
+
+    onb = Vector{Int64}(undef, length(M.nzval))
+    onb_ptr = Vector{Int64}(undef, M.n+1)
+    onb_ptr[1] = 1
+    
+    if DEBUG
+        println("finished initializations")
+    end
+
+    # colptr shows the element we start looking at in nzval for each column 
+    for col in 1:M.n
+        for el_id in M.colptr[col]:(M.colptr[col+1]-1)
+            inb[el_id] = M.rowval[el_id]
+        end
+        inb_ptr[col+1] = M.colptr[col+1]
+    end
+
+    # convert csc to csr
+    M_tr = SparseMatrixCSR(transpose(sparse(M')))
+    for row in 1:M_tr.n
+        for el_id in M_tr.rowptr[row]:(M_tr.rowptr[row+1]-1)
+            onb[el_id] = M_tr.colval[el_id]
+        end
+        onb_ptr[row+1] = M_tr.rowptr[row+1]
+    end
+
+    if DEBUG
+        println("finished calculating stuff in the begining")
+    end
+
+    # above are not needed cause we can just use M.rowval and M_tr.rowval
+
+    for v in trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
         vleft[v] = false
         push!(SCC, [v])
     end
 
-    colors = zeros(Int64, size(M, 1))
-
-    in_nei_vec = []
-    for i_m in 1:M.m
-        push!(in_nei_vec, findall(x -> x != 0, M[:, i_m]))
+    if DEBUG
+        println("finished triming, new size = ", sum(vleft))
     end
-
-    out_nei_vec = []
-    for i_m in 1:M.m
-        push!(out_nei_vec, findall(x -> x != 0, M[i_m, :]))
-    end
-
 
     # to find outneighbors of i:
-    # out_nei_vec[i]  in_nei_vec[i]
+    # onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
 
+    iter = 1
     while reduce(|, vleft)
         for i in 1:n
             if vleft[i]
                 colors[i] = i
             else
-                colors[i] = 0
+                colors[i] = MAX_COLOR 
             end
         end
+
+        if DEBUG
+            println("finished coloring start, iter = ", iter)
+        end
+        iter += 1
 
         made_change = true
         while made_change
             made_change = false
             for i in 1:n
                 if vleft[i]
-                    for j in out_nei_vec[i]
+                    if colors[i] <  min(colors[inb[inb_ptr[i]:(inb_ptr[i+1]-1)]]...)
+                        colors[i] = min(colors[inb[inb_ptr[i]:(inb_ptr[i+1]-1)]]...)
+                        made_change = true
+                    end
+ #=                   for j in onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
                         if vleft[j]
                             if colors[j] < colors[i]
                                 colors[j] = colors[i]
@@ -260,13 +342,22 @@ function colorSCC_matrix(adjecency_matrix)
                             end
                         end
                     end
+=#
                 end
             end
         end
 
+        if DEBUG
+            println("finished coloring all")
+        end
+
         for color in unique(colors)
-            if color == 0
+            if color == MAX_COLOR
                 continue
+            end
+
+            if DEBUG
+                println("color = ", color)
             end
 
             Vc = [colors[i] == color for i in 1:n]
@@ -274,9 +365,21 @@ function colorSCC_matrix(adjecency_matrix)
             source = zeros(Bool, n)
             source[color] = true
 
+            if DEBUG
+                println("starting bfs")
+            end
+
             vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
 
             push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
+            
+            if DEBUG
+                println("finished bfs")
+            end
+             
+            if DEBUG
+                println("SCC size = ", length(SCC))
+            end
 
             vleft = vleft .& .!vertices_in_rev_bfs
         end
@@ -284,13 +387,11 @@ function colorSCC_matrix(adjecency_matrix)
     return SCC
 end
 
-colorSCC_matrix(A)
+colorSCC_matrix(A, true)
 # Load the matrix
 graphMatrix = mmread("matrices/foldoc/foldoc.mtx");
 
 # convert graphMatrix to a sparse matrix object
 graphMatrix = sparse(graphMatrix);
 
-colorSCC_matrix(graphMatrix)
-
-# DO TRIM AFTER NEIGHBORS ARE FOUND 
+colorSCC_matrix(graphMatrix, true)
