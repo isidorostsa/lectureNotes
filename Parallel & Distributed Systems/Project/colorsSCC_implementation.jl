@@ -23,7 +23,6 @@ gplot(g, nodelabel=1:nv(g), nodefillc=:"lightblue", nodesize=0.1)
 # adjacency matrix
 A = adjacency_matrix(g)
 
-
 # returns the nodes reachable from the given node
 function bfs(graph, source)
     # int64 vector of visited nodesSCV_c
@@ -188,6 +187,34 @@ function bfs_matrix(adjecency_matrix, source, allowed_vertices)
     return Vector{Bool}(current)
 end
 
+function bfs_sparse(inb, inb_ptr, onb, onb_ptr, source, allowed_vertices)
+    source = Vector{Bool}(source)
+    current = copy(source)
+    while true
+        # select the cols of am with indeces in current
+        current = Vector{Bool}(zeros(length(source)))
+        for i in 1:length(source)
+            if source[i]
+                current[inb[inb_ptr[i]:inb_ptr[i+1]-1]] .= true
+                current[onb[onb_ptr[i]:onb_ptr[i+1]-1]] .= true
+            end
+        end
+
+        current = Vector{Bool}(min.(current, 1))
+
+        current = .&(current, allowed_vertices)
+
+        if current == source
+            break
+        end
+
+        source = current
+    end
+
+    return Vector{Bool}(current)
+end
+
+
 bfs_matrix(A, [1, 0, 0, 0, 0, 0], [1, 1, 1, 1, 1, 0])
 
 function trimedVertices_matrix(am)
@@ -222,8 +249,7 @@ function trimedVertices_vecs(in_nb, out_nb)
             if i in trimedVertices
                 continue
             end
-            if count(x -> x ∉ trimedVertices, in_nb[i]) == 0 ||\
-                count(x -> x ∉ trimedVertices, out_nb[i]) == 0
+            if count(x -> x ∉ trimedVertices, in_nb[i]) == 0 || count(x -> x ∉ trimedVertices, out_nb[i]) == 0
                 made_change = true
                 push!(trimedVertices, i)
             end
@@ -241,7 +267,8 @@ function trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
             if i in trimedVertices
                 continue
             end
-            if count(x -> x ∉ trimedVertices, inb[inb_ptr[i]:inb_ptr[i+1]-1]) == 0 || count(x -> x ∉ trimedVertices, onb[onb_ptr[i]:onb_ptr[i+1]-1]) == 0
+            if count(x -> x ∉ trimedVertices, inb[inb_ptr[i]:inb_ptr[i+1]-1]) == 0 ||\\
+                count(x -> x ∉ trimedVertices, onb[onb_ptr[i]:onb_ptr[i+1]-1]) == 0
                 made_change = true
                 push!(trimedVertices, i)
             end
@@ -251,16 +278,14 @@ function trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
 end
 
 # delete element 1, 1 in a sparce matrix a
-function colorSCC_matrix(adjecency_matrix, DEBUG = false)
-    M = copy(adjecency_matrix)
-
+function colorSCC_matrix(M, DEBUG = false)
     n = M.n
 
     SCC = []
     #bitmap of vetrices left:
-    vleft = ones(Bool, n)
+    vleft = ones(Bool, M.n)
 
-    colors = zeros(Int64, size(M, 1))
+    colors = zeros(Int64, M.n)
     MAX_COLOR = 2^63-1
 
     inb = Vector{Int64}(undef, length(M.nzval))
@@ -363,6 +388,8 @@ function colorSCC_matrix(adjecency_matrix, DEBUG = false)
             end
 
             Vc = [colors[i] == color for i in 1:n]
+            
+            print(Vc)
 
             source = zeros(Bool, n)
             source[color] = true
@@ -371,7 +398,10 @@ function colorSCC_matrix(adjecency_matrix, DEBUG = false)
                 println("starting bfs")
             end
 
-            vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
+            vertices_in_rev_bfs = bfs_sparse(onb, onb_ptr, inb, inb_ptr, source, Vc)
+            print(source)
+            print(vertices_in_rev_bfs)
+            #vertices_in_rev_bfs = bfs_matrix(M, source, Vc)
 
             push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
             
