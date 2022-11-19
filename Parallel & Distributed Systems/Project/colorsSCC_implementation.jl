@@ -330,11 +330,13 @@ function colorSCC_matrix(adjecency_matrix, DEBUG = false)
             made_change = false
             for i in 1:n
                 if vleft[i]
-                    if colors[i] <  min(colors[inb[inb_ptr[i]:(inb_ptr[i+1]-1)]]...)
-                        colors[i] = min(colors[inb[inb_ptr[i]:(inb_ptr[i+1]-1)]]...)
+                    potential_color = min((colors[inc_nb] for inc_nb in inb[inb_ptr[i]:(inb_ptr[i+1]-1)])...)
+                    if potential_color < colors[i]
+                        colors[i] = potential_color
                         made_change = true
                     end
- #=                   for j in onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
+#=
+                    for j in onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
                         if vleft[j]
                             if colors[j] < colors[i]
                                 colors[j] = colors[i]
