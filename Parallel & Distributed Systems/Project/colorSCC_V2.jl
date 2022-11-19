@@ -7,21 +7,21 @@ using MatrixMarket
 
 
 function trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
-    trimedVertices = []
+    activeVertices = ones(Bool, length(inb))
     made_change = true
     while made_change
         made_change = false
         for i in 1:length(inb_ptr)-1
-            if i in trimedVertices
+            if !activeVertices[i]
                 continue
             end
-            if !any(x -> x ∉ trimedVertices, inb[inb_ptr[i]:inb_ptr[i+1]-1]) || !any(x -> x ∉ trimedVertices, onb[onb_ptr[i]:onb_ptr[i+1]-1])
+            if !any(x -> activeVertices[x], inb[inb_ptr[i]:inb_ptr[i+1]-1]) || !any(x -> activeVertices[x], onb[onb_ptr[i]:onb_ptr[i+1]-1])
                 made_change = true
-                push!(trimedVertices, i)
+                activeVertices[i] = false
             end
         end
     end
-    return trimedVertices
+    return .!activeVertices
 end
 
 function bfs_sparse(nb, nb_ptr, source, allowed_vertices)
@@ -110,12 +110,19 @@ function colorSCC_matrix(M, DEBUG = false)
 
     # above are not needed cause we can just use M.rowval and M_tr.rowval
 
-    for v in trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
+    # temporary with enum, can do better
+    for (vertex, isTrimed) in enumerate(trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr))
         #vleft[v] = false
         #push!(SCC, [v])
 
+        if !isTrimed
+            continue
+        end
+
         SCCs_found += 1
-        SCC_id[v] = SCCs_found
+        SCC_id[vertex] = SCCs_found
+
+        vleft[vertex] = false
     end
 
     if DEBUG
