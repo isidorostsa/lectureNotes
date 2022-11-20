@@ -160,8 +160,6 @@ function colorSCC_matrix(M, DEBUG = false)
                         colors[i] = potential_color
                         made_change = true
                     end
-=#
-#=
                     for j in onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
                         if vleft[j]
                             if colors[j] < colors[i]
@@ -170,7 +168,7 @@ function colorSCC_matrix(M, DEBUG = false)
                             end
                         end
                     end
-=#
+                    =#
                     for j in inb[inb_ptr[i]:(inb_ptr[i+1]-1)]
                         if vleft[j]
                             if colors[i] < colors[j]
@@ -199,8 +197,8 @@ function colorSCC_matrix(M, DEBUG = false)
 
             Vc = [colors[i] == color for i in 1:n]
 
-            source = zeros(Bool, n)
-            source[color] = true
+#            source = zeros(Bool, n)
+#            source[color] = true
 
             if DEBUG
                 println("starting bfs")
@@ -219,7 +217,7 @@ function colorSCC_matrix(M, DEBUG = false)
             end
              
             if DEBUG
-                println("SCC size = ", length(SCC))
+                println("SCC size = ", SCCs_found)
             end
 
             vleft = vleft .& .!vertices_in_rev_bfs
