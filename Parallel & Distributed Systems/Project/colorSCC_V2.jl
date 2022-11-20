@@ -68,7 +68,8 @@ function bfs_sparse_colors_no_visited_all_in_place!(nb, nb_ptr, source, colors, 
 
     while !isempty(queue)
         v = popfirst!(queue)
-        for i in nb[nb_ptr[v]:nb_ptr[v+1]-1]
+        for n_id = 1:(nb_ptr[v+1]-nb_ptr[v])
+            i = nb[nb_ptr[v]+n_id-1]
             if colors[i] == color
                 colors[i] = MAX_COLOR
                 SCC_id[i] = SCCs_found
@@ -305,6 +306,6 @@ function tenTimes(f, args...)
     for i in 1:10
         push!(times, @elapsed f(args...))
     end
-    return times
+    print(sum(times)/10)
 end
 
