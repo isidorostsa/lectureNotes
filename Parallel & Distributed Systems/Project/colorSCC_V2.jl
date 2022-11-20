@@ -56,6 +56,29 @@ function bfs_sparse_colors!(nb, nb_ptr, source, colors, color)
     return visited
 end
 
+function bfs_sparse_colors_no_visited_all_in_place!(nb, nb_ptr, source, colors, color, SCC_id, SCCs_found, vleft)
+#    visited = falses(length(nb_ptr)-1)
+#    visited[source] = true
+    MAX_COLOR = 2^63-1
+    queue = [source]
+
+    colors[source] = MAX_COLOR
+    SCC_id[source] = SCCs_found
+    vleft[source] = false
+
+    while !isempty(queue)
+        v = popfirst!(queue)
+        for i in nb[nb_ptr[v]:nb_ptr[v+1]-1]
+            if colors[i] == color
+                colors[i] = MAX_COLOR
+                SCC_id[i] = SCCs_found
+                vleft[i] = false
+                push!(queue, i)
+            end
+        end
+    end
+end
+
 function bfs_matrix(adjecency_matrix, source, allowed_vertices)
     source = Vector{Bool}(source)
     current = copy(source)
@@ -235,13 +258,14 @@ function colorSCC_matrix(M, DEBUG = false)
 
             #vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
             #vertices_in_rev_bfs = bfs_sparse(inb, inb_ptr, color, Vc)
-            vertices_in_rev_bfs = bfs_sparse_colors!(inb, inb_ptr, color, colors, color)
 
             SCCs_found += 1
-            SCC_id[vertices_in_rev_bfs] .= SCCs_found
+            bfs_sparse_colors_no_visited_all_in_place!(inb, inb_ptr, color, colors, color, SCC_id, SCCs_found, vleft)
+            
+            #SCC_id[vertices_in_rev_bfs] .= SCCs_found
 
             #push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
-            
+
             if DEBUG
                 println("finished bfs")
             end
@@ -253,24 +277,24 @@ function colorSCC_matrix(M, DEBUG = false)
                 println("SCC size = ", SCCs_found)
             end
 
-            vleft = vleft .& .!vertices_in_rev_bfs
+#            vleft = vleft .& .!vertices_in_rev_bfs
         end
     end
     return length(unique(SCC_id)), SCCs_found
 end
 
 
-@time colorSCC_matrix(cel, false)
-@time colorSCC_matrix(fol, false)
+#@time colorSCC_matrix(cel, true)
+@time colorSCC_matrix(fol, true)
 @time colorSCC_matrix(lang, false)
 
 @profview colorSCC_matrix(so, false)
 @profview tenTimes(colorSCC_matrix, lang, false)
 
 
+fol = mmread("matrices/foldoc/foldoc.mtx")
 lang = mmread("matrices/language/language.mtx")
 cel = mmread("matrices/celegansneural/celegansneural.mtx")
-fol = mmread("matrices/foldoc/foldoc.mtx")
 eu = mmread("matrices/eu-2005/eu-2005.mtx")
 wiki = mmread("matrices/wiki-topcats/wiki-topcats.mtx")
 so = mmread("matrices/sx-stackoverflow/sx-stackoverflow.mtx")
