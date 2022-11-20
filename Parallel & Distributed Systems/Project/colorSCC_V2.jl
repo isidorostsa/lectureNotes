@@ -252,13 +252,13 @@ function colorSCC_matrix(M, DEBUG = false)
                     =#
                     for n_id = 1:(inb_ptr[i+1]-inb_ptr[i])
                         j = inb[inb_ptr[i]+n_id-1]
-                        #if colors[j] != MAX_COLOR
+                        if colors[j] != MAX_COLOR
                             #vleft[j]
                             if colors[i] > colors[j]
                                 colors[i] = colors[j]
                                 made_change = true
                             end
-                        #end
+                        end
                     end
                 end
             end
@@ -268,7 +268,6 @@ function colorSCC_matrix(M, DEBUG = false)
             println("finished coloring all")
         end
 
-        test = test+length(unique(colors))
         for color in unique(colors)
             if color == MAX_COLOR
                 continue
@@ -302,24 +301,22 @@ function colorSCC_matrix(M, DEBUG = false)
             end
              
             if DEBUG
-                if SCCs_found > 750000
-                    return
-                end
                 println("SCC size = ", SCCs_found)
             end
 
 #            vleft = vleft .& .!vertices_in_rev_bfs
         end
     end
+    println(SCCs_found)
     return length(unique(SCC_id)), SCCs_found
 end
 
 
 #@time colorSCC_matrix(cel, true)
 @time colorSCC_matrix(fol, true)
-@time colorSCC_matrix(lang, false)
+@time colorSCC_matrix(eu, false)
 
-@profview colorSCC_matrix(so, false)
+@profview colorSCC_matrix(wiki, false)
 @profview tenTimes(colorSCC_matrix, lang, false)
 
 
@@ -328,7 +325,7 @@ cel = mmread("matrices/celegansneural/celegansneural.mtx")
 eu = mmread("matrices/eu-2005/eu-2005.mtx")
 wiki = mmread("matrices/wiki-topcats/wiki-topcats.mtx")
 so = mmread("matrices/sx-stackoverflow/sx-stackoverflow.mtx")
-
+ind = mmread("matrices/indochina-2004/indochina-2004.mtx")
 
 function tenTimes(f, args...)
     times = []
