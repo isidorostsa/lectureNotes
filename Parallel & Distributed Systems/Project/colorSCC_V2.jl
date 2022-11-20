@@ -15,9 +15,38 @@ function trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
             if !activeVertices[i]
                 continue
             end
-            if !any(x -> activeVertices[x], inb[inb_ptr[i]:inb_ptr[i+1]-1]) || !any(x -> activeVertices[x], onb[onb_ptr[i]:onb_ptr[i+1]-1])
+            if !any(x -> activeVertices[x], inb[inb_ptr[i]:inb_ptr[i+1]-1]) || 
+                !any(x -> activeVertices[x], onb[onb_ptr[i]:onb_ptr[i+1]-1])
                 made_change = true
                 activeVertices[i] = false
+            end
+        end
+    end
+    return .!activeVertices
+end
+
+function trimedVertices_sparse_for_opt(inb, inb_ptr, onb, onb_ptr)
+    activeVertices = ones(Bool, length(inb))
+    made_change = true
+    while made_change
+        made_change = false
+        for i in 1:length(inb_ptr)-1
+            if !activeVertices[i]
+                continue
+            end
+            for j in inb_ptr[i]:inb_ptr[i+1]-1
+                if !activeVertices[inb[j]]
+                    made_change = true
+                    activeVertices[i] = false
+                    break
+                end
+            end
+            for j in onb_ptr[i]:onb_ptr[i+1]-1
+                if !activeVertices[onb[j]]
+                    made_change = true
+                    activeVertices[i] = false
+                    break
+                end
             end
         end
     end
@@ -151,7 +180,8 @@ function colorSCC_matrix(M, DEBUG = false)
     # above are not needed cause we can just use M.rowval and M_tr.rowval
 
     # temporary with enum, can do better
-    for (vertex, isTrimed) in enumerate(trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr))
+    #for (vertex, isTrimed) in enumerate(trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr))
+    for (vertex, isTrimed) in enumerate(trimedVertices_sparse_for_opt(inb, inb_ptr, onb, onb_ptr))
         #vleft[v] = false
         #push!(SCC, [v])
 
@@ -293,7 +323,6 @@ end
 @profview tenTimes(colorSCC_matrix, lang, false)
 
 
-fol = mmread("matrices/foldoc/foldoc.mtx")
 lang = mmread("matrices/language/language.mtx")
 cel = mmread("matrices/celegansneural/celegansneural.mtx")
 eu = mmread("matrices/eu-2005/eu-2005.mtx")
