@@ -185,7 +185,18 @@ function colorSCC_matrix(M, DEBUG = false)
                         end
                     end
                     =#
-                    for j in inb[inb_ptr[i]:(inb_ptr[i+1]-1)]
+
+#=                    for j in inb[inb_ptr[i]:(inb_ptr[i+1]-1)]
+                        if vleft[j]
+                            if colors[i] < colors[j]
+                                colors[i] = colors[j]
+                                made_change = true
+                            end
+                        end
+                    end
+                    =#
+                    for n_id = 1:(inb_ptr[i+1]-inb_ptr[i])
+                        j = inb[inb_ptr[i]+n_id-1]
                         if vleft[j]
                             if colors[i] < colors[j]
                                 colors[i] = colors[j]
@@ -251,7 +262,7 @@ end
 @time colorSCC_matrix(fol, false)
 @time colorSCC_matrix(lang, false)
 
-@profview colorSCC_matrix(so, true)
+@profview colorSCC_matrix(wiki, false)
 
 
 lang = mmread("matrices/language/language.mtx")
