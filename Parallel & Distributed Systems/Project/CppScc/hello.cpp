@@ -1,7 +1,5 @@
 #include <iostream>
-
 #include <fstream>
-#include <algorithm>
 
 
 /*
@@ -61,13 +59,26 @@ void coo_tocsc(const int n_col,
                 )
 {coo_tocsr(n_col, nnz, Aj, Ai, Bp, Bi);}
 
-void colorSCC()
-
+bool* trimedVertices_sparce(const int* inb, const int* inb_ptr, const int* onb, const int* onb_ptr, size_t n)
+{
+    bool* activeVertices = new bool[n]{1};
+    bool made_change = true;
+    while(made_change) {
+        for(int i = 0; i < n; i++) {
+            if(!activeVertices[i]) continue;
+            for(int j = inb_ptr[i]; j < inb_ptr[i+1]-1; j++){
+                if(!activeVertices[inb[j]]) {
+                    made_change = true
+                }
+            }
+        }
+    }
+}
 
 int main()
 {
     // Open the file
-    std::ifstream fin("../matrices/celegansneural/celegansneural.mtx");
+    std::ifstream fin("../matrices/indochina-2004/indochina-2004.mtx");
 
     int n, nnz;
     // M - number of rows
@@ -105,6 +116,7 @@ int main()
 
     coo_tocsc(n, nnz, Ai, Aj, col_ptr, row_val);
 
+    std::cout << (row_val[10000]) << std::endl;
 
-
+    return 0;
 }

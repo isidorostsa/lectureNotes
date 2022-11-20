@@ -31,20 +31,30 @@ function trimedVertices_sparse_for_opt(inb, inb_ptr, onb, onb_ptr)
             if !activeVertices[i]
                 continue
             end
-            for j in inb_ptr[i]:inb_ptr[i+1]-1
-                if !activeVertices[inb[j]]
-                    made_change = true
-                    activeVertices[i] = false
+            
+            hasIncoming = false
+            for n_id = 1:(inb_ptr[i+1]-inb_ptr[i])
+                j = inb[inb_ptr[i]+n_id-1]
+                if activeVertices[j]
+                    hasIncoming = true
                     break
                 end
             end
-            for j in onb_ptr[i]:onb_ptr[i+1]-1
-                if !activeVertices[onb[j]]
-                    made_change = true
-                    activeVertices[i] = false
+
+            hasOutgoing = false
+            for n_id = 1:(onb_ptr[i+1] - onb_ptr[i])
+                j = onb[onb_ptr[i]+n_id-1]
+                if activeVertices[j]
+                    hasOutgoing = true
                     break
                 end
             end
+
+            if !hasIncoming || !hasOutgoing
+                made_change = true
+                activeVertices[i] = false
+            end
+
         end
     end
     return .!activeVertices
@@ -161,6 +171,10 @@ function colorSCC_matrix(M, DEBUG = false)
         inb_ptr[col+1] = M.colptr[col+1]
     end
 
+    if DEBUG
+        println("Done with csc")
+    end
+
     # convert csc to csr
     M_tr = SparseMatrixCSR(transpose(sparse(M')))
     for row in 1:M_tr.n
@@ -175,6 +189,8 @@ function colorSCC_matrix(M, DEBUG = false)
     end
 
     # above are not needed cause we can just use M.rowval and M_tr.rowval
+
+    println("size before trimming ", sum(vleft))
 
     # temporary with enum, can do better
     #for (vertex, isTrimed) in enumerate(trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr))
@@ -198,8 +214,6 @@ function colorSCC_matrix(M, DEBUG = false)
 
     # to find outneighbors of i:
     # onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
-
-    test = 0
 
     iter = 1
     while reduce(|, vleft)
@@ -314,7 +328,7 @@ end
 @time colorSCC_matrix(eu, false)
 @profview tenTimes(colorSCC_matrix, lang, false)
 
-@profview colorSCC_matrix(wiki, false)
+@profview colorSCC_matrix(ind, true)
 
 
 fol = mmread("../matrices/foldoc/foldoc.mtx")
