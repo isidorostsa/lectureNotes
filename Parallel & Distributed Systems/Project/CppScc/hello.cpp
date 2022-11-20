@@ -3,37 +3,108 @@
 #include <fstream>
 #include <algorithm>
 
+
+/*
+THIS FUNCTION IS TAKEN DIRECTLY FROM THE SCIPY CPP IMPLEMENTATION
+*/
+void coo_tocsr(const int n_row,
+               const int nnz,
+               const int Ai[],
+               const int Aj[],
+                     int Bp[],
+                     int Bj[]
+                )
+{
+    //compute number of non-zero entries per row of A 
+    //std::fill(Bp, Bp + n_row, 0);
+    for(int i = 0; i < n_row; i++) {
+        Bp[i] = 0;
+    }
+
+
+    for (int n = 0; n < nnz; n++){            
+        Bp[Ai[n]]++;
+    }
+
+    //cumsum the nnz per row to get Bp[]
+    for(int i = 0, cumsum = 0; i < n_row; i++){     
+        int temp = Bp[i];
+        Bp[i] = cumsum;
+        cumsum += temp;
+    }
+    Bp[n_row] = nnz; 
+
+    //write Aj,Ax into Bj,Bx
+    for(int n = 0; n < nnz; n++){
+        int row  = Ai[n];
+        int dest = Bp[row];
+
+        Bj[dest] = Aj[n];
+        Bp[row]++;
+    }
+
+    for(int i = 0, last = 0; i <= n_row; i++){
+        int temp = Bp[i];
+        Bp[i]  = last;
+        last   = temp;
+    }
+
+    //now Bp,Bj,Bx form a CSR representation (with possible duplicates)
+}
+
+void coo_tocsc(const int n_col,
+               const int nnz,
+               const int Ai[],
+               const int Aj[],
+                     int Bp[],
+                     int Bi[]
+                )
+{coo_tocsr(n_col, nnz, Aj, Ai, Bp, Bi);}
+
+void colorSCC()
+
+
 int main()
 {
     // Open the file
-    std::ifstream fin("../matrices/foldoc/foldoc.mtx");
+    std::ifstream fin("../matrices/celegansneural/celegansneural.mtx");
 
-    int M, N, L;
+    int n, nnz;
     // M - number of rows
     // N - number of columns
-    // L - number of non-zero elements
+    // N == M - cause square matrix
+    // nnz - number of non-zero elements
 
     // Read the first line
     while(fin.peek() == '%') fin.ignore(2048, '\n');
 
     // The first line contains the number of rows, columns and non-zero elements
-    fin >> M >> N >> L;
+    // throw away the second number
+    fin >> n >> n >> nnz;
+    
+    // load the coo values (we throw away the value cause we are dealing with binary matrix)
+    int* Ai = new int[nnz];
+    int* Aj = new int[nnz];
 
-    double* matrix;
-    matrix = new double[M*N];
-
-    std::fill(matrix, matrix + M*N, 0);
-
-    for(int l = 0; l < L; l++)
-    {
-        int i, j;
-        double value;
-
-        fin >> i >> j >> value;
-
-        std::cout << i << " " << j << " " << value << std::endl;
-        std::cin >> value;
-
-        matrix[(i-1)*N + (j-1)] = value;
+    int throwAway;
+    for(int i = 0; i < nnz; i++) {
+        fin >> Ai[i] >> Aj[i] >> throwAway;
+        Ai[i]--; Aj[i]--;
     }
+
+
+    // get the CSR representation
+    int* row_ptr = new int[n+1]{0}; 
+    int* col_val = new int[nnz]; 
+
+    coo_tocsr(n, nnz, Ai, Aj, row_ptr, col_val);
+
+    // get the CSC representation
+    int* col_ptr = new int[n+1]{0};
+    int* row_val = new int[nnz];
+
+    coo_tocsc(n, nnz, Ai, Aj, col_ptr, row_val);
+
+
+
 }
