@@ -40,6 +40,22 @@ function bfs_sparse(nb, nb_ptr, source, allowed_vertices)
     return visited
 end
 
+function bfs_sparse_colors(nb, nb_ptr, source, colors, color)
+    visited = falses(length(nb_ptr)-1)
+    visited[source] = true
+    queue = [source]
+    while !isempty(queue)
+        v = popfirst!(queue)
+        for i in nb[nb_ptr[v]:nb_ptr[v+1]-1]
+            if colors[i] == color && !visited[i]
+                visited[i] = true
+                push!(queue, i)
+            end
+        end
+    end
+    return visited
+end
+
 function bfs_matrix(adjecency_matrix, source, allowed_vertices)
     source = Vector{Bool}(source)
     current = copy(source)
@@ -195,7 +211,7 @@ function colorSCC_matrix(M, DEBUG = false)
                 println("color = ", color)
             end
 
-            Vc = [colors[i] == color for i in 1:n]
+            #Vc = [colors[i] == color for i in 1:n]
 
 #            source = zeros(Bool, n)
 #            source[color] = true
@@ -205,7 +221,8 @@ function colorSCC_matrix(M, DEBUG = false)
             end
 
             #vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
-            vertices_in_rev_bfs = bfs_sparse(inb, inb_ptr, color, Vc)
+            #vertices_in_rev_bfs = bfs_sparse(inb, inb_ptr, color, Vc)
+            vertices_in_rev_bfs = bfs_sparse_colors(inb, inb_ptr, color, colors, color)
 
             SCCs_found += 1
             SCC_id[vertices_in_rev_bfs] .= SCCs_found
@@ -217,6 +234,9 @@ function colorSCC_matrix(M, DEBUG = false)
             end
              
             if DEBUG
+                if SCCs_found > 700000
+                    return
+                end
                 println("SCC size = ", SCCs_found)
             end
 
@@ -227,17 +247,20 @@ function colorSCC_matrix(M, DEBUG = false)
 end
 
 
+@time colorSCC_matrix(cel, false)
 @time colorSCC_matrix(fol, false)
-@time colorSCC_matrix(fol, false)
-@profview colorSCC_matrix(lang, false)
+@time colorSCC_matrix(lang, false)
 
-@profview colorSCC_matrix(eu, true)
+@profview colorSCC_matrix(so, true)
 
 
 lang = mmread("matrices/language/language.mtx")
 cel = mmread("matrices/celegansneural/celegansneural.mtx")
 fol = mmread("matrices/foldoc/foldoc.mtx")
 eu = mmread("matrices/eu-2005/eu-2005.mtx")
+wiki = mmread("matrices/wiki-topcats/wiki-topcats.mtx")
+so = mmread("matrices/sx-stackoverflow/sx-stackoverflow.mtx")
+
 
 function tenTimes(f, args...)
     times = []
