@@ -40,7 +40,7 @@ function bfs_sparse(nb, nb_ptr, source, allowed_vertices)
     return visited
 end
 
-function bfs_sparse_colors(nb, nb_ptr, source, colors, color)
+function bfs_sparse_colors!(nb, nb_ptr, source, colors, color)
     visited = falses(length(nb_ptr)-1)
     visited[source] = true
     queue = [source]
@@ -169,7 +169,8 @@ function colorSCC_matrix(M, DEBUG = false)
         while made_change
             made_change = false
             for i in 1:n
-                if vleft[i]
+                if colors[i] != MAX_COLOR
+                    #vleft[i]
 #=
                     potential_color = min((colors[inc_nb] for inc_nb in inb[inb_ptr[i]:(inb_ptr[i+1]-1)])...)
                     if potential_color < colors[i]
@@ -197,12 +198,13 @@ function colorSCC_matrix(M, DEBUG = false)
                     =#
                     for n_id = 1:(inb_ptr[i+1]-inb_ptr[i])
                         j = inb[inb_ptr[i]+n_id-1]
-                        if vleft[j]
-                            if colors[i] < colors[j]
+                        #if colors[j] != MAX_COLOR
+                            #vleft[j]
+                            if colors[i] > colors[j]
                                 colors[i] = colors[j]
                                 made_change = true
                             end
-                        end
+                        #end
                     end
                 end
             end
@@ -233,7 +235,7 @@ function colorSCC_matrix(M, DEBUG = false)
 
             #vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
             #vertices_in_rev_bfs = bfs_sparse(inb, inb_ptr, color, Vc)
-            vertices_in_rev_bfs = bfs_sparse_colors(inb, inb_ptr, color, colors, color)
+            vertices_in_rev_bfs = bfs_sparse_colors!(inb, inb_ptr, color, colors, color)
 
             SCCs_found += 1
             SCC_id[vertices_in_rev_bfs] .= SCCs_found
@@ -245,7 +247,7 @@ function colorSCC_matrix(M, DEBUG = false)
             end
              
             if DEBUG
-                if SCCs_found > 700000
+                if SCCs_found > 750000
                     return
                 end
                 println("SCC size = ", SCCs_found)
@@ -262,7 +264,8 @@ end
 @time colorSCC_matrix(fol, false)
 @time colorSCC_matrix(lang, false)
 
-@profview colorSCC_matrix(wiki, false)
+@profview colorSCC_matrix(so, false)
+@profview tenTimes(colorSCC_matrix, lang, false)
 
 
 lang = mmread("matrices/language/language.mtx")
