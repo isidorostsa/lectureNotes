@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-
+#include <algorithm>
 
 /*
 THIS FUNCTION IS TAKEN DIRECTLY FROM THE SCIPY CPP IMPLEMENTATION
@@ -61,24 +61,56 @@ void coo_tocsc(const int n_col,
 
 bool* trimedVertices_sparce(const int* inb, const int* inb_ptr, const int* onb, const int* onb_ptr, size_t n)
 {
-    bool* activeVertices = new bool[n]{1};
+    bool* trimedVertices = new bool[n];
+    std::fill(trimedVertices, trimedVertices+n, 0);
+
     bool made_change = true;
     while(made_change) {
+        made_change = false;
+
         for(int i = 0; i < n; i++) {
-            if(!activeVertices[i]) continue;
-            for(int j = inb_ptr[i]; j < inb_ptr[i+1]-1; j++){
-                if(!activeVertices[inb[j]]) {
-                    made_change = true
+            if(trimedVertices[i]) continue;
+
+            bool hasIncoming = false;
+            for(int n_id = 0; n_id < inb_ptr[i+1] - inb_ptr[i]; n_id++){
+                int j = inb[inb_ptr[i] + n_id];
+                if(!trimedVertices[j]) {
+                    hasIncoming = true;
+                    break;
                 }
+            }
+
+            if(!hasIncoming) {
+                trimedVertices[i] = true;
+                made_change = true;
+                continue;
+            }
+
+            bool hasOutgoing = false;
+            for(int n_id = 0; n_id < onb_ptr[i+1] - onb_ptr[i]; n_id++){
+                int j = onb[onb_ptr[i] + n_id];
+                if(!trimedVertices[j]) {
+                    hasOutgoing = true;
+                    break;
+                }
+            }
+
+            if(!hasOutgoing) {
+                trimedVertices[i] = true;
+                made_change = true;
+                continue;
             }
         }
     }
+    return trimedVertices;
 }
+
+
 
 int main()
 {
     // Open the file
-    std::ifstream fin("../matrices/indochina-2004/indochina-2004.mtx");
+    std::ifstream fin("../matrices/foldoc/foldoc.mtx");
 
     int n, nnz;
     // M - number of rows
@@ -117,6 +149,16 @@ int main()
     coo_tocsc(n, nnz, Ai, Aj, col_ptr, row_val);
 
     std::cout << (row_val[10000]) << std::endl;
+
+    // get the trimed vertices
+    bool* trimedVertices = trimedVertices_sparce(row_val, row_ptr, col_val, col_ptr, n);
+
+    int s = 0;
+    for(int i = 0; i < n; i++) {
+        if(trimedVertices[i]) s++;
+    }
+
+    std::cout << s << std::endl;
 
     return 0;
 }

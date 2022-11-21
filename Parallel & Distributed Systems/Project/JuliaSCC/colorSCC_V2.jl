@@ -2,6 +2,62 @@ using SparseMatricesCSR
 using SparseArrays
 using MatrixMarket
 
+function csr_tocsc(Ap::Vector{Int}, Aj::Vector{Int})
+    nnz = Ap[end] - 1
+    n = length(Ap) - 1
+
+    # Aj and Ap are 1-based
+    # so are all arrays below
+
+    # count the number of entries in each column
+
+    w = zeros(Int, n)
+    for j in Aj
+        w[j] += 1
+    end
+
+    # compute column pointers
+    Ap2 = zeros(Int, n+1)
+    for j in 1:n
+        Ap2[j+1] = Ap2[j] + w[j]
+    end
+
+    # copy Aj into Aj2
+    Aj2 = copy(Aj)
+
+    # row indices
+    Ai = Aj
+
+    # row pointers
+    Ai2 = Ap
+
+    # clear w
+    fill!(w, 0)
+
+    # copy A into C
+    for j in 1:n
+        for p in Ai2[j]:(Ai2[j+1]-1)
+            i = Ai[p]
+            q = Ap2[i] + w[i]
+            Aj2[q+1] = j
+            w[i] += 1
+        end
+    end
+
+    return Ap2, Aj2
+
+
+    return Bp, Bi
+
+end
+
+
+function csc_tocsr(Ap::Vector{Int}, Aj::Vector{Int})
+    return csr_tocsc(Ap, Aj)
+end
+
+fol = mmread("../matrices/foldoc/foldoc.mtx")
+row_ptr, col_vals = csc_tocsr(fol.colptr, fol.rowval)
 
 function trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr)
     activeVertices = ones(Bool, length(inb))
@@ -142,7 +198,7 @@ end
 function colorSCC_matrix(M, DEBUG = false)
     n = M.n
 
-    SCC = []
+    #SCC = []
     SCC_id = zeros(Int64, n)
     SCCs_found = 0
     #bitmap of vetrices left:
@@ -176,12 +232,12 @@ function colorSCC_matrix(M, DEBUG = false)
     end
 
     # convert csc to csr
-    M_tr = SparseMatrixCSR(transpose(sparse(M')))
+    M_tr = sparse(M')
     for row in 1:M_tr.n
-        for el_id in M_tr.rowptr[row]:(M_tr.rowptr[row+1]-1)
-            onb[el_id] = M_tr.colval[el_id]
+        for el_id in M_tr.colptr[row]:(M_tr.colptr[row+1]-1)
+            onb[el_id] = M_tr.rowval[el_id]
         end
-        onb_ptr[row+1] = M_tr.rowptr[row+1]
+        onb_ptr[row+1] = M_tr.colptr[row+1]
     end
 
     if DEBUG
@@ -190,7 +246,9 @@ function colorSCC_matrix(M, DEBUG = false)
 
     # above are not needed cause we can just use M.rowval and M_tr.rowval
 
-    println("size before trimming ", sum(vleft))
+    if DEBUG
+        println("size before trimming ", sum(vleft))
+    end
 
     # temporary with enum, can do better
     #for (vertex, isTrimed) in enumerate(trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr))
@@ -325,19 +383,24 @@ end
 
 #@time colorSCC_matrix(cel, true)
 @time colorSCC_matrix(fol, true)
-@time colorSCC_matrix(eu, false)
+@profview colorSCC_matrix(eu, false)
 @profview tenTimes(colorSCC_matrix, lang, false)
 
-@profview colorSCC_matrix(ind, true)
+@profview colorSCC_matrix(so, false)
+
 
 
 fol = mmread("../matrices/foldoc/foldoc.mtx")
+
+
 lang = mmread("../matrices/language/language.mtx")
 cel = mmread("../matrices/celegansneural/celegansneural.mtx")
 eu = mmread("../matrices/eu-2005/eu-2005.mtx")
 wiki = mmread("../matrices/wiki-topcats/wiki-topcats.mtx")
 so = mmread("../matrices/sx-stackoverflow/sx-stackoverflow.mtx")
 ind = mmread("../matrices/indochina-2004/indochina-2004.mtx")
+
+
 
 function tenTimes(f, args...)
     times = []
