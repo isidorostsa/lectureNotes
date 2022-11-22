@@ -221,7 +221,9 @@ void bfs_sparse_colors_all_inplace(
         }
 }
 
-std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
+// working
+// THIS WILL FREE M, YOU CANT USE IT TWICE
+std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG = true) {
     size_t n = M.n;
     size_t nnz = M.nnz;
 
@@ -308,11 +310,11 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
 
 int main(int argc, char** argv) {
 
-    if(argc<2){
-        std::cout << "Assumed language.mtx as input" << std::endl;
-    }
-
     std::string filename(argc > 1 ? argv[1] : "../matrices/foldoc/foldoc.mtx");
+
+    if(argc<2){
+        std::cout << "Assumed " << filename <<  " as input" << std::endl;
+    }
 
     std::cout << "Reading file '" << filename << "'\n";
 
