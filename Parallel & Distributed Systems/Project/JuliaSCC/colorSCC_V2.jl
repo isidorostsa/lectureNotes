@@ -2,6 +2,12 @@ using SparseMatricesCSR
 using SparseArrays
 using MatrixMarket
 
+function DEB(str, DEBUG)
+    if DEBUG
+        println(str)
+    end
+end
+
 function csr_tocsc(Ap::Vector{Int}, Aj::Vector{Int})
     nnz = Ap[end] - 1
     n = length(Ap) - 1
@@ -213,9 +219,9 @@ function colorSCC_matrix(M, DEBUG = false)
     onb_ptr = Vector{Int64}(undef, M.n+1)
     onb_ptr[1] = 1
     
-    if DEBUG
-        println("finished initializations")
-    end
+    DEB("finished initializations", DEBUG)
+
+    DEB("Starting coo -> csc, csr", DEBUG)
 
     # colptr shows the element we start looking at in nzval for each column 
     for col in 1:M.n
@@ -223,10 +229,6 @@ function colorSCC_matrix(M, DEBUG = false)
             inb[el_id] = M.rowval[el_id]
         end
         inb_ptr[col+1] = M.colptr[col+1]
-    end
-
-    if DEBUG
-        println("Done with csc")
     end
 
     # convert csc to csr
@@ -238,15 +240,14 @@ function colorSCC_matrix(M, DEBUG = false)
         onb_ptr[row+1] = M_tr.colptr[row+1]
     end
 
-    if DEBUG
-        println("finished calculating stuff in the begining")
-    end
+    DEB("Finished", DEBUG)
 
     # above are not needed cause we can just use M.rowval and M_tr.rowval
 
+    DEB("Starting trim, size before: "* string(length(inb)), DEBUG)
+
     if DEBUG
         startsize = sum(vleft)
-        println("size before trimming ", startsize)
     end
 
     # temporary with enum, can do better
@@ -265,15 +266,17 @@ function colorSCC_matrix(M, DEBUG = false)
         vleft[vertex] = false
     end
 
-    if DEBUG
-        println("finished triming, new size = ", sum(vleft) - startsize)
-    end
+    DEB("Finished trim, size change: "* string(sum(vleft) - startsize), DEBUG)
 
     # to find outneighbors of i:
     # onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
 
-    iter = 1
+    iter = 0
     while reduce(|, vleft)
+        iter += 1
+
+        DEB("Starting while loop iteration: "* string(iter), DEBUG)
+
         for i in 1:n
             if vleft[i]
                 colors[i] = i
@@ -282,10 +285,8 @@ function colorSCC_matrix(M, DEBUG = false)
             end
         end
 
-        if DEBUG
-            println("finished coloring start, iter = ", iter)
-        end
-        iter += 1
+        DEB("Starting to color", DEBUG)
+
 
         made_change = true
         while made_change
@@ -317,7 +318,7 @@ function colorSCC_matrix(M, DEBUG = false)
                             end
                         end
                     end
-                    =#
+=#
                     for n_id = 1:(inb_ptr[i+1]-inb_ptr[i])
                         j = inb[inb_ptr[i]+n_id-1]
                         if colors[j] != MAX_COLOR
@@ -332,17 +333,13 @@ function colorSCC_matrix(M, DEBUG = false)
             end
         end
 
-        if DEBUG
-            println("finished coloring all")
-        end
+        DEB("Finished coloring", DEBUG)
+
+        DEB("Found " *string(length(unique(colors))) * " unique colors", DEBUG)
 
         for color in unique(colors)
             if color == MAX_COLOR
                 continue
-            end
-
-            if DEBUG
-                println("color = ", color)
             end
 
             #Vc = [colors[i] == color for i in 1:n]
@@ -350,9 +347,8 @@ function colorSCC_matrix(M, DEBUG = false)
 #            source = zeros(Bool, n)
 #            source[color] = true
 
-            if DEBUG
-                println("starting bfs")
-            end
+
+            DEB("Starting bfs for color "* string(color), DEBUG)
 
             #vertices_in_rev_bfs = bfs_matrix(M', source, Vc)
             #vertices_in_rev_bfs = bfs_sparse(inb, inb_ptr, color, Vc)
@@ -364,24 +360,22 @@ function colorSCC_matrix(M, DEBUG = false)
 
             #push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
 
-            if DEBUG
-                println("finished bfs")
-            end
+            DEB("Finished bfs.", DEBUG)
+            DEB("Vleft size: "* string(sum(vleft)), DEBUG)
              
-            if DEBUG
-                println("SCC size = ", SCCs_found)
-            end
-
 #            vleft = vleft .& .!vertices_in_rev_bfs
         end
     end
-    println(SCCs_found)
+    #println(SCC_id)
     return length(unique(SCC_id)), SCCs_found
 end
 
+fol = mmread("../matrices/foldoc/foldoc.mtx")
+
+colorSCC_matrix(fol, true)
 
 #@time colorSCC_matrix(cel, true)
-@time colorSCC_matrix(fol, true)
+@time colorSCC_matrix(cel, true)
 @profview colorSCC_matrix(eu, false)
 @profview tenTimes(colorSCC_matrix, lang, false)
 
@@ -389,7 +383,6 @@ end
 
 
 
-fol = mmread("../matrices/foldoc/foldoc.mtx")
 
 
 lang = mmread("../matrices/language/language.mtx")
@@ -399,13 +392,10 @@ wiki = mmread("../matrices/wiki-topcats/wiki-topcats.mtx")
 so = mmread("../matrices/sx-stackoverflow/sx-stackoverflow.mtx")
 ind = mmread("../matrices/indochina-2004/indochina-2004.mtx")
 
-
-
 function tenTimes(f, args...)
     times = []
     for i in 1:10
         push!(times, @elapsed f(args...))
     end
-    print(sum(times)/10)
 end
 
