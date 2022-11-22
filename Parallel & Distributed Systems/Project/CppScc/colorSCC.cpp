@@ -42,11 +42,21 @@ Coo_matrix loadFile(std::string filename) {
     std::vector<size_t> Aj(nnz);
 
     size_t throwaway;
+    // lines may be of the form: i j or i j throwaway
+    for(size_t i = 0; i < nnz; ++i) {
+        fin >> Ai[i] >> Aj[i];
+        Ai[i]--;
+        Aj[i]--;
+        if(fin.peek() != '\n') fin >> throwaway;
+    }
+
+    /*
     for(int i = 0; i < nnz; i++) {
         fin >> Ai[i] >> Aj[i] >> throwaway;
         Ai[i]--;
         Aj[i]--;
     }
+    */
 
     return Coo_matrix{n, nnz, Ai, Aj};
 }
@@ -220,8 +230,8 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
 
     DEB("Starting conversion");
     
-    coo_tocsc(M, inb);
     coo_tocsr(M, onb);
+    coo_tocsc(M, inb);
 
     DEB("Finished conversion");
 
@@ -277,16 +287,16 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
         DEB("Finished coloring")
         DEB("Found unique colors")
 
-        for(auto& color: std::set(colors.begin(), colors.end())) {
+        for(const size_t& color: std::set(colors.begin(), colors.end())) {
             if(color == MAX_COLOR) continue;
 
-            DEB("Starting BFS for color " << color)
+            //DEB("Starting BFS for color " << color)
             bfs_sparse_colors_all_inplace(inb, color, SCC_id, SCC_count, colors, color, vleft);
             SCC_count++;
 
             DEB("Vleft size: " << std::count(vleft.begin(), vleft.end(), true))
 
-            DEB("Finished BFS")
+            //DEB("Finished BFS")
         }
 
         //for(size_t color: std::unique(colors.begin(), colors.end())) {
@@ -296,16 +306,30 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
     return SCC_id;
 }
 
-int main() {
-    Coo_matrix coo = loadFile("../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
+int main(int argc, char** argv) {
+
+    if(argc<2){
+        std::cout << "Assumed language.mtx as input" << std::endl;
+    }
+
+    std::string filename(argc > 1 ? argv[1] : "../matrices/foldoc/foldoc.mtx");
+
+    std::cout << "Reading file '" << filename << "'\n";
+
+    Coo_matrix coo = loadFile(filename);
 
     std::cout << "Loaded matrix" << std::endl;
 
+    size_t times = 10;
+
+    std::vector<size_t> SCC_id;
     auto start = std::chrono::high_resolution_clock::now();
-    auto SCC_id = colorSCC(coo, false);
+    for(size_t i = 0; i < times; i++) {
+        SCC_id = colorSCC(coo, false);
+    }
     auto end = std::chrono::high_resolution_clock::now();
 
-    std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
+    std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/times << "ms" << std::endl;
     std::cout << "SCC count: " << *std::max_element(SCC_id.begin(), SCC_id.end()) << std::endl;
 
     return 0;
