@@ -44,11 +44,9 @@ function csr_tocsc(Ap::Vector{Int}, Aj::Vector{Int})
         end
     end
 
+    Ap2 .+= 1
+
     return Ap2, Aj2
-
-
-    return Bp, Bi
-
 end
 
 
@@ -247,7 +245,8 @@ function colorSCC_matrix(M, DEBUG = false)
     # above are not needed cause we can just use M.rowval and M_tr.rowval
 
     if DEBUG
-        println("size before trimming ", sum(vleft))
+        startsize = sum(vleft)
+        println("size before trimming ", startsize)
     end
 
     # temporary with enum, can do better
@@ -267,7 +266,7 @@ function colorSCC_matrix(M, DEBUG = false)
     end
 
     if DEBUG
-        println("finished triming, new size = ", sum(vleft))
+        println("finished triming, new size = ", sum(vleft) - startsize)
     end
 
     # to find outneighbors of i:

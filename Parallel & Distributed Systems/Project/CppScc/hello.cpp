@@ -1,24 +1,21 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <array>
 
 /*
 THIS FUNCTION IS TAKEN DIRECTLY FROM THE SCIPY CPP IMPLEMENTATION
 */
-void coo_tocsr(const int n_row,
-               const int nnz,
-               const int Ai[],
-               const int Aj[],
-                     int Bp[],
-                     int Bj[]
+void coo_tocsr(const size_t n_row,
+               const size_t nnz,
+               const size_t Ai[],
+               const size_t Aj[],
+                     size_t Bp[],
+                     size_t Bj[]
                 )
 {
     //compute number of non-zero entries per row of A 
-    //std::fill(Bp, Bp + n_row, 0);
-    for(int i = 0; i < n_row; i++) {
-        Bp[i] = 0;
-    }
-
+    std::fill(Bp, Bp + n_row, 0);
 
     for (int n = 0; n < nnz; n++){            
         Bp[Ai[n]]++;
@@ -50,16 +47,16 @@ void coo_tocsr(const int n_row,
     //now Bp,Bj,Bx form a CSR representation (with possible duplicates)
 }
 
-void coo_tocsc(const int n_col,
-               const int nnz,
-               const int Ai[],
-               const int Aj[],
-                     int Bp[],
-                     int Bi[]
+void coo_tocsc(const size_t n_col,
+               const size_t nnz,
+               const size_t Ai[],
+               const size_t Aj[],
+                     size_t Bp[],
+                     size_t Bi[]
                 )
 {coo_tocsr(n_col, nnz, Aj, Ai, Bp, Bi);}
 
-bool* trimedVertices_sparce(const int* inb, const int* inb_ptr, const int* onb, const int* onb_ptr, size_t n)
+bool* trimedVertices_sparce(const size_t* inb, const size_t* inb_ptr, const size_t* onb, const size_t* onb_ptr, size_t n)
 {
     bool* trimedVertices = new bool[n];
     std::fill(trimedVertices, trimedVertices+n, 0);
@@ -105,6 +102,29 @@ bool* trimedVertices_sparce(const int* inb, const int* inb_ptr, const int* onb, 
     return trimedVertices;
 }
 
+size_t* colorSCC(const size_t* Ai, const size_t* Aj, size_t n, size_t nnz) {
+
+    size_t* SCC_id = new size_t[n];
+    std::fill(SCC_id, SCC_id+n, 0);
+    size_t SCCs_found = 0;
+
+    bool* vleft = new bool[n];
+    std::fill(vleft, vleft+n, 1);
+
+    size_t* colors = new size_t[n];
+    size_t MAX_COLOR = -1;
+
+    // i can probably use only SCC_id here
+
+    size_t* inb = new size_t[nnz];
+    size_t* inb_ptr = new size_t[n+1];
+    coo_tocsc(n, nnz, Ai, Aj, inb_ptr, inb);
+
+    size_t* onb;
+    size_t* onb_ptr;
+    coo_tocsr(n, nnz, Ai, Aj, onb_ptr, onb);
+    return nullptr;
+};
 
 
 int main()
@@ -126,8 +146,8 @@ int main()
     fin >> n >> n >> nnz;
     
     // load the coo values (we throw away the value cause we are dealing with binary matrix)
-    int* Ai = new int[nnz];
-    int* Aj = new int[nnz];
+    size_t* Ai = new size_t[nnz];
+    size_t* Aj = new size_t[nnz];
 
     int throwAway;
     for(int i = 0; i < nnz; i++) {
@@ -135,30 +155,30 @@ int main()
         Ai[i]--; Aj[i]--;
     }
 
+    std::cout << Ai[0] << " " << Aj[0] << std::endl;
+
 
     // get the CSR representation
-    int* row_ptr = new int[n+1]{0}; 
-    int* col_val = new int[nnz]; 
+    size_t* row_ptr = new size_t[n+1]{0}; 
+    size_t* col_val = new size_t[nnz]; 
 
     coo_tocsr(n, nnz, Ai, Aj, row_ptr, col_val);
 
     // get the CSC representation
-    int* col_ptr = new int[n+1]{0};
-    int* row_val = new int[nnz];
+    size_t* col_ptr = new size_t[n+1]{0};
+    size_t* row_val = new size_t[nnz];
 
     coo_tocsc(n, nnz, Ai, Aj, col_ptr, row_val);
 
-    std::cout << (row_val[10000]) << std::endl;
-
     // get the trimed vertices
-    bool* trimedVertices = trimedVertices_sparce(row_val, row_ptr, col_val, col_ptr, n);
+    bool* trimedVertices = trimedVertices_sparce(row_val, col_ptr, col_val, row_ptr, n);
 
-    int s = 0;
-    for(int i = 0; i < n; i++) {
+    size_t s = 0;
+    for(size_t i = 0; i < n; i++) {
         if(trimedVertices[i]) s++;
     }
 
-    std::cout << s << std::endl;
+    std::cout << n << " " << s << std::endl;
 
     return 0;
 }

@@ -2,8 +2,8 @@
 #include <fstream>
 #include <algorithm>
 #include <vector>
-#include <array>
 #include <string>
+
 
 struct Coo_matrix
 {
@@ -51,6 +51,7 @@ Coo_matrix loadFile(std::string filename) {
     return Coo_matrix{n, nnz, Ai, Aj};
 }
 
+// working
 void coo_tocsr(const Coo_matrix& coo, Csr_matrix& csr) {
     csr.n = coo.n;
     csr.nnz = coo.nnz;
@@ -85,6 +86,7 @@ void coo_tocsr(const Coo_matrix& coo, Csr_matrix& csr) {
     }
 }
 
+// working
 void coo_tocsc(const Coo_matrix& coo, Csc_matrix& csc) {
     csc.n = coo.n;
     csc.nnz = coo.nnz;
@@ -119,35 +121,13 @@ void coo_tocsc(const Coo_matrix& coo, Csc_matrix& csc) {
     }
 }
 
+
 int main() {
     Coo_matrix coo = loadFile("../matrices/foldoc/foldoc.mtx");
 
-    Csr_matrix csr;
-    coo_tocsr(coo, csr);
-
-    Csc_matrix csc;
-    coo_tocsc(coo, csc);
-
-    // print five first elemetns of each
+    // print the contents of coo
+    // the five first elements
     for(int i = 0; i < 5; i++) {
-        std::cout << csr.rowptr[i] << " ";
+        std::cout << coo.Ai[i] << " " << coo.Aj[i] << std::endl;
     }
-    std::cout << std::endl;
-
-    for(int i = 0; i < 5; i++) {
-        std::cout << csr.colval[i] << " ";
-    }
-    std::cout << std::endl;
-
-    for(int i = 0; i < 5; i++) {
-        std::cout << csc.colptr[i] << " ";
-    }
-    std::cout << std::endl;
-
-    for(int i = 0; i < 5; i++) {
-        std::cout << csc.rowval[i] << " ";
-    }
-    std::cout << std::endl;
-
-    return 0;
 }
