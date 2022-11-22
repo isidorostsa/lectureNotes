@@ -243,7 +243,6 @@ function colorSCC_matrix(M, DEBUG = false)
     DEB("Finished", DEBUG)
 
     # above are not needed cause we can just use M.rowval and M_tr.rowval
-
     DEB("Starting trim, size before: "* string(length(inb)), DEBUG)
 
     if DEBUG
@@ -266,8 +265,9 @@ function colorSCC_matrix(M, DEBUG = false)
         vleft[vertex] = false
     end
 
-    DEB("Finished trim, size change: "* string(sum(vleft) - startsize), DEBUG)
-
+    if DEBUG
+        DEB("Finished trim, size change: "* string(sum(vleft) - startsize), DEBUG)
+    end
     # to find outneighbors of i:
     # onb[onb_ptr[i]:(onb_ptr[i+1]-1)]
 
@@ -380,10 +380,6 @@ colorSCC_matrix(fol, true)
 @profview tenTimes(colorSCC_matrix, lang, false)
 
 @profview colorSCC_matrix(so, false)
-
-
-
-
 
 lang = mmread("../matrices/language/language.mtx")
 cel = mmread("../matrices/celegansneural/celegansneural.mtx")

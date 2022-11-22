@@ -146,7 +146,9 @@ void trimVertices_sparse(
                     hasIncoming = true;
                     break;
                 }
-            } if(!hasIncoming) {
+            }   
+
+            if(!hasIncoming) {
                 vleft[i] = false;
                 SCC_id[i] = ++SCC_count;
 
@@ -160,7 +162,9 @@ void trimVertices_sparse(
                     hasOutgoing = true;
                     break;
                 }
-            } if(!hasOutgoing) {
+            }
+            
+            if(!hasOutgoing) {
                 vleft[i] = false;
                 SCC_id[i] = ++SCC_count;
 
@@ -228,7 +232,7 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
 
     DEB("Starting trim")
 
-    trimVertices_sparse(inb, onb, vleft, SCC_id, SCC_count);
+    //trimVertices_sparse(inb, onb, vleft, SCC_id, SCC_count);
 
     DEB("Finished trim")
     DEB("Size difference: " << SCC_count)
@@ -293,13 +297,16 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
 }
 
 int main() {
-    Coo_matrix coo = loadFile("../matrices/language/language.mtx");
+    Coo_matrix coo = loadFile("../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
+
+    std::cout << "Loaded matrix" << std::endl;
 
     auto start = std::chrono::high_resolution_clock::now();
     auto SCC_id = colorSCC(coo, false);
     auto end = std::chrono::high_resolution_clock::now();
 
     std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << "ms" << std::endl;
+    std::cout << "SCC count: " << *std::max_element(SCC_id.begin(), SCC_id.end()) << std::endl;
 
     return 0;
 }
