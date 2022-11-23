@@ -45,27 +45,27 @@ void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr) {
 
     std::fill(csr.ptr.begin(), csr.ptr.end(), 0);
 
-    for(int n = 0; n < coo.nnz; n++) {
+    for(size_t n = 0; n < coo.nnz; n++) {
         csr.ptr[coo.Ai[n]]++;
     }
 
-    for(int i = 0, cumsum = 0; i < coo.n; i++) {
-        int temp = csr.ptr[i];
+    for(size_t i = 0, cumsum = 0; i < coo.n; i++) {
+        size_t temp = csr.ptr[i];
         csr.ptr[i] = cumsum;
         cumsum += temp;
     }
     csr.ptr[coo.n] = coo.nnz;
 
-    for(int n = 0; n < coo.nnz; n++) {
-        int row = coo.Ai[n];
-        int dest = csr.ptr[row];
+    for(size_t n = 0; n < coo.nnz; n++) {
+        size_t row = coo.Ai[n];
+        size_t dest = csr.ptr[row];
 
         csr.val[dest] = coo.Aj[n];
         csr.ptr[row]++;
     }
 
-    for(int i = 0, last = 0; i <= coo.n; i++) {
-        int temp = csr.ptr[i];
+    for(size_t i = 0, last = 0; i <= coo.n; i++) {
+        size_t temp = csr.ptr[i];
         csr.ptr[i] = last;
         last = temp;
     }
@@ -81,27 +81,27 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
 
     std::fill(csc.ptr.begin(), csc.ptr.end(), 0);
 
-    for(int n = 0; n < coo.nnz; n++) {
+    for(size_t n = 0; n < coo.nnz; n++) {
         csc.ptr[coo.Aj[n]]++;
     }
 
-    for(int i = 0, cumsum = 0; i < coo.n; i++) {
-        int temp = csc.ptr[i];
+    for(size_t i = 0, cumsum = 0; i < coo.n; i++) {
+        size_t temp = csc.ptr[i];
         csc.ptr[i] = cumsum;
         cumsum += temp;
     }
     csc.ptr[coo.n] = coo.nnz;
 
-    for(int n = 0; n < coo.nnz; n++) {
-        int col = coo.Aj[n];
-        int dest = csc.ptr[col];
+    for(size_t n = 0; n < coo.nnz; n++) {
+        size_t col = coo.Aj[n];
+        size_t dest = csc.ptr[col];
 
         csc.val[dest] = coo.Ai[n];
         csc.ptr[col]++;
     }
 
-    for(int i = 0, last = 0; i <= coo.n; i++) {
-        int temp = csc.ptr[i];
+    for(size_t i = 0, last = 0; i <= coo.n; i++) {
+        size_t temp = csc.ptr[i];
         csc.ptr[i] = last;
         last = temp;
     }

@@ -6,7 +6,7 @@
 #include <string>
 #include <chrono>
 
-#include <colorSCC.cpp>
+#include <colorSCC.hpp>
 
 int main(int argc, char** argv) {
 

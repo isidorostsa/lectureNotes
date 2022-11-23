@@ -4,7 +4,7 @@ DEPS = colorSCC.hpp
 OBJ = colorSCC.o main.o
 
 %.o: %.cpp $(DEPS)
-	$(CC) -c $@ $< $(CFLAGS)
+	$(CC) -c -o $@ $< $(CFLAGS)
 
 colorSCC: $(OBJ)
 	$(CC) -o $@ $^ $(CFLAGS)
