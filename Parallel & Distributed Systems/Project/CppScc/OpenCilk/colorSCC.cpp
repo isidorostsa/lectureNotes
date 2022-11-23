@@ -10,6 +10,7 @@
 #include "colorSCC.hpp"
 //#include <cilk/cilk.h>
 
+#define UNCOMPLETED_SCC_ID -1
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
 
 // working
@@ -186,7 +187,6 @@ void bfs_sparse_colors_all_inplace(
                 size_t u = nb.val[i];
 
                 if(colors[u] == color && SCC_id[u] != _SCC_count) {
-                // if(colors[u] == color && vleft[u]) {
                     SCC_id[u] = _SCC_count;
                     q.push(u);
                 }
@@ -199,7 +199,6 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
     size_t n = M.n;
     size_t nnz = M.nnz;
 
-#define UNCOMPLETED_SCC_ID -1
 
     Sparse_matrix inb;
     Sparse_matrix onb;
@@ -260,16 +259,16 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
             }
         }
         DEB("Finished coloring")
-        DEB("Found unique colors")
 
-        for(const size_t& color: std::set<size_t>(colors.begin(), colors.end())) {
+        auto unique_colors = std::set<size_t> (colors.begin(), colors.end());
+
+        DEB("Found " << unique_colors.size() << "unique colors")
+        for(const size_t& color: unique_colors) {
             if(color == MAX_COLOR) continue;
 
             //DEB("Starting BFS for color " << color)
             bfs_sparse_colors_all_inplace(inb, color, SCC_id, SCC_count, colors, color);
             SCC_count++;
-
-            //DEB("Vleft size: " << std::count(SCC_id.begin(), SCC_id.end(), [](size_t v) { return v == UNCOMPLETED_SCC_ID; }))
 
             //DEB("Finished BFS")
         }
