@@ -8,6 +8,7 @@
 #include <chrono>
 
 #include "colorSCC.hpp"
+#include <cilk/cilk.h>
 
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
 
@@ -262,7 +263,7 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
         DEB("Finished coloring")
         DEB("Found unique colors")
 
-        for(const size_t& color: std::set(colors.begin(), colors.end())) {
+        for(const size_t& color: std::set<size_t>(colors.begin(), colors.end())) {
             if(color == MAX_COLOR) continue;
 
             //DEB("Starting BFS for color " << color)
@@ -282,7 +283,10 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
 }
 
 int _main(int argc, char** argv) {
-    std::string filename(argc > 1 ? argv[1] : "../matrices/language/language.mtx");
+
+    // variable filename = argv[1] or "../../matrices/languague/languague.mtx" by default
+    std::string filename = (argc > 1) ? argv[1] : "../fsad.mdfdsatrdsfices/languague/languague.mtx";
+    //intetional bug to remind you to change this 
 
     if(argc<2){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
