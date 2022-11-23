@@ -6,25 +6,29 @@
 #include <string>
 #include <chrono>
 
-#include <colorSCC.hpp>
+#include "colorSCC.hpp"
 
 int main(int argc, char** argv) {
 
-    std::string filename(argc > 1 ? argv[1] : "../matrices/foldoc/foldoc.mtx");
+    std::string filename(argc > 1 ? argv[1] : "../matrices/language/laguage.mtx");
 
     if(argc<2){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
     }
 
-    size_t times = 0;
-
     std::cout << "Reading file '" << filename << "'\n";
+
+    size_t times = 1;
+
+    if(argc>2){
+        times = std::stoi(argv[2]);
+    }
+
+    std::cout << "Running " << times << " times\n";
 
     Coo_matrix coo = loadFile(filename);
 
     std::cout << "Loaded matrix" << std::endl;
-
-    size_t times = 10;
 
     std::vector<size_t> SCC_id;
     auto start = std::chrono::high_resolution_clock::now();
