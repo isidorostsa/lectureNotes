@@ -16,3 +16,4 @@ Parallel & Distributed Systems/Project/CppScc/colorSCC
 Parallel & Distributed Systems/Project/CppScc/main.o
 Parallel & Distributed Systems/Project/CppScc/colorSCC.o
 *.o
+Parallel & Distributed Systems/Project/CppScc/OpenCilk/colorSCC.cpp
