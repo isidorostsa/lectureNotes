@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "6a8952713c0f42c7",
+        "id": "5765a534b7246136",
         "type": "tabs",
         "children": [
           {
-            "id": "5a3d1975dfd9aa02",
+            "id": "8b19d366ec026e25",
             "type": "leaf",
             "state": {
               "type": "empty",
@@ -65,7 +65,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 200,
+    "collapsed": true
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -145,13 +146,13 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "5a3d1975dfd9aa02",
+  "active": "8b19d366ec026e25",
   "lastOpenFiles": [
+    "OS/Labs/1/Intro to Unix.md",
     "TODOS.md",
     "Optimization Techniques/3/Convexity.md",
     "Parallel & Distributed Systems/Bitonic Sorting.md",
     "OS/Labs/1/Excersise.md",
-    "OS/Labs/1/Intro to Unix.md",
     "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/3/Conditions of Optimization, Convex Problems.md",
     "Optimization Techniques/3/Theorems and Proofs.md",

@@ -30,6 +30,7 @@ struct Sparse_matrix
 };
 
 // working
+Coo_matrix loadFile(std::string filename);
 Coo_matrix loadFile(std::string filename) {
     std::ifstream fin(filename);
 
@@ -54,6 +55,7 @@ Coo_matrix loadFile(std::string filename) {
 }
 
 // working
+void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr);
 void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr) {
     csr.n = coo.n;
     csr.nnz = coo.nnz;
@@ -90,6 +92,7 @@ void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr) {
 }
 
 // working
+void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc);
 void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
     csc.n = coo.n;
     csc.nnz = coo.nnz;
@@ -126,6 +129,9 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
 }
 
 // working
+void trimVertices_sparse( const Sparse_matrix& inb, const Sparse_matrix& onb, std::vector<bool>& vleft,
+                            std::vector<size_t>& SCC_id, size_t& SCC_count);
+
 void trimVertices_sparse(
     const Sparse_matrix& inb,
     const Sparse_matrix& onb, 
@@ -179,6 +185,9 @@ void trimVertices_sparse(
 }
 
 // working
+void bfs_sparse_colors_all_inplace( const Sparse_matrix& nb, const size_t source, std::vector<size_t>& SCC_id,
+    const size_t& SCC_count, const std::vector<size_t>& colors, const size_t color, std::vector<bool>& vleft);
+
 void bfs_sparse_colors_all_inplace(
     const Sparse_matrix& nb,
     const size_t source,
@@ -214,6 +223,7 @@ void bfs_sparse_colors_all_inplace(
 }
 
 // working
+std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true);
 std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
     size_t n = M.n;
     size_t nnz = M.nnz;
@@ -327,3 +337,12 @@ int main(int argc, char** argv) {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
