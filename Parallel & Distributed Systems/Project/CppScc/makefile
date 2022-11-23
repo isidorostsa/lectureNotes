@@ -7,7 +7,7 @@ OBJ = colorSCC.o main.o
 	$(CC) -c $@ $< $(CFLAGS)
 
 colorSCC: $(OBJ)
-	$(CC) $^ -o $@ $(CFLAGS)
+	$(CC) -o $@ $^ $(CFLAGS)
 
 .PHONY: clean
 clean:

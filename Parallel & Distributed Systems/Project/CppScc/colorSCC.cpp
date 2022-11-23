@@ -196,7 +196,7 @@ void bfs_sparse_colors_all_inplace(
 }
 
 // working
-std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
+std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
     size_t n = M.n;
     size_t nnz = M.nnz;
 
