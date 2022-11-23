@@ -7,7 +7,7 @@
 #include <set>
 #include <chrono>
 
-#include <colorSCC.hpp>
+#include "colorSCC.hpp"
 
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
 
@@ -279,4 +279,8 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
     }
 
     return SCC_id;
+}
+
+int _main() {
+    std::cout << "Hello, world!" << std::endl;
 }

@@ -10,7 +10,7 @@
 
 int main(int argc, char** argv) {
 
-    std::string filename(argc > 1 ? argv[1] : "../matrices/language/laguage.mtx");
+    std::string filename(argc > 1 ? argv[1] : "../matrices/language/language.mtx");
 
     if(argc<2){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
