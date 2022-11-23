@@ -50,14 +50,6 @@ Coo_matrix loadFile(std::string filename) {
         if(fin.peek() != '\n') fin >> throwaway;
     }
 
-    /*
-    for(int i = 0; i < nnz; i++) {
-        fin >> Ai[i] >> Aj[i] >> throwaway;
-        Ai[i]--;
-        Aj[i]--;
-    }
-    */
-
     return Coo_matrix{n, nnz, Ai, Aj};
 }
 
@@ -222,8 +214,7 @@ void bfs_sparse_colors_all_inplace(
 }
 
 // working
-// THIS WILL FREE M, YOU CANT USE IT TWICE
-std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG = true) {
+std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG = true) {
     size_t n = M.n;
     size_t nnz = M.nnz;
 
