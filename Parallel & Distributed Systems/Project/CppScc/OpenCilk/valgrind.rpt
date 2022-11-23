@@ -1,0 +1,34 @@
+==317524== Memcheck, a memory error detector
+==317524== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==317524== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==317524== Command: ./colorSCC ../../matrices/indochina-2004/indochina-2004.mtx
+==317524== Parent PID: 269463
+==317524== 
+==317524== Warning: set address range perms: large range [0x59c87040, 0xb6576c38) (undefined)
+==317524== Warning: set address range perms: large range [0xb6577040, 0x112e66c38) (undefined)
+==317524== 
+==317524== Process terminating with default action of signal 2 (SIGINT)
+==317524==    at 0x48527F0: memset (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==317524==    by 0x40251B: loadFile(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /home/mustang/Desktop/lectureNotes/Parallel & Distributed Systems/Project/CppScc/OpenCilk/colorSCC)
+==317524==    by 0x404CEC: main (in /home/mustang/Desktop/lectureNotes/Parallel & Distributed Systems/Project/CppScc/OpenCilk/colorSCC)
+==317524== 
+==317524== HEAP SUMMARY:
+==317524==     in use at exit: 3,105,846,026 bytes in 24 blocks
+==317524==   total heap usage: 24 allocs, 0 frees, 3,105,846,026 bytes allocated
+==317524== 
+==317524== 1,552,874,488 bytes in 1 blocks are possibly lost in loss record 24 of 24
+==317524==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==317524==    by 0x4024F2: loadFile(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >) (in /home/mustang/Desktop/lectureNotes/Parallel & Distributed Systems/Project/CppScc/OpenCilk/colorSCC)
+==317524==    by 0x404CEC: main (in /home/mustang/Desktop/lectureNotes/Parallel & Distributed Systems/Project/CppScc/OpenCilk/colorSCC)
+==317524== 
+==317524== LEAK SUMMARY:
+==317524==    definitely lost: 0 bytes in 0 blocks
+==317524==    indirectly lost: 0 bytes in 0 blocks
+==317524==      possibly lost: 1,552,874,488 bytes in 1 blocks
+==317524==    still reachable: 1,552,971,538 bytes in 23 blocks
+==317524==         suppressed: 0 bytes in 0 blocks
+==317524== Reachable blocks (those to which a pointer was found) are not shown.
+==317524== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==317524== 
+==317524== For lists of detected and suppressed errors, rerun with: -s
+==317524== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

@@ -8,7 +8,7 @@
 #include <chrono>
 
 #include "colorSCC.hpp"
-//#include <cilk/cilk.h>
+#include <cilk/cilk.h>
 
 #define UNCOMPLETED_SCC_ID -1
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
@@ -162,6 +162,43 @@ void trimVertices_sparse(
     }
 }
 
+/*
+void color_propagation_inplace(
+    const Sparse_matrix& inb,
+    const Sparse_matrix& onb,
+    const std::vector<size_t>& SCC_id,
+    std::vector<size_t>& colors)
+{
+    size_t n = inb.n;
+
+    trimVertices_sparse(inb, onb, vleft, newSCC_id, SCC_count);
+
+    for(size_t i = 0; i < n; i++) {
+        if(!vleft[i]) continue;
+
+        std::vector<size_t> stack;
+        stack.push_back(i);
+
+        while(!stack.empty()) {
+            size_t v = stack.back();
+            stack.pop_back();
+
+            if(!vleft[v]) continue;
+            vleft[v] = false;
+
+            newSCC_id[v] = ++SCC_count;
+
+            for(size_t j = inb.ptr[v]; j < inb.ptr[v + 1]; j++) {
+                size_t u = inb.val[j];
+                if(vleft[u]) stack.push_back(u);
+            }
+        }
+    }
+
+    std::swap(SCC_id, newSCC_id);
+} 
+*/
+
 // working
 void bfs_sparse_colors_all_inplace(
     const Sparse_matrix& nb,
@@ -171,10 +208,7 @@ void bfs_sparse_colors_all_inplace(
     const std::vector<size_t>& colors, 
     const size_t color)
 {
-        size_t _SCC_count = SCC_count + 1;
-        size_t MAX_COLOR = -1;
-
-        SCC_id[source] = _SCC_count;
+        SCC_id[source] = SCC_count;
 
         std::queue<size_t> q;
         q.push(source);
@@ -186,8 +220,8 @@ void bfs_sparse_colors_all_inplace(
             for(size_t i = nb.ptr[v]; i < nb.ptr[v + 1]; i++) {
                 size_t u = nb.val[i];
 
-                if(colors[u] == color && SCC_id[u] != _SCC_count) {
-                    SCC_id[u] = _SCC_count;
+                if(colors[u] == color && SCC_id[u] != SCC_count) {
+                    SCC_id[u] = SCC_count;
                     q.push(u);
                 }
             }
@@ -195,18 +229,20 @@ void bfs_sparse_colors_all_inplace(
 }
 
 // working
-std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
+std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
     size_t n = M.n;
-    size_t nnz = M.nnz;
-
-
+    //size_t nnz = M.nnz;
     Sparse_matrix inb;
     Sparse_matrix onb;
 
     DEB("Starting conversion");
     
-    coo_tocsr(M, onb);
+    cilk_spawn coo_tocsr(M, onb);
     coo_tocsc(M, inb);
+
+
+    //M.Ai = std::vector<size_t>();
+    //M.Aj = std::vector<size_t>();
 
     DEB("Finished conversion");
 
@@ -225,12 +261,13 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
     size_t MAX_COLOR = -1;
 
     size_t iter = 0;
+    size_t total_tries = 0;
     while(!std::none_of(SCC_id.begin(), SCC_id.end(), [](size_t v) { return v == UNCOMPLETED_SCC_ID; })) {
         iter++;
 
         DEB("Starting while loop iteration " << iter)
 
-        for(size_t i = 0; i < n; i++) {
+        cilk_for(size_t i = 0; i < n; i++) {
             if(SCC_id[i] == UNCOMPLETED_SCC_ID) {
                 colors[i] = i;
             } else {
@@ -238,44 +275,57 @@ std::vector<size_t> colorSCC(const Coo_matrix& M, bool DEBUG) {
             }
         }
 
+        std::vector<size_t> new_colors(n);
+
+
         DEB("Starting to color")
         bool made_change = true;
         while(made_change) {
             made_change = false;
 
-            for(size_t u = 0; u < n; u++) {
+            cilk_for(size_t u = 0; u < n; u++) {
+                total_tries++;
                 if(colors[u] == MAX_COLOR) continue;
 
                 for(size_t i = inb.ptr[u]; i < inb.ptr[u + 1]; i++) {
                     size_t v = inb.val[i];
                     //if(colors[v] == MAX_COLOR) continue;
+                    size_t new_color = colors[v];
 
-                    if(colors[u] > colors[v]) {
-                        colors[u] = colors[v];
+                    if(new_color < colors[u]) {
+                        colors[u] = new_color;
                         made_change = true;
                     }
                 }
-
             }
         }
         DEB("Finished coloring")
 
-        auto unique_colors = std::set<size_t> (colors.begin(), colors.end());
+        auto unique_colors_set = std::set<size_t> (colors.begin(), colors.end());
 
-        DEB("Found " << unique_colors.size() << "unique colors")
-        for(const size_t& color: unique_colors) {
+        DEB("Found " << unique_colors_set.size() << " unique colors")
+
+        auto unique_colors = std::vector<size_t>(unique_colors_set.begin(), unique_colors_set.end());
+
+        std::sort(unique_colors.begin(), unique_colors.end());
+
+        cilk_for(size_t i = 0; i < unique_colors.size(); i++) {
+            size_t color = unique_colors[i];
             if(color == MAX_COLOR) continue;
+            
+            const size_t _SCC_count = SCC_count + i + 1;
 
-            //DEB("Starting BFS for color " << color)
-            bfs_sparse_colors_all_inplace(inb, color, SCC_id, SCC_count, colors, color);
-            SCC_count++;
-
-            //DEB("Finished BFS")
+            DEB(color)
+            bfs_sparse_colors_all_inplace(inb, color, SCC_id, _SCC_count, colors, color);
+            DEB("Finished BFS")
         }
+        SCC_count += unique_colors.size()- (unique_colors_set.count(MAX_COLOR) ? 1 : 0);
 
-        //for(size_t color: std::unique(colors.begin(), colors.end())) {
-        //}
     }
+
+    std::cout << "Total tries: " << total_tries << std::endl;
+    std::cout << "Total iterations: " << iter << std::endl;
+
 
     return SCC_id;
 }
@@ -311,8 +361,9 @@ int _main(int argc, char** argv) {
     }
     auto end = std::chrono::high_resolution_clock::now();
 
+
     std::cout << "Time: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/times << "ms" << std::endl;
-    std::cout << "SCC count: " << *std::max_element(SCC_id.begin(), SCC_id.end()) << std::endl;
+    std::cout << "SCC count: " << std::set<size_t>(SCC_id.begin(), SCC_id.end()).size() << std::endl;
 
     return 0;
 }

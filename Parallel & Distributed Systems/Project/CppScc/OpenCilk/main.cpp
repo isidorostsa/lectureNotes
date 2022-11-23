@@ -10,30 +10,33 @@
 
 int main(int argc, char** argv) {
 
-    std::string filename(argc > 1 ? argv[1] : "../../matrices/language/language.mtx");
+    std::string filename(argc > 10 ? argv[1] : "../../matrices/indochina-2004/indochina-2004.mtx");
 
-    if(argc<2){
+    if(argc<10){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
     }
 
     std::cout << "Reading file '" << filename << "'\n";
 
     size_t times = 1;
-
     if(argc>2){
         times = std::stoi(argv[2]);
     }
 
-    std::cout << "Running " << times << " times\n";
+    // argv[3] is true or false, if true, print debug info
+    // usage: 
+    bool DEBUG = (argc > 3) ? (std::atoi(argv[3]) == 1) : false;
 
     Coo_matrix coo = loadFile(filename);
 
     std::cout << "Loaded matrix" << std::endl;
 
+    std::cout << "Running " << times << " times\n";
+
     std::vector<size_t> SCC_id;
     auto start = std::chrono::high_resolution_clock::now();
     for(size_t i = 0; i < times; i++) {
-        SCC_id = colorSCC(coo, false);
+        SCC_id = colorSCC(coo, DEBUG);
     }
     auto end = std::chrono::high_resolution_clock::now();
 
