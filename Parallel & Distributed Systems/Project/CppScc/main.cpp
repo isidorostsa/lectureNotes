@@ -16,6 +16,8 @@ int main(int argc, char** argv) {
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
     }
 
+    size_t times = 0;
+
     std::cout << "Reading file '" << filename << "'\n";
 
     Coo_matrix coo = loadFile(filename);

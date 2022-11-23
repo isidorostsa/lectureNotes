@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-I. -Wall
+CFLAGS=-I. -Wall -O3
 DEPS = colorSCC.hpp
 OBJ = colorSCC.o main.o
 
