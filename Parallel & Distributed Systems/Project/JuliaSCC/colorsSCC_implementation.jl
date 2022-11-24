@@ -8,14 +8,13 @@ using SparseMatricesCSR;
 # example graph 
 g = DiGraph(6)
 add_edge!(g, 1, 2)
-add_edge!(g, 2, 4)
-add_edge!(g, 2, 3)
+add_edge!(g, 4, 2)
+add_edge!(g, 4, 1)
+add_edge!(g, 3, 4)
+add_edge!(g, 5, 3)
 add_edge!(g, 3, 1)
-add_edge!(g, 4, 5)
-add_edge!(g, 6, 5)
 add_edge!(g, 5, 6)
-add_edge!(g, 3, 5)
-add_edge!(g, 6, 4)
+
 
 # and its plot
 gplot(g, nodelabel=1:nv(g), nodefillc=:"lightblue", nodesize=0.1)

@@ -87,6 +87,7 @@ function trimedVertices_sparse_for_opt(inb, inb_ptr, onb, onb_ptr)
     made_change = true
     while made_change
         made_change = false
+
         for i in 1:length(inb_ptr)-1
             if !activeVertices[i]
                 continue
@@ -119,6 +120,49 @@ function trimedVertices_sparse_for_opt(inb, inb_ptr, onb, onb_ptr)
     end
     return .!activeVertices
 end
+
+function diagonal_helper(M)
+    a = Vector{Bool}(undef, M.m)
+    for i = 1:M.m
+        a[i] = M[i,i] != 0
+    end
+    return a
+end
+
+function trimedVertices_sparse(M, M_tr)
+
+    vleft = ones(Bool, M.n)
+
+    madeChange = true
+    while madeChange
+        madeChange = false
+
+        inc = diagonal_helper(M*M_tr)
+        out = diagonal_helper(M_tr*M)
+
+        tots = inc .& out
+
+        if !all(tots .== vleft)
+            madeChange = true
+            vleft = vleft .& tots
+        end
+
+        # turn M, M_tr elements not in v left into 0
+        for i = 1:M.n
+            if !vleft[i]
+                M[i,:] .= 0
+                M[:,i] .= 0
+                M_tr[i,:] .= 0
+                M_tr[:,i] .= 0
+            end
+        end
+    end
+
+    return vleft
+end
+
+
+
 
 function bfs_sparse(nb, nb_ptr, source, allowed_vertices)
     visited = falses(length(nb_ptr)-1)
@@ -223,6 +267,12 @@ function colorSCC_matrix(M, DEBUG = false)
 
     DEB("Starting coo -> csc, csr", DEBUG)
 
+    # get the diagonal entries of M
+    diag = Vector{Int64}(undef, n)
+    for i in 1:n
+        diag[i] = M[i, i]
+    end
+
     # colptr shows the element we start looking at in nzval for each column 
     for col in 1:M.n
         for el_id in M.colptr[col]:(M.colptr[col+1]-1)
@@ -252,6 +302,7 @@ function colorSCC_matrix(M, DEBUG = false)
     # temporary with enum, can do better
     #for (vertex, isTrimed) in enumerate(trimedVertices_sparse(inb, inb_ptr, onb, onb_ptr))
     for (vertex, isTrimed) in enumerate(trimedVertices_sparse_for_opt(inb, inb_ptr, onb, onb_ptr))
+    #for (vertex, isTrimed) in enumerate(trimedVertices_sparse(M, M_tr))
         #vleft[v] = false
         #push!(SCC, [v])
 
@@ -287,10 +338,10 @@ function colorSCC_matrix(M, DEBUG = false)
 
         DEB("Starting to color", DEBUG)
 
-
         made_change = true
         while made_change
             made_change = false
+    
             for i in 1:n
                 if colors[i] != MAX_COLOR
                     #vleft[i]
@@ -361,7 +412,7 @@ function colorSCC_matrix(M, DEBUG = false)
             #push!(SCC, [i for i in 1:n if vertices_in_rev_bfs[i]])
 
             DEB("Finished bfs.", DEBUG)
-            DEB("Vleft size: "* string(sum(vleft)), DEBUG)
+            #DEB("Vleft size: "* string(sum(vleft)), DEBUG)
              
 #            vleft = vleft .& .!vertices_in_rev_bfs
         end
@@ -376,8 +427,8 @@ colorSCC_matrix(fol, true)
 
 #@time colorSCC_matrix(cel, true)
 @time colorSCC_matrix(cel, true)
-@profview colorSCC_matrix(eu, false)
-@profview tenTimes(colorSCC_matrix, lang, false)
+@time colorSCC_matrix(lang, false)
+@profview tenTimes(colorSCC_matrix, fol, false)
 
 @profview colorSCC_matrix(so, false)
 

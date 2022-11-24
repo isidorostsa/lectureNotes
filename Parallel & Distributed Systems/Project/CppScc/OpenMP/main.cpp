@@ -8,24 +8,28 @@
 
 #include "colorSCC.hpp"
 
+#include <omp.h>
+
 int main(int argc, char** argv) {
+    std::string filename(argc > 1 ? argv[1] : "../../matrices/language/language.mtx");
 
-    std::string filename(argc > 10 ? argv[1] : "../../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
-
-    if(argc<10){
+    if(argc<2){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
     }
 
     std::cout << "Reading file '" << filename << "'\n";
 
     size_t times = 1;
+
     if(argc>2){
         times = std::stoi(argv[2]);
     }
 
-    // argv[3] is true or false, if true, print debug info
-    // usage: 
-    bool DEBUG = (argc > 3) ? (std::atoi(argv[3]) == 1) : false;
+    bool DEBUG = false;
+    if(argc>3){
+        DEBUG = std::stoi(argv[3]) == 1;
+    }
+
 
     Coo_matrix coo = loadFile(filename);
 

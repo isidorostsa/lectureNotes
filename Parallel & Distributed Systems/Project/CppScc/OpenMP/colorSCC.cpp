@@ -8,7 +8,8 @@
 #include <chrono>
 
 #include "colorSCC.hpp"
-#include <cilk/cilk.h>
+
+#include <omp.h>
 
 #define UNCOMPLETED_SCC_ID -1
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
@@ -239,10 +240,8 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
 
     DEB("Starting conversion");
     
-    cilk_spawn coo_tocsr(M, onb);
+    coo_tocsr(M, onb);
     coo_tocsc(M, inb);
-    cilk_sync;
-
 
     //M.Ai = std::vector<size_t>();
     //M.Aj = std::vector<size_t>();
@@ -266,11 +265,10 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
     size_t iter = 0;
     size_t total_tries = 0;
     while(!std::none_of(SCC_id.begin(), SCC_id.end(), [](size_t v) { return v == UNCOMPLETED_SCC_ID; })) {
-        iter++;
 
         DEB("Starting while loop iteration " << iter)
 
-        cilk_for(size_t i = 0; i < n; i++) {
+        for(size_t i = 0; i < n; i++) {
             if(SCC_id[i] == UNCOMPLETED_SCC_ID) {
                 colors[i] = i;
             } else {
@@ -284,13 +282,15 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
             made_change = false;
 
             total_tries++;
-            cilk_for(size_t u = n-1; u != -1; u--) {
+            # pragma omp parallel for 
+            for(size_t u = 0; u < n; u++) {
+                iter++;
                 if(colors[u] == MAX_COLOR) continue;
 
                 for(size_t i = inb.ptr[u]; i < inb.ptr[u + 1]; i++) {
                     size_t v = inb.val[i];
-                    //if(colors[v] == MAX_COLOR) continue;
                     size_t new_color = colors[v];
+                    //if(new_color == MAX_COLOR) continue;
 
                     if(new_color < colors[u]) {
                         colors[u] = new_color;
@@ -309,15 +309,18 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
 
         //std::sort(unique_colors.begin(), unique_colors.end());
 
-        cilk_for(size_t i = 0; i < unique_colors.size(); i++) {
+        // run this for loop in parallel
+
+        # pragma omp parallel for
+        for(size_t i = 0; i < unique_colors.size(); i++) {
             size_t color = unique_colors[i];
             if(color == MAX_COLOR) continue;
             
             const size_t _SCC_count = SCC_count + i + 1;
 
-            DEB(color)
+            //DEB(color)
             bfs_sparse_colors_all_inplace(inb, color, SCC_id, _SCC_count, colors, color);
-            DEB("Finished BFS")
+            //DEB("Finished BFS")
         }
         SCC_count += unique_colors.size()- (unique_colors_set.count(MAX_COLOR) ? 1 : 0);
 
