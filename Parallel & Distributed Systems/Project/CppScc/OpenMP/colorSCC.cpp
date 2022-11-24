@@ -110,7 +110,6 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
     }
 }
 
-/*
 void trimVertices_sparse(
     const Sparse_matrix& inb,
     const Sparse_matrix& onb, 
@@ -118,52 +117,53 @@ void trimVertices_sparse(
     size_t& SCC_count)
 {
     size_t n = inb.n;
+    size_t trimed = 0;
 
     bool madeChange = true;
     while(madeChange) {
         madeChange = false;
 
-        std::queue<size_t> q;
-
+        //# pragma omp parallel for
         for(size_t i = 0; i < n; i++) {
-            if(!vleft[i]) continue;
+            if(SCC_id[i] != UNCOMPLETED_SCC_ID) continue;
 
             bool hasIncoming = false;
             for(size_t j = inb.ptr[i]; j < inb.ptr[i + 1]; j++) {
-                if(vleft[inb.val[j]]) {
+                if(SCC_id[inb.val[j]] == UNCOMPLETED_SCC_ID) {
                     hasIncoming = true;
                     break;
                 }
             }   
 
             if(!hasIncoming) {
-                vleft[i] = false;
                 SCC_id[i] = ++SCC_count;
+                trimed++;
 
                 madeChange = true;
-                break;
+                continue;
             }
 
             bool hasOutgoing = false;
             for(size_t j = onb.ptr[i]; j < onb.ptr[i + 1]; j++) {
-                if(vleft[onb.val[j]]) {
+                if(SCC_id[onb.val[j]] == UNCOMPLETED_SCC_ID) {
                     hasOutgoing = true;
                     break;
                 }
             }
             
             if(!hasOutgoing) {
-                vleft[i] = false;
                 SCC_id[i] = ++SCC_count;
+                trimed++;
 
                 madeChange = true;
-                break;
+                continue;
             }
 
         }
     }
+
+    std::cout << "Trimmed " << trimed << " vertices" << std::endl;
 }
-*/
 
 /*
 void color_propagation_inplace(
@@ -254,7 +254,7 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
 
     DEB("Starting trim")
 
-    //trimVertices_sparse(inb, onb, vleft, SCC_id, SCC_count);
+    trimVertices_sparse(inb, onb, SCC_id, SCC_count);
 
     DEB("Finished trim")
     DEB("Size difference: " << SCC_count)
@@ -290,7 +290,7 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
                 for(size_t i = inb.ptr[u]; i < inb.ptr[u + 1]; i++) {
                     size_t v = inb.val[i];
                     size_t new_color = colors[v];
-                    //if(new_color == MAX_COLOR) continue;
+                    if(new_color == MAX_COLOR) continue;
 
                     if(new_color < colors[u]) {
                         colors[u] = new_color;
@@ -308,9 +308,6 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
         auto unique_colors = std::vector<size_t>(unique_colors_set.begin(), unique_colors_set.end());
 
         //std::sort(unique_colors.begin(), unique_colors.end());
-
-        // run this for loop in parallel
-
         # pragma omp parallel for
         for(size_t i = 0; i < unique_colors.size(); i++) {
             size_t color = unique_colors[i];
