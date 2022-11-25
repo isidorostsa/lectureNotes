@@ -117,57 +117,6 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
     }
 }
 
-void trimeVertices_recursive(const Sparse_matrix& inb, const Sparse_matrix& onb, const size_t& source, std::vector<size_t>& SCC_id, size_t& SCC_count, size_t& trimed) {
-
-    if (SCC_id[source] != UNCOMPLETED_SCC_ID) return;
-
-    bool hasIncoming = false;
-    for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
-        if(SCC_id[inb.val[i]] == UNCOMPLETED_SCC_ID) {
-            hasIncoming = true;
-            break;
-        }
-    }
-    
-
-    bool hasOutgoing = false;
-    for(size_t i = onb.ptr[source]; i < onb.ptr[source + 1]; i++) {
-        if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
-            hasOutgoing = true;
-            break;
-        }
-    }
-
-    if(!hasIncoming || !hasOutgoing) {
-        mtx.lock();
-        SCC_id[source] = ++SCC_count;
-        trimed++;
-        mtx.unlock();
-    }
-
-    if(!hasIncoming) {
-        # pragma omp parallel for
-        for(size_t i = onb.ptr[source]; i < onb.ptr[source + 1]; i++) {
-            if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
-                trimeVertices_recursive(inb, onb, onb.val[i], SCC_id, SCC_count, trimed);
-            }
-        }
-        return;
-    }
-
-    if(!hasOutgoing) {
-        # pragma omp parallel for
-        for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
-            if(SCC_id[inb.val[i]] == UNCOMPLETED_SCC_ID) {
-                trimeVertices_recursive(inb, onb, inb.val[i], SCC_id, SCC_count, trimed);
-            }
-        }
-        return;
-    }
-
-}
-
-
 void trimVertices_sparse(
     const Sparse_matrix& inb,
     const Sparse_matrix& onb, 
@@ -176,7 +125,6 @@ void trimVertices_sparse(
 {
     const size_t n = inb.n;
     size_t trimed = 0;
-    /*
 
     bool madeChange = true;
     while(madeChange) {
@@ -216,72 +164,55 @@ void trimVertices_sparse(
 
         }
     }
-    */
-    # pragma omp parallel for
-    for(size_t i = 0; i < n; i++) {
-        trimeVertices_recursive(inb, onb, i, SCC_id, SCC_count, trimed);
-    }
+
     std::cout << "Trimmed " << trimed << " vertices" << std::endl;
 }
+
+/*
 void color_propagation_inplace(
     const Sparse_matrix& inb,
     const Sparse_matrix& onb,
     const std::vector<size_t>& SCC_id,
-    const std::vector<size_t>& vleft,
-    size_t& total_tries,
     std::vector<size_t>& colors)
 {
-    std::queue<size_t> not_finalcolored_vertices;
-    for(size_t i = 0; i < inb.n; i++) {
-            if(SCC_id[i] == UNCOMPLETED_SCC_ID) {
-                colors[i] = i;
-                not_finalcolored_vertices.push(vleft[i]);
-            } else {
-                colors[i] = MAX_COLOR;
-            }
-    }
+    size_t n = inb.n;
 
-    COZ_BEGIN("coloring");
-    while(!not_finalcolored_vertices.empty()) {
+    trimVertices_sparse(inb, onb, vleft, newSCC_id, SCC_count);
 
-        total_tries++;
-        //# pragma omp parallel for shared(colors, made_change, iter )
-        //for(size_t u = 0; u < n; u++) {
-        size_t u = not_finalcolored_vertices.front();
-        not_finalcolored_vertices.pop();
+    for(size_t i = 0; i < n; i++) {
+        if(!vleft[i]) continue;
 
-        bool changedMyColor = false;
+        std::vector<size_t> stack;
+        stack.push_back(i);
 
-        for(size_t i = inb.ptr[u]; i < inb.ptr[u + 1]; i++) {
-            size_t v = inb.val[i];
-            size_t new_color = colors[v];
-            //if(new_color == MAX_COLOR) continue;
+        while(!stack.empty()) {
+            size_t v = stack.back();
+            stack.pop_back();
 
-            if(new_color < colors[u] && SCC_id[v] == UNCOMPLETED_SCC_ID) {
-                colors[u] = new_color;
-                changedMyColor = true;
-            }
-        }
+            if(!vleft[v]) continue;
+            vleft[v] = false;
 
-        if(changedMyColor) {
-            for(size_t i = onb.ptr[u]; i < onb.ptr[u+1]; i++) {
-                if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
-                    not_finalcolored_vertices.push(onb.val[i]);
-                }
+            newSCC_id[v] = ++SCC_count;
+
+            for(size_t j = inb.ptr[v]; j < inb.ptr[v + 1]; j++) {
+                size_t u = inb.val[j];
+                if(vleft[u]) stack.push_back(u);
             }
         }
     }
-    COZ_END("coloring");
+
+    std::swap(SCC_id, newSCC_id);
 } 
+*/
 
 // working
 void bfs_sparse_colors_all_inplace(
     const Sparse_matrix& nb,
     const size_t source,
     std::vector<size_t>& SCC_id,
-    const size_t SCC_count,
+    const size_t& SCC_count,
     const std::vector<size_t>& colors, 
-    const size_t& color)
+    const size_t color)
 {
         SCC_id[source] = SCC_count;
 
@@ -360,20 +291,15 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
     //while(!std::none_of(SCC_id.begin(), SCC_id.end(), [](size_t v) { return v == UNCOMPLETED_SCC_ID; })) {
     while(!vleft.empty()) {
 
-        trimVertices_sparse(inb, onb, SCC_id, SCC_count);
-        iter++;
-
         DEB("Starting while loop iteration " << iter)
-
-/*
-        DEB("Starting coloring")
-        color_propagation_inplace(inb, onb, SCC_id, vleft, total_tries, colors);
-        DEB("Finished coloring")
-*/
 
         # pragma omp parallel for shared(colors)
         for(size_t i = 0; i < n; i++) {
-            colors[i] = SCC_id[i] == UNCOMPLETED_SCC_ID ? i : MAX_COLOR;
+            if(SCC_id[i] == UNCOMPLETED_SCC_ID) {
+                colors[i] = i;
+            } else {
+                colors[i] = MAX_COLOR;
+            }
         }
 
         COZ_BEGIN("coloring");
