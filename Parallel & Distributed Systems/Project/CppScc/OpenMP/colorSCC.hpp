@@ -42,11 +42,11 @@ bool trimVertices_revursive(const Sparse_matrix& inb, const Sparse_matrix& onb, 
 void trimVertices_inplace(const Sparse_matrix& inb, const Sparse_matrix& onb, std::vector<bool>& vleft,
     std::vector<size_t>& SCC_id, size_t& SCC_count);
 
-// version 1.5: trim vertices in place once, you have both inb and onb, and also vleft
+// version 1: trim vertices in place once, you have both inb and onb, and also vleft
 size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix& onb, const std::vector<bool>& vleft,
                                     std::vector<size_t>& SCC_id, size_t& SCC_count);
 
-// version 2.5: trim vertices in place once, you do not have out neigbors, and you have vleft
+// version 2: trim vertices in place once, you do not have out neigbors, and you have vleft
 size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::vector<bool>& vleft,
                                     std::vector<size_t>& SCC_id, size_t& SCC_count);
 
