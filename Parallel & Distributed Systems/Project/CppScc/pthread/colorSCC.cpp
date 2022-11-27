@@ -8,13 +8,14 @@
 #include <chrono>
 #include <iterator>
 #include <list>
-#include <mutex>
 #include <optional>
 
 #include "colorSCC.hpp"
 
 #include <pthread.h>
 #include <coz.h>
+
+#define NUM_THREADS 8
 
 #define UNCOMPLETED_SCC_ID 18446744073709551615
 #define MAX_COLOR 18446744073709551615
@@ -181,7 +182,7 @@ bool trimeVertices_recursive(const Sparse_matrix& inb, const Sparse_matrix& onb,
     }
 
     if(!hasIncoming || !hasOutgoing) {
-        # pragma omp critical 
+        //# pragma omp critical 
         {
         SCC_id[source] = ++SCC_count;
         trimed++;
@@ -189,7 +190,7 @@ bool trimeVertices_recursive(const Sparse_matrix& inb, const Sparse_matrix& onb,
     }
 
     if(!hasIncoming) {
-        # pragma omp parallel for
+        //# pragma omp parallel for
         for(size_t i = onb.ptr[source]; i < onb.ptr[source + 1]; i++) {
             if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
                 trimeVertices_recursive(inb, onb, onb.val[i], SCC_id, SCC_count, trimed);
@@ -199,7 +200,7 @@ bool trimeVertices_recursive(const Sparse_matrix& inb, const Sparse_matrix& onb,
     }
 
     if(!hasOutgoing) {
-        # pragma omp parallel for
+        //# pragma omp parallel for
         for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
             if(SCC_id[inb.val[i]] == UNCOMPLETED_SCC_ID) {
                 trimeVertices_recursive(inb, onb, inb.val[i], SCC_id, SCC_count, trimed);
@@ -216,7 +217,7 @@ void trimVertices_inplace(const Sparse_matrix& inb, const Sparse_matrix& onb, st
     const size_t n = inb.n;
     size_t trimed = 0;
 
-    # pragma omp parallel for
+    //# pragma omp parallel for
     for(size_t i = 0; i < n; i++) {
         trimeVertices_recursive(inb, onb, i, SCC_id, SCC_count, trimed);
     }
@@ -318,26 +319,46 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<s
     return trimed;
 }
 
+
+void bfs_partitions_runner()
+
+
+
+struct bfs_struct
+{
+    Sparse_matrix* inb;
+    size_t source;
+    std::vector<size_t>* SCC_id;
+    size_t SCC_count;
+    std::vector<size_t>* colors;
+    size_t color;
+};
+
+void bfs_sparse_colors_all_inplace_runner(void* arg) {
+    bfs_struct* bfs = (bfs_struct*) arg;
+    bfs_sparse_colors_all_inplace(*(bfs->inb), bfs->source, *(bfs->SCC_id), bfs->SCC_count, *(bfs->colors), bfs->color);
+}
+
 void bfs_sparse_colors_all_inplace( const Sparse_matrix& nb, const size_t& source, std::vector<size_t>& SCC_id,
                                 const size_t& SCC_count, const std::vector<size_t>& colors, const size_t& color) {
-        SCC_id[source] = SCC_count;
+    SCC_id[source] = SCC_count;
 
-        std::queue<size_t> q;
-        q.push(source);
+    std::queue<size_t> q;
+    q.push(source);
 
-        while(!q.empty()) {
-            size_t v = q.front();
-            q.pop();
+    while(!q.empty()) {
+        size_t v = q.front();
+        q.pop();
 
-            for(size_t i = nb.ptr[v]; i < nb.ptr[v + 1]; i++) {
-                size_t u = nb.val[i];
+        for(size_t i = nb.ptr[v]; i < nb.ptr[v + 1]; i++) {
+            size_t u = nb.val[i];
 
-                if(colors[u] == color && SCC_id[u] != SCC_count) {
-                    SCC_id[u] = SCC_count;
-                    q.push(u);
-                }
+            if(colors[u] == color && SCC_id[u] != SCC_count) {
+                SCC_id[u] = SCC_count;
+                q.push(u);
             }
         }
+    }
 }
 
 std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
@@ -400,7 +421,7 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         DEB("Starting while loop iteration " << iter)
 
 
-        # pragma omp parallel for shared(colors)
+        //# pragma omp parallel for shared(colors)
         for(size_t i = 0; i < n; i++) {
             colors[i] = SCC_id[i] == UNCOMPLETED_SCC_ID ? i : MAX_COLOR;
         }
@@ -412,7 +433,7 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
             made_change = false;
 
             total_tries++;
-            # pragma omp parallel for shared(colors, made_change, vleft)
+            //# pragma omp parallel for shared(colors, made_change, vleft)
             for(size_t i = 0; i < vleft.size(); i++) {
                 size_t u = vleft[i];
 
@@ -446,9 +467,21 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 
         DEB("Starting bfs")
         COZ_BEGIN("BFS");
+
+        pthread_t tids[NUM_THREADS];
+
+        for(size_t thread_id = 0; thread_id < NUM_THREADS; thread_id++) {
+            size_t start = thread_id * unique_colors.size() / NUM_THREADS;
+            size_t end = (thread_id + 1) * unique_colors.size() / NUM_THREADS;
+
+            pthread_t thread;
+        }
+
         for(size_t i = 0; i < unique_colors.size(); i++) {
             const size_t color = unique_colors[i];
             const size_t _SCC_count = SCC_count + i + 1;
+
+
 
             bfs_sparse_colors_all_inplace(inb, color, SCC_id, _SCC_count, colors, color);
         }

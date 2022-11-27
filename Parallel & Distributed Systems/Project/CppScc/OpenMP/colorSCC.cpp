@@ -327,24 +327,24 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<s
 
 void bfs_sparse_colors_all_inplace( const Sparse_matrix& nb, const size_t& source, std::vector<size_t>& SCC_id,
                                 const size_t& SCC_count, const std::vector<size_t>& colors, const size_t& color) {
-        SCC_id[source] = SCC_count;
+    SCC_id[source] = SCC_count;
 
-        std::queue<size_t> q;
-        q.push(source);
+    std::queue<size_t> q;
+    q.push(source);
 
-        while(!q.empty()) {
-            size_t v = q.front();
-            q.pop();
+    while(!q.empty()) {
+        size_t v = q.front();
+        q.pop();
 
-            for(size_t i = nb.ptr[v]; i < nb.ptr[v + 1]; i++) {
-                size_t u = nb.val[i];
+        for(size_t i = nb.ptr[v]; i < nb.ptr[v + 1]; i++) {
+            size_t u = nb.val[i];
 
-                if(colors[u] == color && SCC_id[u] != SCC_count) {
-                    SCC_id[u] = SCC_count;
-                    q.push(u);
-                }
+            if(SCC_id[u] == UNCOMPLETED_SCC_ID && colors[u] == color) {
+                SCC_id[u] = SCC_count;
+                q.push(u);
             }
         }
+    }
 }
 
 std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
@@ -405,7 +405,6 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
     while(!vleft.empty()) {
         iter++;
         DEB("Starting while loop iteration " << iter)
-
 
         # pragma omp parallel for shared(colors)
         for(size_t i = 0; i < n; i++) {
