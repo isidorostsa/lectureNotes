@@ -445,6 +445,8 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         COZ_BEGIN("Set of colors part");
         DEB("Set of colors part");
         auto unique_colors_set = std::set<size_t> (colors.begin(), colors.end());
+        unique_colors_set.erase(MAX_COLOR);
+
         DEB("Found " << unique_colors_set.size() << " unique colors")
         auto unique_colors = std::vector<size_t>(unique_colors_set.begin(), unique_colors_set.end());
         DEB("Set of colors part");
@@ -455,15 +457,11 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         # pragma omp parallel for 
         for(size_t i = 0; i < unique_colors.size(); i++) {
             size_t color = unique_colors[i];
-            if(color == MAX_COLOR) continue;
-            size_t _SCC_count;
+            size_t _SCC_count = SCC_count + i + 1;
 
-            # pragma omp critical 
-            {
-            _SCC_count = ++SCC_count;
-            }
             bfs_sparse_colors_all_inplace(inb, color, SCC_id, _SCC_count, colors, color);
         }
+        SCC_count += unique_colors.size();
         DEB("Finished BFS")
         COZ_END("BFS");
 

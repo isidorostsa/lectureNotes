@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include <queue>
-#include <set>
+#include <unordered_set>
 #include <chrono>
 #include <iterator>
 #include <list>
@@ -13,13 +13,11 @@
 
 #include "colorSCC.hpp"
 
-#include <omp.h>
+#include <pthread.h>
 #include <coz.h>
 
 #define UNCOMPLETED_SCC_ID 18446744073709551615
 #define MAX_COLOR 18446744073709551615
-
-std::mutex mtx;
 
 Coo_matrix loadFile(std::string filename) {
     std::ifstream fin(filename);
@@ -303,17 +301,12 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<s
         }
     }
 
-    //# pragma omp parallel for shared(trimed)
-    //for(size_t index = 0; index < vertices_left; index++) {
-    //    size_t source = vleft[index];
-
     # pragma omp parallel for shared(trimed)
     for(size_t source = 0; source < n; source++) {
         // check if it has already been trimmed in the prev step
         if (SCC_id[source] != UNCOMPLETED_SCC_ID) continue;
 
         // noone in vleft was pointed to by source, so source is surely trimable
-        // hasOutgoing[index] == false => noone in vleft points to source = vleft[index]
         if(!hasOutgoing[source]) {
             # pragma omp critical 
             {
@@ -444,7 +437,8 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 
         COZ_BEGIN("Set of colors part");
         DEB("Set of colors part");
-        auto unique_colors_set = std::set<size_t> (colors.begin(), colors.end());
+        auto unique_colors_set = std::unordered_set<size_t> (colors.begin(), colors.end());
+        unique_colors_set.erase(MAX_COLOR);
         DEB("Found " << unique_colors_set.size() << " unique colors")
         auto unique_colors = std::vector<size_t>(unique_colors_set.begin(), unique_colors_set.end());
         DEB("Set of colors part");
@@ -452,18 +446,13 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 
         DEB("Starting bfs")
         COZ_BEGIN("BFS");
-        # pragma omp parallel for 
         for(size_t i = 0; i < unique_colors.size(); i++) {
-            size_t color = unique_colors[i];
-            if(color == MAX_COLOR) continue;
-            size_t _SCC_count;
+            const size_t color = unique_colors[i];
+            const size_t _SCC_count = SCC_count + i + 1;
 
-            # pragma omp critical 
-            {
-            _SCC_count = ++SCC_count;
-            }
             bfs_sparse_colors_all_inplace(inb, color, SCC_id, _SCC_count, colors, color);
         }
+        SCC_count += unique_colors.size();
         DEB("Finished BFS")
         COZ_END("BFS");
 

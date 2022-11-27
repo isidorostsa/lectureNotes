@@ -1,5 +1,8 @@
 CC=g++
-CFLAGS=-I. -Wall -O3 -g -fopenmp -std=c++20 -g -gdwarf-3 
+
+CFLAGS=-I. -Wall -O3 -g -std=c++20 -g -gdwarf-3 
+LFALGS=-pthread -std=c++20 -g -gdwarf-3
+
 DEPS = colorSCC.hpp
 OBJ = colorSCC.o main.o
 
@@ -7,7 +10,7 @@ OBJ = colorSCC.o main.o
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 colorSCC: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(LFLAGS)
 
 .PHONY: clean
 clean:
