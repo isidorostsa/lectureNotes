@@ -1,12 +1,11 @@
 private.md
 Parallel & Distributed Systems/Project/matrices/eu-2005/eu-2005.mtx
-Parallel & Distributed Systems/Project/matrices/wiki-topcats/wiki-topcats_Categories.mtx
-Parallel & Distributed Systems/Project/matrices/wiki-topcats/wiki-topcats_Category_names.txt
-Parallel & Distributed Systems/Project/matrices/wiki-topcats/wiki-topcats_pagenames.txt
 Parallel & Distributed Systems/Project/matrices/wiki-topcats/wiki-topcats.mtx
 Parallel & Distributed Systems/Project/matrices/sx-stackoverflow/sx-stackoverflow.mtx
 Parallel & Distributed Systems/Project/matrices/uk-2002/uk-2002.mtx
 Parallel & Distributed Systems/Project/matrices/indochina-2004/indochina-2004.mtx
+Parallel & Distributed Systems/Project/matrices/language/language.mtx
+Parallel & Distributed Systems/Project/matrices/wb-edu/wb-edu.mtx
 Parallel & Distributed Systems/Project/CppScc/hello
 Parallel & Distributed Systems/Project/CppScc/tests
 Parallel & Distributed Systems/Project/CppScc/hello
@@ -15,5 +14,12 @@ Parallel & Distributed Systems/Project/CppScc/a.out
 Parallel & Distributed Systems/Project/CppScc/colorSCC
 Parallel & Distributed Systems/Project/CppScc/main.o
 Parallel & Distributed Systems/Project/CppScc/colorSCC.o
-*.o
-Parallel & Distributed Systems/Project/CppScc/OpenCilk/colorSCC.cpp
+Parallel & Distributed Systems/Project/CppScc/OpenMP/profile.coz
+Parallel & Distributed Systems/Project/CppScc/OpenMP/colorSCC
+Parallel & Distributed Systems/Project/CppScc/OpenMP/log.txt
+Parallel & Distributed Systems/Project/CppScc/OpenMP/log_with_16_threads.txt
+Parallel & Distributed Systems/Project/CppScc/OpenMP/profile.coz
+Parallel & Distributed Systems/Project/CppScc/OpenMP/log_with_1_thread.txt
+Parallel & Distributed Systems/Project/CppScc/OpenMP/colorSCC
+Parallel & Distributed Systems/Project/CppScc/OpenMP/colorSCC
+Parallel & Distributed Systems/Project/CppScc/OpenMP/profile.coz

@@ -1,5 +1,5 @@
 CC=g++
-CFLAGS=-I. -Wall -O3 -g -fopenmp -std=c++20 -g -gdwarf-3
+CFLAGS=-I. -Wall -O3 -g -fopenmp -std=c++20 -g -gdwarf-3 
 DEPS = colorSCC.hpp
 OBJ = colorSCC.o main.o
 
