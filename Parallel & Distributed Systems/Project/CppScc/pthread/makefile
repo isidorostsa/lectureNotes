@@ -1,10 +1,10 @@
 CC=g++
 
-CFLAGS=-I. -Wall -Ofast -g -std=c++20 -g -gdwarf-3 
-LFALGS=-pthread -std=c++20 -g -gdwarf-3
+CFLAGS=-I. -pthread -Wall -Ofast -g -std=c++20 -g -gdwarf-3 
+LFLAGS=-pthread -std=c++20 -g -gdwarf-3
 
-DEPS = colorSCC.hpp
-OBJ = colorSCC.o main.o
+DEPS = colorSCC.hpp sparse_util.hpp
+OBJ = colorSCC.o sparse_util.o main.o
 
 %.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

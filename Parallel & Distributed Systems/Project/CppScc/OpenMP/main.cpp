@@ -7,6 +7,7 @@
 #include <chrono>
 
 #include "colorSCC.hpp"
+#include "sparse_util.hpp"
 
 #include <omp.h>
 

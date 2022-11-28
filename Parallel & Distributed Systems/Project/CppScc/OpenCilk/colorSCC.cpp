@@ -8,198 +8,106 @@
 #include <chrono>
 
 #include "colorSCC.hpp"
+#include "sparse_util.hpp"
 #include <cilk/cilk.h>
 
 #define UNCOMPLETED_SCC_ID -1
+#define MAX_COLOR -1
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
 
-// working
-Coo_matrix loadFile(std::string filename) {
-    std::ifstream fin(filename);
+// For the first time only, where all SCC_ids are -1
+size_t trimVertices_inplace_normal_first_time(const Sparse_matrix& inb, const Sparse_matrix& onb, std::vector<size_t>& SCC_id, const size_t SCC_count) { 
+    size_t trimed = 0;
 
-    size_t n, nnz;
-    while(fin.peek() == '%') fin.ignore(2048, '\n');
+    for(size_t source = 0; source < inb.n; source++) {
+        bool hasIncoming = inb.ptr[source] != inb.ptr[source + 1];
 
-    fin >> n >> n >> nnz;
+        bool hasOutgoing = onb.ptr[source] != onb.ptr[source + 1];
 
-    std::vector<size_t> Ai(nnz);
-    std::vector<size_t> Aj(nnz);
-
-    size_t throwaway;
-    // lines may be of the form: i j or i j throwaway
-    for(size_t i = 0; i < nnz; ++i) {
-        fin >> Ai[i] >> Aj[i];
-        Ai[i]--;
-        Aj[i]--;
-        if(fin.peek() != '\n') fin >> throwaway;
-    }
-
-    return Coo_matrix{n, nnz, Ai, Aj};
-}
-
-// working
-void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr) {
-    csr.n = coo.n;
-    csr.nnz = coo.nnz;
-    csr.ptr.resize(coo.n + 1);
-    csr.val.resize(coo.nnz);
-    csr.type = Sparse_matrix::CSR;
-
-    std::fill(csr.ptr.begin(), csr.ptr.end(), 0);
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        csr.ptr[coo.Ai[n]]++;
-    }
-
-    for(size_t i = 0, cumsum = 0; i < coo.n; i++) {
-        size_t temp = csr.ptr[i];
-        csr.ptr[i] = cumsum;
-        cumsum += temp;
-    }
-    csr.ptr[coo.n] = coo.nnz;
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        size_t row = coo.Ai[n];
-        size_t dest = csr.ptr[row];
-
-        csr.val[dest] = coo.Aj[n];
-        csr.ptr[row]++;
-    }
-
-    for(size_t i = 0, last = 0; i <= coo.n; i++) {
-        size_t temp = csr.ptr[i];
-        csr.ptr[i] = last;
-        last = temp;
-    }
-}
-
-// working
-void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
-    csc.n = coo.n;
-    csc.nnz = coo.nnz;
-    csc.ptr.resize(coo.n + 1);
-    csc.val.resize(coo.nnz);
-    csc.type = Sparse_matrix::CSC;
-
-    std::fill(csc.ptr.begin(), csc.ptr.end(), 0);
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        csc.ptr[coo.Aj[n]]++;
-    }
-
-    for(size_t i = 0, cumsum = 0; i < coo.n; i++) {
-        size_t temp = csc.ptr[i];
-        csc.ptr[i] = cumsum;
-        cumsum += temp;
-    }
-    csc.ptr[coo.n] = coo.nnz;
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        size_t col = coo.Aj[n];
-        size_t dest = csc.ptr[col];
-
-        csc.val[dest] = coo.Ai[n];
-        csc.ptr[col]++;
-    }
-
-    for(size_t i = 0, last = 0; i <= coo.n; i++) {
-        size_t temp = csc.ptr[i];
-        csc.ptr[i] = last;
-        last = temp;
-    }
-}
-
-/*
-void trimVertices_sparse(
-    const Sparse_matrix& inb,
-    const Sparse_matrix& onb, 
-    std::vector<size_t>& SCC_id,
-    size_t& SCC_count)
-{
-    size_t n = inb.n;
-
-    bool madeChange = true;
-    while(madeChange) {
-        madeChange = false;
-
-        std::queue<size_t> q;
-
-        for(size_t i = 0; i < n; i++) {
-            if(!vleft[i]) continue;
-
-            bool hasIncoming = false;
-            for(size_t j = inb.ptr[i]; j < inb.ptr[i + 1]; j++) {
-                if(vleft[inb.val[j]]) {
-                    hasIncoming = true;
-                    break;
-                }
-            }   
-
-            if(!hasIncoming) {
-                vleft[i] = false;
-                SCC_id[i] = ++SCC_count;
-
-                madeChange = true;
-                break;
-            }
-
-            bool hasOutgoing = false;
-            for(size_t j = onb.ptr[i]; j < onb.ptr[i + 1]; j++) {
-                if(vleft[onb.val[j]]) {
-                    hasOutgoing = true;
-                    break;
-                }
-            }
-            
-            if(!hasOutgoing) {
-                vleft[i] = false;
-                SCC_id[i] = ++SCC_count;
-
-                madeChange = true;
-                break;
-            }
-
+        if(!hasIncoming | !hasOutgoing) {
+            SCC_id[source] = SCC_count + trimed++ + 1;
         }
     }
+    //std::cout << "trimed: " << trimed << std::endl;
+
+    return trimed;
 }
-*/
 
-/*
-void color_propagation_inplace(
-    const Sparse_matrix& inb,
-    const Sparse_matrix& onb,
-    const std::vector<size_t>& SCC_id,
-    std::vector<size_t>& colors)
-{
-    size_t n = inb.n;
+// with onb
+size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix& onb, const std::vector<size_t>& vleft,
+                                    std::vector<size_t>& SCC_id, const size_t SCC_count) { 
+    size_t trimed = 0;
 
-    trimVertices_sparse(inb, onb, vleft, newSCC_id, SCC_count);
+    for(size_t index = 0; index < vleft.size(); index++) {
+        const size_t source = vleft[index];
 
-    for(size_t i = 0; i < n; i++) {
-        if(!vleft[i]) continue;
-
-        std::vector<size_t> stack;
-        stack.push_back(i);
-
-        while(!stack.empty()) {
-            size_t v = stack.back();
-            stack.pop_back();
-
-            if(!vleft[v]) continue;
-            vleft[v] = false;
-
-            newSCC_id[v] = ++SCC_count;
-
-            for(size_t j = inb.ptr[v]; j < inb.ptr[v + 1]; j++) {
-                size_t u = inb.val[j];
-                if(vleft[u]) stack.push_back(u);
+        bool hasIncoming = false;
+        for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
+            if(SCC_id[inb.val[i]] == UNCOMPLETED_SCC_ID) {
+                hasIncoming = true;
+                break;
             }
+        }
+
+        bool hasOutgoing = false;
+        for(size_t i = onb.ptr[source]; i < onb.ptr[source + 1]; i++) {
+            if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
+                hasOutgoing = true;
+                break;
+            }
+        }
+
+        if(!hasIncoming | !hasOutgoing) {
+            SCC_id[source] = SCC_count + trimed++ + 1;
+        }
+    }
+    //std::cout << "trimed: " << trimed << std::endl;
+
+    return trimed;
+}
+
+// without onb
+size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<size_t>& vleft,
+                                        std::vector<size_t>& SCC_id, size_t& SCC_count) { 
+
+    size_t trimed = 0;
+    const size_t vertices_left = vleft.size();
+    const size_t n = inb.n;
+
+    auto hasOutgoing = std::vector<bool>(n, false);
+
+    for(size_t index = 0; index < vertices_left; index++) {
+        size_t source = vleft[index];
+
+        bool hasIncoming = false;
+        for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
+            size_t neighbor = inb.val[i];
+
+            // if SCC_id[neighbor] == UNCOMPLETED_SCC_ID, then neighbor in vleft
+            if(SCC_id[neighbor] == UNCOMPLETED_SCC_ID) {
+                hasIncoming = true;
+                // need index of neighbor
+                hasOutgoing[neighbor] = true;
+            }
+        }
+
+    // no inc neighbors then surely trim
+        if(!hasIncoming) {
+                SCC_id[source] = SCC_count + trimed++ + 1;
         }
     }
 
-    std::swap(SCC_id, newSCC_id);
-} 
-*/
+    for(size_t source = 0; source < n; source++) {
+        // check if it has already been trimmed in the prev step
+        if (SCC_id[source] != UNCOMPLETED_SCC_ID) continue;
+
+        // noone in vleft was pointed to by source, so source is surely trimable
+        if(!hasOutgoing[source]) {
+            SCC_id[source] = SCC_count + ++trimed;
+        }
+    }
+    return trimed;
+}
 
 // working
 void bfs_sparse_colors_all_inplace(

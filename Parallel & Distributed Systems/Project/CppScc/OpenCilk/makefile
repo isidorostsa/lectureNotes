@@ -1,7 +1,7 @@
 CC=/opt/opencilk/bin/clang++
 CFLAGS=-I. -Wall -O3 -fopencilk
-DEPS = colorSCC.hpp
-OBJ = colorSCC.o main.o
+DEPS=colorSCC.hpp sparse_util.hpp
+OBJ=colorSCC.o sparse_util.o main.o
 
 %.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)

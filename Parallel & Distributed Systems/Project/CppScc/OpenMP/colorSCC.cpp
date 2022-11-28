@@ -13,6 +13,7 @@
 #include <optional>
 
 #include "colorSCC.hpp"
+#include "sparse_util.hpp"
 
 #include <omp.h>
 #include <coz.h>
@@ -20,215 +21,31 @@
 #define UNCOMPLETED_SCC_ID 18446744073709551615
 #define MAX_COLOR 18446744073709551615
 
-std::mutex mtx;
-
-Coo_matrix loadFile(std::string filename) {
-    std::ifstream fin(filename);
-
-    size_t n, nnz;
-    while(fin.peek() == '%') fin.ignore(2048, '\n');
-
-    fin >> n >> n >> nnz;
-
-    std::vector<size_t> Ai(nnz);
-    std::vector<size_t> Aj(nnz);
-
-    size_t throwaway;
-    // lines may be of the form: i j or i j throwaway
-    for(size_t i = 0; i < nnz; ++i) {
-        fin >> Ai[i] >> Aj[i];
-        Ai[i]--;
-        Aj[i]--;
-        if(fin.peek() != '\n') fin >> throwaway;
-    }
-
-    return Coo_matrix{n, nnz, Ai, Aj};
-}
-
-void csr_tocsc(const Sparse_matrix& csr, Sparse_matrix& csc) {
-    csc.n = csr.n;
-    csc.nnz = csr.nnz;
-    csc.ptr.resize(csr.n + 1);
-    csc.val.resize(csr.nnz);
-    csc.type = Sparse_matrix::CSC;
-
-    csr_tocsc(csr.n, csr.ptr, csr.val, csc.ptr, csc.val);
-}
-
-void csr_tocsc(const size_t n, const std::vector<size_t>& Ap, const std::vector<size_t>& Aj, 
-	                std::vector<size_t>& Bp, std::vector<size_t>& Bi) {  
-    const size_t nnz = Ap[n];
-
-    //compute number of non-zero entries per column of A 
-    std::fill(Bp.begin(), Bp.end(), 0);
-
-    for (size_t n = 0; n < nnz; n++){            
-        Bp[Aj[n]]++;
-    }
-
-    //cumsum the nnz per column to get Bp[]
-    for(size_t col = 0, cumsum = 0; col < n; col++){     
-        size_t temp  = Bp[col];
-        Bp[col] = cumsum;
-        cumsum += temp;
-    }
-    Bp[n] = nnz; 
-
-    for(size_t row = 0; row < n; row++){
-        for(size_t jj = Ap[row]; jj < Ap[row+1]; jj++){
-            size_t col  = Aj[jj];
-            size_t dest = Bp[col];
-
-            Bi[dest] = row;
-            Bp[col]++;
-        }
-    }
-
-    for(size_t col = 0, last = 0; col <= n; col++){
-        size_t temp  = Bp[col];
-        Bp[col] = last;
-        last    = temp;
-    }
-}
-
-void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr) {
-    csr.n = coo.n;
-    csr.nnz = coo.nnz;
-    csr.ptr.resize(coo.n + 1);
-    csr.val.resize(coo.nnz);
-    csr.type = Sparse_matrix::CSR;
-
-    std::fill(csr.ptr.begin(), csr.ptr.end(), 0);
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        csr.ptr[coo.Ai[n]]++;
-    }
-
-    for(size_t i = 0, cumsum = 0; i < coo.n; i++) {
-        size_t temp = csr.ptr[i];
-        csr.ptr[i] = cumsum;
-        cumsum += temp;
-    }
-    csr.ptr[coo.n] = coo.nnz;
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        size_t row = coo.Ai[n];
-        size_t dest = csr.ptr[row];
-
-        csr.val[dest] = coo.Aj[n];
-        csr.ptr[row]++;
-    }
-
-    for(size_t i = 0, last = 0; i <= coo.n; i++) {
-        size_t temp = csr.ptr[i];
-        csr.ptr[i] = last;
-        last = temp;
-    }
-}
-
-void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
-    csc.n = coo.n;
-    csc.nnz = coo.nnz;
-    csc.ptr.resize(coo.n + 1);
-    csc.val.resize(coo.nnz);
-    csc.type = Sparse_matrix::CSC;
-
-    std::fill(csc.ptr.begin(), csc.ptr.end(), 0);
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        csc.ptr[coo.Aj[n]]++;
-    }
-
-    for(size_t i = 0, cumsum = 0; i < coo.n; i++) {
-        size_t temp = csc.ptr[i];
-        csc.ptr[i] = cumsum;
-        cumsum += temp;
-    }
-    csc.ptr[coo.n] = coo.nnz;
-
-    for(size_t n = 0; n < coo.nnz; n++) {
-        size_t col = coo.Aj[n];
-        size_t dest = csc.ptr[col];
-
-        csc.val[dest] = coo.Ai[n];
-        csc.ptr[col]++;
-    }
-
-    for(size_t i = 0, last = 0; i <= coo.n; i++) {
-        size_t temp = csc.ptr[i];
-        csc.ptr[i] = last;
-        last = temp;
-    }
-}
-
-bool trimeVertices_recursive(const Sparse_matrix& inb, const Sparse_matrix& onb, const size_t& source,
-                                    std::vector<size_t>& SCC_id, size_t& SCC_count, size_t& trimed) {
-
-    if (SCC_id[source] != UNCOMPLETED_SCC_ID) return false;
-
-    bool hasIncoming = false;
-    for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
-        if(SCC_id[inb.val[i]] == UNCOMPLETED_SCC_ID) {
-            hasIncoming = true;
-            break;
-        }
-    }
-    
-
-    bool hasOutgoing = false;
-    for(size_t i = onb.ptr[source]; i < onb.ptr[source + 1]; i++) {
-        if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
-            hasOutgoing = true;
-            break;
-        }
-    }
-
-    if(!hasIncoming || !hasOutgoing) {
-        # pragma omp critical 
-        {
-        SCC_id[source] = ++SCC_count;
-        trimed++;
-        }
-    }
-
-    if(!hasIncoming) {
-        # pragma omp parallel for
-        for(size_t i = onb.ptr[source]; i < onb.ptr[source + 1]; i++) {
-            if(SCC_id[onb.val[i]] == UNCOMPLETED_SCC_ID) {
-                trimeVertices_recursive(inb, onb, onb.val[i], SCC_id, SCC_count, trimed);
-            }
-        }
-        return true;
-    }
-
-    if(!hasOutgoing) {
-        # pragma omp parallel for
-        for(size_t i = inb.ptr[source]; i < inb.ptr[source + 1]; i++) {
-            if(SCC_id[inb.val[i]] == UNCOMPLETED_SCC_ID) {
-                trimeVertices_recursive(inb, onb, inb.val[i], SCC_id, SCC_count, trimed);
-            }
-        }
-        return true;
-    }
-
-    return false;
-}
-
-void trimVertices_inplace(const Sparse_matrix& inb, const Sparse_matrix& onb, std::vector<size_t>& SCC_id,
-                        size_t& SCC_count) {
-    const size_t n = inb.n;
+// For the first time only, where all SCC_ids are -1
+size_t trimVertices_inplace_normal_first_time(const Sparse_matrix& inb, const Sparse_matrix& onb, std::vector<size_t>& SCC_id, const size_t SCC_count) { 
     size_t trimed = 0;
 
-    # pragma omp parallel for
-    for(size_t i = 0; i < n; i++) {
-        trimeVertices_recursive(inb, onb, i, SCC_id, SCC_count, trimed);
+    # pragma omp parallel for 
+    for(size_t source = 0; source < inb.n; source++) {
+        bool hasIncoming = inb.ptr[source] != inb.ptr[source + 1];
+
+        bool hasOutgoing = onb.ptr[source] != onb.ptr[source + 1];
+
+        if(!hasIncoming | !hasOutgoing) {
+            #pragma omp atomic update
+            trimed++;
+            SCC_id[source] = SCC_count + trimed;
+        }
     }
+    //std::cout << "trimed: " << trimed << std::endl;
+
+    return trimed;
 }
 
-
-// version 1.5 vleft + onb
+// vleft + onb
 size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix& onb, const std::vector<size_t>& vleft,
-                                    std::vector<size_t>& SCC_id, size_t& SCC_count) { 
+                                    std::vector<size_t>& SCC_id, const size_t SCC_count) { 
+    //std::atomic<size_t> trimed = 0;
     size_t trimed = 0;
 
     # pragma omp parallel for shared(trimed)
@@ -252,11 +69,9 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix
         }
 
         if(!hasIncoming | !hasOutgoing) {
-            # pragma omp critical 
-            {
-            SCC_id[source] = ++SCC_count;
+            # pragma omp atomic update
             trimed++;
-            }
+            SCC_id[source] = SCC_count + trimed;
         }
     }
     //std::cout << "trimed: " << trimed << std::endl;
@@ -264,9 +79,7 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix
     return trimed;
 }
 
-// GIVEN: x in vleft => SCC_id[x] == UNCOMPLETED_SCC_ID
-// version 2.5, vleft
-size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<size_t>& vleft,
+size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::vector<size_t>& vleft,
                                         std::vector<size_t>& SCC_id, size_t& SCC_count) { 
 
     size_t trimed = 0;
@@ -296,11 +109,9 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<s
 
     // no inc neighbors then surely trim
         if(!hasIncoming) {
-            # pragma omp critical
-            {
-                SCC_id[source] = ++SCC_count;
-                trimed++;
-            }
+            # pragma omp atomic update
+            trimed++;
+            SCC_id[source] = SCC_count + trimed;
         }
     }
 
@@ -316,11 +127,9 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<s
         // noone in vleft was pointed to by source, so source is surely trimable
         // hasOutgoing[index] == false => noone in vleft points to source = vleft[index]
         if(!hasOutgoing[source]) {
-            # pragma omp critical 
-            {
-                SCC_id[source] = ++SCC_count;
-                trimed++;
-            }
+            # pragma omp atomic update 
+            trimed++;
+            SCC_id[source] = SCC_count + trimed;
         }
     }
     return trimed;
@@ -390,8 +199,7 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
     for (size_t i = 0; i < n; i++) {
         vleft[i] = i;
     }
-
-    size_t trimed = trimVertices_inplace_normal(inb, onb, vleft, SCC_id, SCC_count);
+    SCC_count += trimVertices_inplace_normal_first_time(inb, onb, SCC_id, SCC_count);
     std::erase_if(vleft, [&](size_t v) { return SCC_id[v] != UNCOMPLETED_SCC_ID; });
 
     COZ_END("trim");
@@ -443,8 +251,8 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         COZ_END("coloring");
 
         COZ_BEGIN("Set of colors part");
-        DEB("Set of colors part");
-        auto unique_colors_set = std::set<size_t> (colors.begin(), colors.end());
+        DEB("Set of colors part")
+        auto unique_colors_set = std::unordered_set<size_t> (colors.begin(), colors.end());
         unique_colors_set.erase(MAX_COLOR);
 
         DEB("Found " << unique_colors_set.size() << " unique colors")
@@ -452,8 +260,8 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         DEB("Set of colors part");
         COZ_END("Set of colors part");
 
-        DEB("Starting bfs")
         COZ_BEGIN("BFS");
+        DEB("Starting bfs")
         # pragma omp parallel for 
         for(size_t i = 0; i < unique_colors.size(); i++) {
             size_t color = unique_colors[i];
@@ -465,30 +273,11 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         DEB("Finished BFS")
         COZ_END("BFS");
 
-/*
-       // second largest sccid
-        size_t largest_scc_id = 0;
-        for(size_t i = 0; i < n; i++) {
-            if(SCC_id[i] > largest_scc_id && SCC_id[i] != UNCOMPLETED_SCC_ID) {
-                largest_scc_id = SCC_id[i];
-            }
-        }
-
-        std::cout << SCC_count - largest_scc_id << std::endl;
-
-        // print all unique elements in sccid
-        std::unordered_set<size_t> unique_sccid(SCC_id.begin(), SCC_id.end());
-        unique_sccid.erase(UNCOMPLETED_SCC_ID);
-        std::cout << "Unique sccid: " << unique_sccid.size() << std::endl;
-
-        for(auto sccid : unique_sccid) {
-            std::cout << sccid << " ";
-        }
-*/
-
-
+        // remove all vertices that are in some SCC
         std::erase_if(vleft, [&](size_t v) { return SCC_id[v] != UNCOMPLETED_SCC_ID; });
-        trimVertices_inplace_normal(inb, onb, vleft, SCC_id, SCC_count);
+        SCC_count += trimVertices_inplace_normal(inb, onb, vleft, SCC_id, SCC_count);
+
+        // clean up vleft after trim
         std::erase_if(vleft, [&](size_t v) { return SCC_id[v] != UNCOMPLETED_SCC_ID; });
     }
     std::cout << "Total tries: " << total_tries << std::endl;
