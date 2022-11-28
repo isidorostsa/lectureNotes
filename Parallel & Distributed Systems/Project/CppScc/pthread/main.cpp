@@ -8,8 +8,6 @@
 
 #include "colorSCC.hpp"
 
-#include <omp.h>
-
 int main(int argc, char** argv) {
     std::string filename(argc > 1 ? argv[1] : "../../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
 

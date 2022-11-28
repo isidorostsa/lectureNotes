@@ -5,6 +5,7 @@
 #include <string>
 #include <queue>
 #include <set>
+#include <unordered_set>
 #include <chrono>
 #include <iterator>
 #include <list>
@@ -463,6 +464,28 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         SCC_count += unique_colors.size();
         DEB("Finished BFS")
         COZ_END("BFS");
+
+/*
+       // second largest sccid
+        size_t largest_scc_id = 0;
+        for(size_t i = 0; i < n; i++) {
+            if(SCC_id[i] > largest_scc_id && SCC_id[i] != UNCOMPLETED_SCC_ID) {
+                largest_scc_id = SCC_id[i];
+            }
+        }
+
+        std::cout << SCC_count - largest_scc_id << std::endl;
+
+        // print all unique elements in sccid
+        std::unordered_set<size_t> unique_sccid(SCC_id.begin(), SCC_id.end());
+        unique_sccid.erase(UNCOMPLETED_SCC_ID);
+        std::cout << "Unique sccid: " << unique_sccid.size() << std::endl;
+
+        for(auto sccid : unique_sccid) {
+            std::cout << sccid << " ";
+        }
+*/
+
 
         std::erase_if(vleft, [&](size_t v) { return SCC_id[v] != UNCOMPLETED_SCC_ID; });
         trimVertices_inplace_normal(inb, onb, vleft, SCC_id, SCC_count);

@@ -1,0 +1,38 @@
+==830884== Memcheck, a memory error detector
+==830884== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==830884== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==830884== Command: ./colorSCC ../../matrices/celegansneural/celegansneural.mtx
+==830884== Parent PID: 74453
+==830884== 
+==830884== Thread 9:
+==830884== Invalid read of size 8
+==830884==    at 0x10C6CE: bfs_sparse_colors_all_inplace(Sparse_matrix const&, unsigned long const&, std::vector<unsigned long, std::allocator<unsigned long> >&, unsigned long const&, std::vector<unsigned long, std::allocator<unsigned long> > const&, unsigned long const&) (colorSCC.cpp:338)
+==830884==    by 0x10C95C: bfs_partitions_runner(bfs_partitions_runner_struct*) (colorSCC.cpp:374)
+==830884==    by 0x4B52B42: start_thread (pthread_create.c:442)
+==830884==    by 0x4BE3BB3: clone (clone.S:100)
+==830884==  Address 0x4e05458 is 8 bytes after a block of size 288 alloc'd
+==830884==    at 0x484DA83: calloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==830884==    by 0x40147D9: calloc (rtld-malloc.h:44)
+==830884==    by 0x40147D9: allocate_dtv (dl-tls.c:375)
+==830884==    by 0x40147D9: _dl_allocate_tls (dl-tls.c:634)
+==830884==    by 0x4B53834: allocate_stack (allocatestack.c:430)
+==830884==    by 0x4B53834: pthread_create@@GLIBC_2.34 (pthread_create.c:647)
+==830884==    by 0x10D329: colorSCC_no_conversion(Sparse_matrix const&, Sparse_matrix const&, bool) (colorSCC.cpp:504)
+==830884==    by 0x10AC7E: main (main.cpp:82)
+==830884== 
+==830884== Conditional jump or move depends on uninitialised value(s)
+==830884==    at 0x10C6D2: bfs_sparse_colors_all_inplace(Sparse_matrix const&, unsigned long const&, std::vector<unsigned long, std::allocator<unsigned long> >&, unsigned long const&, std::vector<unsigned long, std::allocator<unsigned long> > const&, unsigned long const&) (colorSCC.cpp:338)
+==830884==    by 0x10C95C: bfs_partitions_runner(bfs_partitions_runner_struct*) (colorSCC.cpp:374)
+==830884==    by 0x4B52B42: start_thread (pthread_create.c:442)
+==830884==    by 0x4BE3BB3: clone (clone.S:100)
+==830884== 
+==830884== 
+==830884== HEAP SUMMARY:
+==830884==     in use at exit: 0 bytes in 0 blocks
+==830884==   total heap usage: 70 allocs, 70 frees, 220,040 bytes allocated
+==830884== 
+==830884== All heap blocks were freed -- no leaks are possible
+==830884== 
+==830884== Use --track-origins=yes to see where uninitialised values come from
+==830884== For lists of detected and suppressed errors, rerun with: -s
+==830884== ERROR SUMMARY: 366 errors from 2 contexts (suppressed: 0 from 0)
