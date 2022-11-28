@@ -9,6 +9,7 @@
 #include <iterator>
 #include <list>
 #include <optional>
+#include <atomic>
 
 #include "colorSCC.hpp"
 
@@ -186,7 +187,7 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix
         }
 
         if(!hasIncoming | !hasOutgoing) {
-            SCC_id[source] = SCC_count + trimed++;
+            SCC_id[source] = SCC_count + trimed++ + 1;
         }
     }
     //std::cout << "trimed: " << trimed << std::endl;
@@ -221,7 +222,7 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const std::vector<s
 
     // no inc neighbors then surely trim
         if(!hasIncoming) {
-                SCC_id[source] = SCC_count + trimed++;
+                SCC_id[source] = SCC_count + trimed++ + 1;
         }
     }
 
@@ -362,7 +363,7 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
     //size_t nnz = M.nnz;
     std::vector<size_t> SCC_id(n);
     std::fill(SCC_id.begin(), SCC_id.end(), UNCOMPLETED_SCC_ID);
-    size_t SCC_count = 0;
+    std::atomic<size_t> SCC_count = 0;
 
     DEB("Starting trim")
     COZ_BEGIN("trim");

@@ -4,6 +4,7 @@
 #include <vector>
 #include <array>
 #include <string>
+#include <unordered_set>
 #include <chrono>
 
 #include "colorSCC.hpp"
@@ -83,6 +84,8 @@ int main(int argc, char** argv) {
 
     std::cout << "Time w/o conversion: " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count()/times << "ms" << std::endl;
     std::cout << "SCC count: " << *std::max_element(SCC_id.begin(), SCC_id.end()) << std::endl;
+
+    std::cout << "REAL SCC count: " << std::unordered_set(SCC_id.begin(), SCC_id.end()).size() << std::endl;
 
     return 0;
 }
