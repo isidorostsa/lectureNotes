@@ -1,6 +1,6 @@
 CC=g++
 
-CFLAGS=-I. -Wall -O3 -g -std=c++20 -g -gdwarf-3 
+CFLAGS=-I. -Wall -Ofast -g -std=c++20 -g -gdwarf-3 
 LFALGS=-pthread -std=c++20 -g -gdwarf-3
 
 DEPS = colorSCC.hpp

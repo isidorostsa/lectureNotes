@@ -15,9 +15,9 @@
 #include <pthread.h>
 #include <coz.h>
 
-#define NUM_THREADS 16
-#define BFS_GRAIN_SIZE 100
-#define COLOR_GRAIN_SIZE 1000
+#define NUM_THREADS 24
+#define BFS_GRAIN_SIZE 60
+#define COLOR_GRAIN_SIZE 10000
 
 #define UNCOMPLETED_SCC_ID 18446744073709551615
 #define MAX_COLOR 18446744073709551615
@@ -404,44 +404,25 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
             size_t threads_to_use = (num_vertices/COLOR_GRAIN_SIZE <= 1) ? 1 : 
                                     (num_vertices/COLOR_GRAIN_SIZE > NUM_THREADS) ? NUM_THREADS : 1;
 
-            if (threads_to_use == 1) {
-            } else {
-                std::cout << "Using " << threads_to_use << " threads for coloring." << std::endl;
+            DEB("Using " << threads_to_use << " threads for coloring.")
 
-                std::vector<pthread_t> threads(threads_to_use);
-                std::vector<coloring_partitions_runner_struct> coloring_info(threads_to_use);
+            std::vector<pthread_t> threads(threads_to_use);
+            std::vector<coloring_partitions_runner_struct> coloring_info(threads_to_use);
 
-                for(size_t i = 0; i < threads_to_use; i++) {
-                    const size_t start = i * num_vertices / threads_to_use;
-                    const size_t end = (i == threads_to_use - 1) ? num_vertices : (i + 1) * num_vertices / threads_to_use;
+            for(size_t i = 0; i < threads_to_use; i++) {
+                const size_t start = i * num_vertices / threads_to_use;
+                const size_t end = (i == threads_to_use - 1) ? num_vertices : (i + 1) * num_vertices / threads_to_use;
 
-                    coloring_info[i] = {&inb, &colors, &vleft, start, end, &made_change, false};
-                    
-                    pthread_create(&threads[i], NULL, (void*(*)(void*))coloring_partitions_runner, &coloring_info[i]);
-                }
-
+                coloring_info[i] = {&inb, &colors, &vleft, start, end, &made_change, false};
+                
+                pthread_create(&threads[i], NULL, (void*(*)(void*))coloring_partitions_runner, &coloring_info[i]);
             }
 
-
-            total_tries++;
-            for(size_t i = 0; i < vleft.size(); i++) {
-                size_t u = vleft[i];
-
-                for(size_t j = inb.ptr[u]; j < inb.ptr[u + 1]; j++) {
-                    size_t v = inb.val[j];
-
-                    size_t new_color = colors[v];
-
-                    // if the neightbor v is in some SCC, then it's color will be MAX_COLOR hance not triggering the if
-                    if(new_color < colors[u]) {
-                        colors[u] = new_color;
-
-                        made_change = true;
-                    }
-                }
-            }
-            iter += vleft.size();
+            for(size_t i = 0; i < threads_to_use; i++) {
+                pthread_join(threads[i], NULL);
+            } 
         }
+
         DEB("Finished coloring")
         COZ_END("coloring");
 
@@ -463,6 +444,8 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         size_t threads_to_use = (num_colors/BFS_GRAIN_SIZE <= 1) ? 1 : 
                                 (num_colors/BFS_GRAIN_SIZE > NUM_THREADS) ? NUM_THREADS : 1;
 
+        DEB("Using " << threads_to_use << " threads for BFS")
+
         if(threads_to_use == 1) {
             bfs_partitions_runner_struct bfs_plus_info = 
                         {&inb, &SCC_id, SCC_count, &colors, &unique_colors, 0, num_colors, false};
@@ -470,8 +453,6 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
             bfs_partitions_runner(&bfs_plus_info);
 
         } else {
-
-            std::cout << "Using " << threads_to_use << " threads" << std::endl;
 
             std::vector<pthread_t> threads(threads_to_use);
             std::vector<bfs_partitions_runner_struct> bfs_plus_infos(threads_to_use);
@@ -506,7 +487,7 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 }
 
 int _main(int argc, char** argv) {
-    std::string filename(argc > 1 ? argv[1] : "../../matrices/language/language.mtx");
+    std::string filename(argc > 1 ? argv[1] : "../../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
 
     if(argc<2){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
