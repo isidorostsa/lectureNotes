@@ -219,17 +219,11 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
     DEB("Starting conversion");
     
     COZ_BEGIN("convert");
-    # pragma omp parallel sections
-    {
-        # pragma omp section
-        {
-            coo_tocsr(M, inb);
-        }
-        # pragma omp section
-        {
-            coo_tocsc(M, onb);
-        }
-    }
+
+    // probably should be done in parallel
+    coo_tocsr(M, inb);
+    coo_tocsc(M, onb);
+
     COZ_END("convert");
     // if we are poor on memory, we can free M
     M.Ai = std::vector<size_t>();

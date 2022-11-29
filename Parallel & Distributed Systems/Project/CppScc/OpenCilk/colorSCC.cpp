@@ -104,10 +104,6 @@ size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::v
         }
     }
 
-    //# pragma omp parallel for shared(trimed)
-    //for(size_t index = 0; index < vertices_left; index++) {
-    //    size_t source = vleft[index];
-
     for(size_t source = 0; source < n; source++) {
         // check if it has already been trimmed in the prev step
         if (SCC_id[source] != UNCOMPLETED_SCC_ID) continue;
@@ -115,7 +111,6 @@ size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::v
         // noone in vleft was pointed to by source, so source is surely trimable
         // hasOutgoing[index] == false => noone in vleft points to source = vleft[index]
         if(!hasOutgoing[source]) {
-            # pragma omp atomic update 
             trimed++;
             SCC_id[source] = SCC_count + trimed;
         }

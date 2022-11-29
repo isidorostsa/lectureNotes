@@ -56,17 +56,8 @@ int main(int argc, char** argv) {
     } else {
         DEB("Starting coo -> csr, csc");
         auto now = std::chrono::high_resolution_clock::now();
-        # pragma omp parallel sections
-        {
-            # pragma omp section
-            {
-                coo_tocsr(coo, csr);
-            }
-            # pragma omp section
-            {
-                coo_tocsc(coo, csc);
-            }
-        }
+        coo_tocsr(coo, csr);
+        coo_tocsc(coo, csc);
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsed = end - now;
 

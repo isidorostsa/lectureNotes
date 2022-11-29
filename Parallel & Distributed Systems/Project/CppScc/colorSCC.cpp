@@ -78,7 +78,6 @@ size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::v
 
     auto hasOutgoing = std::vector<bool>(n, false);
 
-    # pragma omp parallel for shared(trimed)
     for(size_t index = 0; index < vertices_left; index++) {
         size_t source = vleft[index];
 
@@ -90,10 +89,7 @@ size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::v
             if(SCC_id[neighbor] == UNCOMPLETED_SCC_ID) {
                 hasIncoming = true;
                 // need index of neighbor
-                # pragma omp critical 
-                {
                 hasOutgoing[neighbor] = true;
-                }
             }
         }
 
@@ -103,11 +99,6 @@ size_t trimVertices_inplace_normal_no_onb(const Sparse_matrix& inb, const std::v
         }
     }
 
-    //# pragma omp parallel for shared(trimed)
-    //for(size_t index = 0; index < vertices_left; index++) {
-    //    size_t source = vleft[index];
-
-    # pragma omp parallel for shared(trimed)
     for(size_t source = 0; source < n; source++) {
         // check if it has already been trimmed in the prev step
         if (SCC_id[source] != UNCOMPLETED_SCC_ID) continue;
