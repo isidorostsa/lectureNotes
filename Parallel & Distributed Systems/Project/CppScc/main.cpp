@@ -10,7 +10,7 @@
 #include "colorSCC.hpp"
 
 int main(int argc, char** argv) {
-    std::string filename(argc > 1 ? argv[1] : "../../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
+    std::string filename(argc > 1 ? argv[1] : "../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
 
     if(argc<2){
         std::cout << "Assumed " << filename <<  " as input" << std::endl;
