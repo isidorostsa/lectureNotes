@@ -10,7 +10,7 @@
 #include <iterator>
 #include <list>
 #include <mutex>
-#include <optional>
+#include <atomic>
 
 #include "colorSCC.hpp"
 #include "sparse_util.hpp"
@@ -23,18 +23,16 @@
 
 // For the first time only, where all SCC_ids are -1
 size_t trimVertices_inplace_normal_first_time(const Sparse_matrix& inb, const Sparse_matrix& onb, std::vector<size_t>& SCC_id, const size_t SCC_count) { 
-    size_t trimed = 0;
+    std::atomic<size_t> trimed(0);
 
-    # pragma omp parallel for 
+    # pragma omp parallel for shared(trimed)
     for(size_t source = 0; source < inb.n; source++) {
         bool hasIncoming = inb.ptr[source] != inb.ptr[source + 1];
 
         bool hasOutgoing = onb.ptr[source] != onb.ptr[source + 1];
 
         if(!hasIncoming | !hasOutgoing) {
-            #pragma omp atomic update
-            trimed++;
-            SCC_id[source] = SCC_count + trimed;
+            SCC_id[source] = SCC_count + ++trimed;
         }
     }
     //std::cout << "trimed: " << trimed << std::endl;
@@ -45,8 +43,7 @@ size_t trimVertices_inplace_normal_first_time(const Sparse_matrix& inb, const Sp
 // vleft + onb
 size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix& onb, const std::vector<size_t>& vleft,
                                     std::vector<size_t>& SCC_id, const size_t SCC_count) { 
-    //std::atomic<size_t> trimed = 0;
-    size_t trimed = 0;
+    std::atomic<size_t> trimed(0);
 
     # pragma omp parallel for shared(trimed)
     for(size_t index = 0; index < vleft.size(); index++) {
@@ -69,9 +66,7 @@ size_t trimVertices_inplace_normal(const Sparse_matrix& inb, const Sparse_matrix
         }
 
         if(!hasIncoming | !hasOutgoing) {
-            # pragma omp atomic update
-            trimed++;
-            SCC_id[source] = SCC_count + trimed;
+            SCC_id[source] = SCC_count + ++trimed;
         }
     }
     //std::cout << "trimed: " << trimed << std::endl;
@@ -238,7 +233,6 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 
                     // if the neightbor v is in some SCC, then it's color will be MAX_COLOR hance not triggering the if
                     if(new_color < colors[u]) {
-                        #pragma omp atomic write
                         colors[u] = new_color;
 
                         made_change = true;

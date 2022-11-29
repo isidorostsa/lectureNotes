@@ -1,10 +1,8 @@
-#pragma once
-
 #include <iostream>
 #include <string>
 #include <fstream>
 
-#include "sparse_utillities.hpp"
+#include "sparse_util.hpp"
 
 Coo_matrix loadFile(std::string filename) {
     std::ifstream fin(filename);

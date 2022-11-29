@@ -1,13 +1,16 @@
 CC=g++
-CFLAGS=-I. -Wall -O3
-DEPS = colorSCC.hpp sparse_utillities.hpp
-OBJ = sparse_utillities.o colorSCC.o main.o
+
+CFLAGS=-Wall -O3 -g -std=c++20 -g -gdwarf-3 
+LFLAGS=-g -gdwarf-3 -fopenmp
+
+DEPS = colorSCC.hpp sparse_util.hpp
+OBJ = colorSCC.o sparse_util.o main.o
 
 %.o: %.cpp $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 colorSCC: $(OBJ)
-	$(CC) -o $@ $^ $(CFLAGS)
+	$(CC) -o $@ $^ $(LFLAGS)
 
 .PHONY: clean
 clean:
