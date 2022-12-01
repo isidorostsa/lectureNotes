@@ -2,7 +2,10 @@
 #include <string>
 #include <fstream>
 
-#include "colorSCC.hpp"
+#define UNASSIGNED -1
+#define NO_COLOR -1
+
+#include "sparse_util.hpp"
 
 Coo_matrix loadFile(std::string filename) {
     std::ifstream fin(filename);
@@ -25,6 +28,40 @@ Coo_matrix loadFile(std::string filename) {
     }
 
     return Coo_matrix{n, nnz, Ai, Aj};
+}
+
+Sparse_matrix loadFileToCSC(std::string filename) {
+    std::ifstream fin(filename);
+
+    size_t n, nnz;
+    while(fin.peek() == '%') fin.ignore(2048, '\n');
+
+    fin >> n >> n >> nnz;
+
+    std::vector<size_t> ptr(n+1, 0);
+    std::vector<size_t> val(nnz);
+
+    size_t i, j, throwaway;
+    // lines may be of the form: i j or i j throwaway
+    for(size_t ind = 0; ind < nnz; ++ind) {
+        fin >> i >> j;
+        --i; --j;
+
+        val[ind] = i;
+        ptr[j+1]++;
+
+        if(fin.peek() != '\n') fin >> throwaway;
+    }
+
+    for(size_t ind = 1; ind < n+1; ++ind) {
+        ptr[ind] += ptr[ind-1];
+    }
+
+    return Sparse_matrix{n, nnz, ptr, val, Sparse_matrix::CSC};
+}
+
+void csc_tocsr(const Sparse_matrix& csc, Sparse_matrix& csr) {
+    csr_tocsc(csc, csr);
 }
 
 void csr_tocsc(const Sparse_matrix& csr, Sparse_matrix& csc) {
@@ -141,4 +178,8 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
         csc.ptr[i] = last;
         last = temp;
     }
+}
+
+int man() {
+    Sparse_matrix csr = loadFileToCSC("../matrices/celegansneural/celegansneural.mtx");
 }

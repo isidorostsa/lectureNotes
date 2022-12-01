@@ -169,7 +169,6 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
     std::fill(SCC_id.begin(), SCC_id.end(), UNCOMPLETED_SCC_ID);
     size_t SCC_count = 0;
 
-
     std::vector<size_t> vleft(n);
     for (size_t i = 0; i < n; i++) {
         vleft[i] = i;
@@ -200,11 +199,13 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 
 
         std::vector<bool> changedColor(n);
-        bool made_change = true;
-        while(made_change) {
-            made_change = false;
+//        std::atomic<bool> made_change(true);
 
-            std::fill(changedColor.begin(), changedColor.end(), false);
+        std::vector<bool> made_change(1, true);
+        while(made_change[0]) {
+            made_change[0] = false;
+
+            //std::fill(changedColor.begin(), changedColor.end(), false);
 
             total_tries++;
             cilk_for(size_t i = 0; i < vleft.size(); i++) {
@@ -218,13 +219,15 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
                     if(new_color < colors[u]) {
 
                         colors[u] = new_color;
-                        changedColor[u] = true;
+                        //changedColor[u] = true;
+                        made_change[0] = true;
+                        //made_change = true;
                     }
                 }
             }
 
             // to fix weird exiting early bug
-            made_change = std::any_of(changedColor.begin(), changedColor.end(), [](bool b) { return b; });
+            //made_change = std::any_of(changedColor.begin(), changedColor.end(), [](bool b) { return b; });
         }
         DEB("Finished coloring")
 

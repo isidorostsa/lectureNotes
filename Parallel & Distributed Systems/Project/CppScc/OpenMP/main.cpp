@@ -37,6 +37,13 @@ int main(int argc, char** argv) {
         TOO_BIG = std::atoi(argv[4]) == 1;
     }
 
+    Sparse_matrix csc = loadFileToCSC(filename);
+    Sparse_matrix csr;
+    csc_tocsr(csc, csr);
+
+    std::cout << "Read file " << filename << "\n";
+
+/*
     Coo_matrix coo = loadFile(filename);
 
     Sparse_matrix csr;
@@ -68,13 +75,13 @@ int main(int argc, char** argv) {
             {
                 coo_tocsc(coo, csc);
             }
-        }
+       }
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> elapsed = end - now;
 
         std::cout << "coo -> csr, csc took " << elapsed.count() << "s" << std::endl;
     }
-
+*/
     std::cout << "Running " << times << " times\n";
 
     std::vector<size_t> SCC_id;

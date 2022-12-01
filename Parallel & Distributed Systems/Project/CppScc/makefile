@@ -1,7 +1,7 @@
 CC=g++
 
 CFLAGS=-Wall -O3 -g -std=c++20 -g -gdwarf-3 
-LFLAGS=-g -gdwarf-3 -fopenmp
+LFLAGS=-g -gdwarf-3 
 
 DEPS = colorSCC.hpp sparse_util.hpp
 OBJ = colorSCC.o sparse_util.o main.o

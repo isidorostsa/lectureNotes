@@ -6,6 +6,7 @@
 #include <iostream>
 #include <algorithm>
 #include <stack>
+#include <queue>
 
 #define DEB(x) if(DEBUG) std::cout << x << std::endl;
 #define UNASSIGNED -1
@@ -25,6 +26,8 @@ std::vector<size_t> kosaraju(const Sparse_matrix& inb, const Sparse_matrix& onb,
         auto stack = std::stack<size_t>();
         stack.push(root);
 
+        std::queue<size_t> q;
+
         while(!stack.empty()) {
 
             size_t u = stack.top();
@@ -38,10 +41,13 @@ std::vector<size_t> kosaraju(const Sparse_matrix& inb, const Sparse_matrix& onb,
                 stack.push(v);
             }
 
-            L.push_front(u);
+            q.push(u);
+
         }
 
     }
+    
+    L.clear();
 
     for(const size_t& root: L) {
         auto stack = std::stack<size_t>();

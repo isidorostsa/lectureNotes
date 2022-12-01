@@ -3,6 +3,9 @@
 #include <iostream>
 #include <vector>
 
+#define UNASSIGNED -1
+#define NO_COLOR -1
+
 struct Coo_matrix {
     size_t n;
     size_t nnz;
@@ -19,6 +22,33 @@ struct Sparse_matrix {
     enum CSC_CSR {CSC, CSR};
     CSC_CSR type;
 };
+
+class Graph {
+public:
+    Graph(const Sparse_matrix& inb_arg, const Sparse_matrix& onb_arg) : 
+        inb(inb_arg),
+        onb(onb_arg),
+        n(inb_arg.n),
+        nnz(inb_arg.nnz),
+        scc_id(inb_arg.n, UNASSIGNED),
+        colors(inb_arg.n, NO_COLOR) 
+    {}
+
+    const size_t n;
+    const size_t nnz;
+
+    const Sparse_matrix& inb;
+    const Sparse_matrix& onb;
+
+    size_t get_n() const { return n; }
+    size_t get_nnz() const { return nnz; }
+
+    std::vector<size_t> scc_id;
+    size_t scc_count;
+
+    std::vector<size_t> colors;
+};
+
 
 Coo_matrix loadFile(std::string filename);
 

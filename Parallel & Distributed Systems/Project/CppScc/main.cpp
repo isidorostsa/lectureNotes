@@ -8,6 +8,7 @@
 #include <chrono>
 
 #include "colorSCC.hpp"
+#include "sparse_util.hpp"
 
 int main(int argc, char** argv) {
     std::string filename(argc > 1 ? argv[1] : "../matrices/sx-stackoverflow/sx-stackoverflow.mtx");
@@ -35,13 +36,20 @@ int main(int argc, char** argv) {
         TOO_BIG = std::atoi(argv[4]) == 1;
     }
 
+    Sparse_matrix csc = loadFileToCSC(filename);
+    Sparse_matrix csr;
+    csc_tocsr(csc, csr);
+
+    std::cout << "Read file " << filename << "\n";
+
+
+/*
     Coo_matrix coo = loadFile(filename);
 
     Sparse_matrix csr;
     Sparse_matrix csc;
 
     std::cout << "Loaded matrix" << std::endl;
-
     if(TOO_BIG){
         std::cout << "Too big matrix, will go coo -> csr, csr -> csc instead of coo -> csr, csc" << std::endl;
 
@@ -72,8 +80,8 @@ int main(int argc, char** argv) {
 
         std::cout << "coo -> csr, csc took " << elapsed.count() << "s" << std::endl;
     }
-
     std::cout << "Running " << times << " times\n";
+*/
 
     std::vector<size_t> SCC_id;
     auto start = std::chrono::high_resolution_clock::now();
