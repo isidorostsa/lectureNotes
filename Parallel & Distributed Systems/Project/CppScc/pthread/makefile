@@ -1,6 +1,6 @@
 CC=g++
 
-CFLAGS=-I. -pthread -Wall -Ofast -g -std=c++20 -g -gdwarf-3 
+CXXFLAGS+=-I../include -pthread -Wall -Ofast -g -std=c++20 -g -gdwarf-3 
 LFLAGS=-pthread -std=c++20 -g -gdwarf-3
 
 DEPS = colorSCC.hpp sparse_util.hpp

@@ -2,6 +2,9 @@
 #include <string>
 #include <fstream>
 
+#define UNASSIGNED -1
+#define NO_COLOR -1
+
 #include "sparse_util.hpp"
 
 Coo_matrix loadFile(std::string filename) {
@@ -27,14 +30,56 @@ Coo_matrix loadFile(std::string filename) {
     return Coo_matrix{n, nnz, Ai, Aj};
 }
 
-void csr_tocsc(const Sparse_matrix& csr, Sparse_matrix& csc) {
-    csc.n = csr.n;
-    csc.nnz = csr.nnz;
-    csc.ptr.resize(csr.n + 1);
-    csc.val.resize(csr.nnz);
-    csc.type = Sparse_matrix::CSC;
+Sparse_matrix loadFileToCSC(std::string filename) {
+    std::ifstream fin(filename);
 
-    csr_tocsc(csr.n, csr.ptr, csr.val, csc.ptr, csc.val);
+    size_t n, nnz;
+    while(fin.peek() == '%') fin.ignore(2048, '\n');
+
+    fin >> n >> n >> nnz;
+
+    std::vector<size_t> ptr(n+1, 0);
+    std::vector<size_t> val(nnz);
+
+    size_t i, j, throwaway;
+    // lines may be of the form: i j or i j throwaway
+    for(size_t ind = 0; ind < nnz; ++ind) {
+        fin >> i >> j;
+        --i; --j;
+
+        val[ind] = i;
+        ptr[j+1]++;
+
+        if(fin.peek() != '\n') fin >> throwaway;
+    }
+
+    for(size_t ind = 1; ind < n+1; ++ind) {
+        ptr[ind] += ptr[ind-1];
+    }
+
+    return Sparse_matrix{n, nnz, ptr, val, Sparse_matrix::CSC};
+}
+
+void csc_tocsr(const Sparse_matrix& csc, Sparse_matrix& csr) {
+    csr_tocsc(csc, csr);
+}
+
+Sparse_matrix csr_tocsc(const Sparse_matrix& csr) {
+    std::vector<size_t> ptr(csr.n + 1);
+    std::vector<size_t> val(csr.nnz);
+
+    csr_tocsc(csr.n, csr.ptr, csr.val, ptr, val);
+
+    return Sparse_matrix{csr.n, csr.nnz, ptr, val, Sparse_matrix::CSC};
+}
+
+Sparse_matrix csr_tocsc(const Sparse_matrix& csr) {
+    std::vector<size_t> ptr(csr.n + 1);
+    std::vector<size_t> val(csr.nnz);
+
+    csr_tocsc(csr.n, csr.ptr, csr.val, ptr, val);
+
+    return Sparse_matrix{csr.n, csr.nnz, ptr, val, Sparse_matrix::CSC};
 }
 
 void csr_tocsc(const size_t n, const std::vector<size_t>& Ap, const std::vector<size_t>& Aj, 
@@ -72,6 +117,8 @@ void csr_tocsc(const size_t n, const std::vector<size_t>& Ap, const std::vector<
         last    = temp;
     }
 }
+
+
 
 void coo_tocsr(const Coo_matrix& coo, Sparse_matrix& csr) {
     csr.n = coo.n;
@@ -141,4 +188,8 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
         csc.ptr[i] = last;
         last = temp;
     }
+}
+
+int man() {
+    Sparse_matrix csr = loadFileToCSC("../matrices/celegansneural/celegansneural.mtx");
 }

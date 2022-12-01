@@ -11,7 +11,7 @@
 #include <optional>
 #include <atomic>
 
-#include "sparse_util.hpp"
+#include "../include/sparse_util.hpp"
 #include "colorSCC.hpp"
 
 #include <pthread.h>

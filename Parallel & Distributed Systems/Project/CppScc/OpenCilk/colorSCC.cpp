@@ -165,8 +165,7 @@ std::vector<size_t> colorSCC(Coo_matrix& M, bool DEBUG) {
 std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Sparse_matrix& onb, bool DEBUG) {
     size_t n = inb.n;
 
-    std::vector<size_t> SCC_id(n);
-    std::fill(SCC_id.begin(), SCC_id.end(), UNCOMPLETED_SCC_ID);
+    std::vector<size_t> SCC_id(n, UNCOMPLETED_SCC_ID);
     size_t SCC_count = 0;
 
     std::vector<size_t> vleft(n);
@@ -198,12 +197,10 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
         DEB("Starting to color")
 
 
-        std::vector<bool> changedColor(n);
-//        std::atomic<bool> made_change(true);
+        std::atomic<bool> made_change(true);
 
-        std::vector<bool> made_change(1, true);
-        while(made_change[0]) {
-            made_change[0] = false;
+        while(made_change) {
+            made_change = false;
 
             //std::fill(changedColor.begin(), changedColor.end(), false);
 
@@ -220,7 +217,7 @@ std::vector<size_t> colorSCC_no_conversion(const Sparse_matrix& inb, const Spars
 
                         colors[u] = new_color;
                         //changedColor[u] = true;
-                        made_change[0] = true;
+                        made_change = true;
                         //made_change = true;
                     }
                 }

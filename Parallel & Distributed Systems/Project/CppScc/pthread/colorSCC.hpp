@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 
-#include "sparse_util.hpp"
+#include "../include/sparse_util.hpp"
 
 #define DEB(x) if(DEBUG) {std::cout << x << std::endl;}
 
