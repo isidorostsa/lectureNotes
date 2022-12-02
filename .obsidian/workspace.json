@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "OS/Labs/1/Intro to Unix.md",
+                "file": "OS/Labs/1/Excersise.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OS/Labs/1/Intro to Unix.md",
+                "file": "OS/Labs/1/Excersise.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "OS/Labs/1/Intro to Unix.md",
+                "file": "OS/Labs/1/Excersise.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "OS/Labs/1/Intro to Unix.md"
+                "file": "OS/Labs/1/Excersise.md"
               }
             }
           },

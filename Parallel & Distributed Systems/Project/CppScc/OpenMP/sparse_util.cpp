@@ -7,7 +7,7 @@
 
 #include "sparse_util.hpp"
 
-Coo_matrix loadFile(std::string filename) {
+Coo_matrix loadFileToCoo(const std::string filename) {
     std::ifstream fin(filename);
 
     size_t n, nnz;
@@ -27,13 +27,17 @@ Coo_matrix loadFile(std::string filename) {
         if(fin.peek() != '\n') fin >> throwaway;
     }
 
+    // automatically moves the vectors, no copying is done here
     return Coo_matrix{n, nnz, Ai, Aj};
 }
 
-Sparse_matrix loadFileToCSC(std::string filename) {
+Sparse_matrix loadFileToCSC(const std::string filename) {
+    std::cout << "loadFileToCSC file: " << filename << std::endl;
+    
+
     std::ifstream fin(filename);
 
-    size_t n, nnz;
+    size_t n = -1, nnz;
     while(fin.peek() == '%') fin.ignore(2048, '\n');
 
     fin >> n >> n >> nnz;
@@ -52,16 +56,12 @@ Sparse_matrix loadFileToCSC(std::string filename) {
 
         if(fin.peek() != '\n') fin >> throwaway;
     }
-
-    for(size_t ind = 1; ind < n+1; ++ind) {
-        ptr[ind] += ptr[ind-1];
+    for(size_t i = 0; i < n; ++i) {
+        ptr[i+1] += ptr[i];
     }
 
+    // automatically moves the vectors, no copying is done here
     return Sparse_matrix{n, nnz, ptr, val, Sparse_matrix::CSC};
-}
-
-void csc_tocsr(const Sparse_matrix& csc, Sparse_matrix& csr) {
-    csr_tocsc(csc, csr);
 }
 
 void csr_tocsc(const Sparse_matrix& csr, Sparse_matrix& csc) {
@@ -72,6 +72,10 @@ void csr_tocsc(const Sparse_matrix& csr, Sparse_matrix& csc) {
     csc.type = Sparse_matrix::CSC;
 
     csr_tocsc(csr.n, csr.ptr, csr.val, csc.ptr, csc.val);
+}
+
+void csc_tocsr(const Sparse_matrix& csc, Sparse_matrix& csr) {
+    csr_tocsc(csc, csr);
 }
 
 void csr_tocsc(const size_t n, const std::vector<size_t>& Ap, const std::vector<size_t>& Aj, 
@@ -178,8 +182,4 @@ void coo_tocsc(const Coo_matrix& coo, Sparse_matrix& csc) {
         csc.ptr[i] = last;
         last = temp;
     }
-}
-
-int man() {
-    Sparse_matrix csr = loadFileToCSC("../matrices/celegansneural/celegansneural.mtx");
 }
