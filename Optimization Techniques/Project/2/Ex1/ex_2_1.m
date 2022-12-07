@@ -1,4 +1,14 @@
-function [sol lb_list ub_list iter] = ex_1_1(func, lower_bound, upper_bound, epsilon, limit_width, max_iterations)
+%% Steepest Descent Method
+function [plist glist] = ex_2_1(func, max_iterations)
+    plist = [];
+    glist = [];
+    p = [0; 0];
+    plist = [plist p];
+    glist = [glist g];
 
-
-f = func; % function to be minimized
+    for i = 1:max_iterations
+        p = p - g;
+        plist = [plist p];
+        g = gradient(func, p);
+        glist = [glist g];
+    end
