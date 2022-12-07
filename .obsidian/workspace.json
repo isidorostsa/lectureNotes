@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "059fcbef8a9b6d64",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Optimization Techniques/5/2..md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "OS/Labs/1/Excersise.md",
+                "file": "Optimization Techniques/5/2..md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "OS/Labs/1/Excersise.md",
+                "file": "Optimization Techniques/5/2..md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "OS/Labs/1/Excersise.md"
+                "file": "Optimization Techniques/5/2..md"
               }
             }
           },
@@ -153,13 +166,13 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "8b19d366ec026e25",
+  "active": "059fcbef8a9b6d64",
   "lastOpenFiles": [
+    "OS/Labs/1/Excersise.md",
     "OS/Labs/1/Intro to Unix.md",
     "TODOS.md",
     "Optimization Techniques/3/Convexity.md",
     "Parallel & Distributed Systems/Bitonic Sorting.md",
-    "OS/Labs/1/Excersise.md",
     "Optimization Techniques/3/Excercises.md",
     "Optimization Techniques/3/Conditions of Optimization, Convex Problems.md",
     "Optimization Techniques/3/Theorems and Proofs.md",
