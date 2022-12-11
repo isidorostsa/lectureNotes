@@ -1,0 +1,6 @@
+function k = smallestZero(func)
+    interval = [0 0];
+    while(func(interval(1))*func(interval(2)) > 0)
+        interval(2) = interval(2) + 1;
+    end
+    k = fzero(func, interval);
