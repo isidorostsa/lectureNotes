@@ -1,7 +1,4 @@
-%% Steepest Descent Method
-function [finalPoint finalValue iterations] = ex_2_1(f_symbolic, x, y, max_iterations, p0, d_selection_method, gamma_selection_method)
-    [func gradfunc hessianfunc] = numerize(f_symbolic, x, y)
-
+function [finalValue] = minimize_with_der(func, gradfunc, hessianfunc, max_iterations, epsilon, p0, d_selection_method, gamma_selection_method)
     plist = [];
     glist = [];
     p = p0;
@@ -9,7 +6,7 @@ function [finalPoint finalValue iterations] = ex_2_1(f_symbolic, x, y, max_itera
 
     grad_at_p = [1; 1];
     iterations = 0;
-    while norm(gradfunc(p)) > 1e-3 && iterations < max_iterations
+    while norm(gradfunc(p)) > epsilon && iterations < max_iterations
         % we want to find the step size that minimizes the function
         % f(p + gamma * grad(p))
         % we can do this by finding the zero of the derivative of f
@@ -52,7 +49,7 @@ function [finalPoint finalValue iterations] = ex_2_1(f_symbolic, x, y, max_itera
 
         % constant
         if(gamma_selection_method == 1)
-            gamma = 0.01;
+            gamma = 0.1;
         % simple minimize
         elseif(gamma_selection_method == 2)
             gamma = fminbnd(@(gamma) func(p + gamma*d), 0, 10);
