@@ -1,0 +1,6 @@
+{
+  "findText": "$$",
+  "findRegexp": "",
+  "regexpFlags": "",
+  "replace": "$"
+}

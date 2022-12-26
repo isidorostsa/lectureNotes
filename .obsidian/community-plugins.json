@@ -5,5 +5,6 @@
   "calendar",
   "quick-latex",
   "obsidian-editor-shortcuts",
-  "cm-editor-syntax-highlight-obsidian"
+  "cm-editor-syntax-highlight-obsidian",
+  "find-and-replace-in-selection"
 ]
