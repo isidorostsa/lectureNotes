@@ -1,32 +1,32 @@
-function plotAllPoints(d_method, g_method, epsilon, identifier)
-    syms xvar yvar f
+function plotAllPoints(gamma_method, gamma, identifier)
+    syms xvar yvar f;
 
-    f = xvar^5*exp(-xvar^2-yvar^2);
-
+    f = 1/3 * xvar^2 + 3 * yvar ^ 2;
+    
     [func gradfunc hessianfunc] = numerize(f, xvar, yvar);
+    hessianfunc = @(p) 0;
 
-    folder = 'Ex' + string(d_method) + '/figs/allpoints';
+    folder = 'Ex' + string('') + '/figs/allpoints';
     fignum = 1;
 
-    max_iterations = 1000;
-
-    gamma = 1e-2;
-
-
     % Create a new figure and set the figure size
-    
-
     picturewidth = 20;
     hw_ratio = 0.65;
 
     hfig = figure(fignum);
     fignum = fignum + 1;
-    fname = folder + string('/') + 'allpoints_method_' + string(d_method) + '_gamma_' + string(g_method);
+    fname = folder + string('/') + 'allpoints_' + 'gamma_' + string(gamma).replace('.', '') + '_' + string(identifier);
 
+    d_method = 1;
+    g_method = 1;
+    epsilon = 0.001;
+    max_iterations = 1000;
     func_to_plot = @(p) minimize_with_der(func, gradfunc, hessianfunc, max_iterations, epsilon, gamma, p, d_method, g_method);
 
-    x = linspace(-3, 3, 200);
-    y = linspace(-3, 3, 200);
+    lim = 15;
+    points = 50;
+    x = linspace(-lim, lim, points);
+    y = linspace(-lim, lim, points);
 
     % draw the heatmap of f on all x, y points
     [X,Y] = meshgrid(x,y);
@@ -53,7 +53,6 @@ function plotAllPoints(d_method, g_method, epsilon, identifier)
     pos = get(hfig,'Position');
     set(hfig,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)]);
     print(hfig,fname,'-dpdf','-painters','-fillpage');
-
 
     close all;
 end

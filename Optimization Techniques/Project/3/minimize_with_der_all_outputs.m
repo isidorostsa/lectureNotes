@@ -13,7 +13,7 @@ function [finalValue finalPoint values points iterations] = ...
     hessian_at_p = hessianfunc(p);
 
     iterations = 0;
-    while (norm(gradfunc(p)) > epsilon) && iterations < max_iterations
+    while (norm(gradfunc(p)) > epsilon) && (norm(gradfunc(p)) < 1000) && iterations < max_iterations
         % we want to find the step size that minimizes the function
         % f(p + gamma * grad(p))
         % we can do this by finding the zero of the derivative of f
@@ -77,7 +77,7 @@ function [finalValue finalPoint values points iterations] = ...
         grad = gradfunc(p);
         iterations = iterations + 1;
     end
-    finalPoint = p;
-    finalValue = func(p);
+    finalPoint = points(:, end);
+    finalValue = values(end);
 
 end
