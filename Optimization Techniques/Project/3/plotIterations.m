@@ -30,8 +30,6 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     wrapper = @(p) minimize_with_der_all_outputs(func, gradfunc, hessianfunc,...
                     max_iterations, epsilon, gamma, p, d_method, g_method);
 
-
-
     picturewidth = 20;
 
     for i = 1:size(starting_points, 2)
