@@ -127,7 +127,15 @@ function hfig = plotIterations(gamma, starting_points, identifier)
         [fvalue fpoint values points iterations] = wrapper(p0);
 
         hold on;
-        plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'black');
+        if i == 1
+            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'black');
+        elseif i == 2
+            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'white');
+        elseif i == 3
+            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'red');
+        else
+            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'blue');
+        end
     end
 
     xlabel('$x$');
