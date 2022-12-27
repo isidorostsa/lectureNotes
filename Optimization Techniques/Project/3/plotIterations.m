@@ -53,7 +53,7 @@ function hfig = plotIterations(gamma, starting_points, identifier)
         set(hfig,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth]);
         pos = get(hfig,'Position');
         set(hfig,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)]);
-        print(hfig,fname,'-dpdf','-painters','-fillpage');
+        %print(hfig,fname,'-dpdf','-painters','-fillpage');
     end
 
     %% draw heatmap of f
