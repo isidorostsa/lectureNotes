@@ -86,17 +86,10 @@ We move the data along a ring, (receive from previous and send to the next proce
 Compare run times and make sure you agree with the `V0` results
 
 ## What to submit
-
 - A 4-page report in PDF format . Report execution times of your implementations with respect to the number of data points $n$, the number of dimensions $d$, and the number of processes $p$.  
 - Test with regular grids (3d and 27 neighbors, 4d and 81 neighbors), and real-data sets like MNIST hand-written digits.
 - Upload the source code on GitHub, BitBucket, Dropbox, Google Drive, etc. and add a link in your report.
 - List any references you use, including ChatGPT!
-
-
-
-
-
-
 
 # Description:
 you have a NxD matrix X and a MxD matrix Y. Output NxK matrix R where Rnk = t $\in$ 1:M such that $\|{Y[t, :] - X[t, :]}\|$ is the minimum
