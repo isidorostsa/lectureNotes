@@ -97,7 +97,8 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     Z = zeros(size(X));
     for i = 1:size(X,1)
         for j = 1:size(X,2)
-            Z(i,j) = func([X(i,j) Y(i,j)]);
+            [Z(i,j) fpoint values points iterations] = wrapper(p0);
+            Z(i,j) = func();
         end
     end
 
