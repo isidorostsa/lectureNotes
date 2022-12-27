@@ -88,7 +88,7 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     %y = linspace(-y_lim, y_lim, 100);
 
     lim = 15;
-    datapoints = 50;
+    datapoints = 20;
     x = linspace(-lim, lim, datapoints);
     y = linspace(-lim, lim, datapoints);
 
@@ -97,8 +97,8 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     Z = zeros(size(X));
     for i = 1:size(X,1)
         for j = 1:size(X,2)
+            p0 = [X(i,j); Y(i,j)]
             [Z(i,j) fpoint values points iterations] = wrapper(p0);
-            Z(i,j) = func();
         end
     end
 
