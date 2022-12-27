@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
+                "file": "CT3/Lecture 4/Excercises.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200,
-    "collapsed": true
+    "width": 200
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
+                "file": "CT3/Lecture 4/Excercises.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
+                "file": "CT3/Lecture 4/Excercises.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md"
+                "file": "CT3/Lecture 4/Excercises.md"
               }
             }
           },
@@ -156,15 +155,15 @@
   },
   "active": "8b19d366ec026e25",
   "lastOpenFiles": [
+    "CT3/Lecture 1/Non-Linear Control Systems.md",
+    "CT3/Lecture 2/Lyapunov Theory.md",
+    "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
     "OS/Labs/1/Intro to Unix.md",
     "OS/Labs/1/Excersise.md",
     "Optimization Techniques/5/2..md",
-    "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
     "TODOS.md",
     "Optimization Techniques/3/Convexity.md",
     "Parallel & Distributed Systems/Bitonic Sorting.md",
-    "Optimization Techniques/3/Excercises.md",
-    "Optimization Techniques/3/Conditions of Optimization, Convex Problems.md",
-    "Optimization Techniques/3/Theorems and Proofs.md"
+    "Optimization Techniques/3/Excercises.md"
   ]
 }

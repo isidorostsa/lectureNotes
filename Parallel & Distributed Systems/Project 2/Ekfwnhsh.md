@@ -36,7 +36,6 @@ knnresult kNN(double * X, double * Y, int n, int m, int d, int k);
 ```
 
 To calculate an $m \times n$ Euclidean distance matrix $D$ between two sets points $X$ and $Y$ of $m$ and $n$ points respectively, use the following operations
-
 $$
 \begin{align*}
 D &= (X \odot X)\, e\, e^{T} - 2\, X\, Y^{T} + e\, e^{T}(Y \odot Y)^{T}\\
