@@ -76,7 +76,7 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     x_lim = max(abs(x_down), abs(x_up));
     y_lim = max(abs(y_down), abs(y_up));
 
-     if x_lim > y_lim
+    if x_lim > y_lim
          x_lim = ceil(x_lim);
     y_lim = x_lim * hw_ratio;
     else
@@ -87,7 +87,7 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     x = linspace(-x_lim, x_lim, 100);
     y = linspace(-y_lim, y_lim, 100);
 
-    %lim = 15;
+%    lim = 15;
 %    datapoints = 20;
  %   x = linspace(-lim, lim, datapoints);
   %  y = linspace(-lim, lim, datapoints);
