@@ -65,32 +65,32 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     
     % get down and up limits of x and y in the previous plot
     %
-    %x_down = min(points(1, :));
-    %x_up = max(points(1, :));
-   % y_down = min(points(2, :));
-   % y_up = max(points(2, :));
+    x_down = min(points(1, :));
+    x_up = max(points(1, :));
+    y_down = min(points(2, :));
+    y_up = max(points(2, :));
 
 
     % get the limits of x and y in the heatmap
 
-    %x_lim = max(abs(x_down), abs(x_up));
-    %y_lim = max(abs(y_down), abs(y_up));
+    x_lim = max(abs(x_down), abs(x_up));
+    y_lim = max(abs(y_down), abs(y_up));
 
-    % if x_lim > y_lim
-    %     x_lim = ceil(x_lim);
-    %y_lim = x_lim * hw_ratio;
-    %else
-    %   y_lim = ceil(y_lim);
-    %    x_lim = y_lim / hw_ratio;
-    %end
+     if x_lim > y_lim
+         x_lim = ceil(x_lim);
+    y_lim = x_lim * hw_ratio;
+    else
+       y_lim = ceil(y_lim);
+        x_lim = y_lim / hw_ratio;
+    end
     
-    %x = linspace(-x_lim, x_lim, 100);
-    %y = linspace(-y_lim, y_lim, 100);
+    x = linspace(-x_lim, x_lim, 100);
+    y = linspace(-y_lim, y_lim, 100);
 
-    lim = 15;
-    datapoints = 20;
-    x = linspace(-lim, lim, datapoints);
-    y = linspace(-lim, lim, datapoints);
+    %lim = 15;
+%    datapoints = 20;
+ %   x = linspace(-lim, lim, datapoints);
+  %  y = linspace(-lim, lim, datapoints);
 
     % draw the heatmap of f on all x, y points
     [X,Y] = meshgrid(x,y);
@@ -98,7 +98,8 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     for i = 1:size(X,1)
         for j = 1:size(X,2)
             p0 = [X(i,j); Y(i,j)]
-            [Z(i,j) fpoint values points iterations] = wrapper(p0);
+            %[Z(i,j) fpoint values points iterations] = wrapper(p0);
+            Z(i, j) = func(p0);
         end
     end
 
@@ -111,7 +112,7 @@ function hfig = plotIterations(gamma, starting_points, identifier)
         [fvalue fpoint values points iterations] = wrapper(p0);
 
         hold on;
-        plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'white');
+        plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'black');
     end
 
     xlabel('$x$');
