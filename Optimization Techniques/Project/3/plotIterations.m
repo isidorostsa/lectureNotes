@@ -32,9 +32,25 @@ function hfig = plotIterations(gamma, starting_points, identifier)
 
     picturewidth = 20;
 
+    x_down = 10e5
+    x_up = -10e5
+    y_down = 10e5
+    y_up = -10e5
+
     for i = 1:size(starting_points, 2)
         p0 = starting_points(:,i)
         [fvalue fpoint values points iterations] = wrapper(p0);
+
+        x_down_temp = min(points(1, :));
+        x_up_temp = max(points(1, :));
+        y_down_temp = min(points(2, :));
+        y_up_temp = max(points(2, :));
+
+        x_down = min(x_down, x_down_temp);
+        x_up = max(x_up, x_up_temp);
+        y_down = min(y_down, y_down_temp);
+        y_up = max(y_up, y_up_temp);
+
         fname = foldername + string('/') + string(i) + '_plot_gamma_' + string(gamma).replace('.', '');
         hw_ratio = 0.65;
         fignum = fignum+1;
@@ -65,17 +81,13 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     
     % get down and up limits of x and y in the previous plot
     %
-    x_down = min(points(1, :));
-    x_up = max(points(1, :));
-    y_down = min(points(2, :));
-    y_up = max(points(2, :));
-
 
     % get the limits of x and y in the heatmap
 
     x_lim = max(abs(x_down), abs(x_up));
     y_lim = max(abs(y_down), abs(y_up));
 
+    %{
     if x_lim > y_lim
          x_lim = ceil(x_lim);
     y_lim = x_lim * hw_ratio;
@@ -83,9 +95,11 @@ function hfig = plotIterations(gamma, starting_points, identifier)
        y_lim = ceil(y_lim);
         x_lim = y_lim / hw_ratio;
     end
+    %}
 
     x = linspace(-x_lim, x_lim, 100);
     y = linspace(-y_lim, y_lim, 100);
+
 
 
 %    lim = 15;
