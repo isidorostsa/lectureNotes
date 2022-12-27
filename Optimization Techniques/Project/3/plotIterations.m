@@ -73,12 +73,12 @@ function hfig = plotIterations(gamma, starting_points, identifier)
 
     % get the limits of x and y in the heatmap
 
-   % x_lim = max(abs(x_down), abs(x_up));
+    %x_lim = max(abs(x_down), abs(x_up));
     %y_lim = max(abs(y_down), abs(y_up));
-%
-   % if x_lim > y_lim
-   %     x_lim = ceil(x_lim);
- %y_lim = x_lim * hw_ratio;
+
+    % if x_lim > y_lim
+    %     x_lim = ceil(x_lim);
+    %y_lim = x_lim * hw_ratio;
     %else
     %   y_lim = ceil(y_lim);
     %    x_lim = y_lim / hw_ratio;
