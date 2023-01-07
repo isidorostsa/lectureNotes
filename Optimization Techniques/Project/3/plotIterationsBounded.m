@@ -1,14 +1,13 @@
-function hfig = plotIterations(gamma, starting_points, identifier)
+function hfig = plotIterationsBounded(gamma, s, starting_points, x_bounds, y_bounds, identifier)
     syms xvar yvar f(xvar,yvar)
 
     f = 1/3 * xvar^2 + 3 * yvar ^ 2;
 
     [func gradfunc hessianfunc] = numerize(f, xvar, yvar);
-    hessianfunc = @(p) 0;
 
     d_method = 1;
     g_method = 1;
-    epsilon = 0.001;
+    epsilon = 0.01;
     max_iterations = 1000;
     fignum = 0;
 
@@ -21,22 +20,20 @@ function hfig = plotIterations(gamma, starting_points, identifier)
         p0 = [0; 0];
     end
 
-    foldername = 'Ex' + string('') + '/figs';
+    foldername = 'ExBounded' + string('') + '/figs';
 
 %    minimize_with_der_all_outputs
 % (func, gradfunc, hessianfunc, max_iterations, 
 % epsilon, gamma_const, p0, d_selection_method, gamma_selection_method)
 
-    wrapper = @(p) minimize_with_der_all_outputs(func, gradfunc, hessianfunc,...
-                    max_iterations, epsilon, gamma, p, d_method, g_method);
+    wrapper = @(p) minimize_with_der_all_outputs_bounded(func, gradfunc,... 
+                    max_iterations, epsilon, gamma, s, p, x_bounds, y_bounds);
 
     picturewidth = 20;
 
-    x_down = 10e5
-    x_up = -10e5
-    y_down = 10e5
-    y_up = -10e5
+    fname = string('heatmap_bounded')
 
+    %{
     for i = 1:size(starting_points, 2)
         p0 = starting_points(:,i)
         [fvalue fpoint values points iterations] = wrapper(p0);
@@ -71,48 +68,31 @@ function hfig = plotIterations(gamma, starting_points, identifier)
         set(hfig,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)]);
         %print(hfig,fname,'-dpdf','-painters','-fillpage');
     end
+    %}
 
     %% draw heatmap of f
 
     hw_ratio = 0.65;
     fignum = fignum+1;
     hfig = figure(fignum);
-    fname = fname + '_heatmap';
+    fname = foldername + string('/') + fname + '_heatmap';
     
     % get down and up limits of x and y in the previous plot
     %
 
     % get the limits of x and y in the heatmap
 
-    x_lim = max(abs(x_down), abs(x_up));
-    y_lim = max(abs(y_down), abs(y_up));
-
-    %{
-    if x_lim > y_lim
-         x_lim = ceil(x_lim);
-    y_lim = x_lim * hw_ratio;
-    else
-       y_lim = ceil(y_lim);
-        x_lim = y_lim / hw_ratio;
-    end
-    %}
-
-    x = linspace(-x_lim, x_lim, 100);
-    y = linspace(-y_lim, y_lim, 100);
-
-
-
-    lim = 15;
-    datapoints = 100;
-    x = linspace(-lim, lim, datapoints);
-    y = linspace(-lim, lim, datapoints);
+    datapoints = 50;
+    x = linspace(x_bounds(1) - 1, x_bounds(2) + 5, datapoints);
+    y = linspace(y_bounds(1) - 5, y_bounds(2) + 1, datapoints);
 
     % draw the heatmap of f on all x, y points
     [X,Y] = meshgrid(x,y);
     Z = zeros(size(X));
     for i = 1:size(X,1)
         for j = 1:size(X,2)
-            p0 = [X(i,j); Y(i,j)]
+            p0 = [X(i,j); Y(i,j)];
+            %[a fpoint values points Z(i,j)] = wrapper(p0);
             %[Z(i,j) fpoint values points iterations] = wrapper(p0);
             Z(i, j) = func(p0);
         end
@@ -122,26 +102,24 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     colormap(jet);
     colorbar;
 
+    hold on;
+
+% draw the square of the bounds
+    x = [x_bounds(1) x_bounds(1) x_bounds(2) x_bounds(2) x_bounds(1)];
+    y = [y_bounds(1) y_bounds(2) y_bounds(2) y_bounds(1) y_bounds(1)];
+    plot(x, y, 'LineWidth', 1.5, 'Color', 'black');
+
     for i = 1:size(starting_points, 2)
         p0 = starting_points(:,i)
         [fvalue fpoint values points iterations] = wrapper(p0);
-
         hold on;
-        if i == 1
-            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'black');
-        elseif i == 2
-            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'white');
-        elseif i == 3
-            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'red');
-        else
-            plot(points(1, :), points(2, :), 'LineWidth', 1.5, 'Color', 'blue');
-        end
+        plot(points(1, :), points(2, :), 'o-', 'LineWidth', 0.2, 'Color', 'white', 'MarkerSize', 3, 'MarkerFaceColor', 'black');
     end
 
-    xlabel('$x$');
-    ylabel('$y$');
-    title('Heatmap of $f$');
-    % and iterations');
+    xlabel('$x_1$');
+    ylabel('$x_2$');
+    title('Heatmap of iterations');
+    %, took ' + string(iterations) + ' iterations');
 
     set(findall(hfig,'-property','FontSize'),'FontSize',18);
     set(findall(hfig,'-property','Box'),'Box','off'); % optional;
@@ -150,8 +128,8 @@ function hfig = plotIterations(gamma, starting_points, identifier)
     set(hfig,'Units','centimeters','Position',[3 3 picturewidth hw_ratio*picturewidth]);
     pos = get(hfig,'Position');
     set(hfig,'PaperPositionMode','Auto','PaperUnits','centimeters','PaperSize',[pos(3), pos(4)]);
-    print(hfig,fname,'-dpdf','-painters','-fillpage');
+    print(hfig,fname,'-dpdf','-fillpage');
 
     close all;
+    clear all;
 end
-
