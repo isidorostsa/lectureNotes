@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "89c7df95262de5c2",
+        "id": "4288275e7489d16d",
         "type": "tabs",
         "children": [
           {
-            "id": "c34e84fd43054e9d",
+            "id": "baedac1dcf3972bb",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -194,33 +194,34 @@
       "obsidian-git:Open Git source control": false
     }
   },
-  "active": "c34e84fd43054e9d",
+  "active": "baedac1dcf3972bb",
   "lastOpenFiles": [
-    "TC2/Dimension.md",
+    "I/Q Modulation.md",
     "TC2/digital communications chanel.md",
-    "TC2/Orthogonality.md",
+    "TC2/Modulation.md",
+    "TC2/Constellation.md",
+    "TC2/Gram-Schmidt process.md",
+    "TC2/Inner Product.md",
+    "TC2/Isidoros' amazing sigma function.md",
+    "TC2/noise.md",
+    "TC2/Spectral Efficiency.md",
+    "TC2/Signal Space.md",
+    "TC2/SINR.md",
+    "TC2/Signal.md",
+    "TC2/Orthonormality.md",
     "TC2/Eucledian Distance.md",
     "TC2/Intro.md",
-    "TC2/Isidoros' amazing sigma function.md",
-    "TC2/Norm.md",
-    "TC2/Signal Space.md",
+    "TC2/Orthogonality.md",
     "TC2/Simmilarity.md",
+    "I",
+    "TC2/Dimension.md",
+    "TC2/Norm.md",
     "TC2/Power Efficiency.md",
     "TC2/Q-function.md",
     "TC2/linear dependance.md",
     "Microeconomics/choice structures.md",
     "README.md",
     "TODOS.md",
-    "TC2/Constellation.md",
-    "TC2/Symbol.md",
-    "TC2/Aditive White Gaussian Noise-AWGN.md",
-    "Optimization Techniques/2/Maths Prerequisites.md",
-    "TC2/Inner Product.md",
-    "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
-    "CT3/Resources.md",
-    "CT3/Contents.md",
-    "CT3/Lecture 3/Immutable Set Theorems.md",
-    "CT3/Lecture 4/Excercises.md",
-    "Data Analysis/2/Excersises.md"
+    "TC2/Symbol.md"
   ]
 }
