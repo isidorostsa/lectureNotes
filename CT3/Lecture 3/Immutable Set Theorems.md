@@ -56,7 +56,6 @@ Then:
 - If $x_{0} \in S_{a} \implies x \to M, \space t \to \infty$.   
 
 _IMPORTANT FOR STUDYING SYSTEMS WITH STABILITY SETS INSTEAD OF POINTS_
-
 ## Lyapunov Theorem For Field of Attraction
 In an _Autonomous System_ $$\dot x(t) = f(x(t)), \space x(t_{0}) = x_{0}, \space x_{e}= 0$$
 With $S_a$ as above, if $V(x)$ $\dot V(x)$ positive definite $\forall x \in S_{a}$ then $S_{a} \subset D(x_e)$. 

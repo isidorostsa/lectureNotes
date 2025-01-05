@@ -4,33 +4,24 @@
     "type": "split",
     "children": [
       {
-        "id": "5765a534b7246136",
+        "id": "89c7df95262de5c2",
         "type": "tabs",
         "children": [
           {
-            "id": "8b19d366ec026e25",
+            "id": "c34e84fd43054e9d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md",
+                "file": "TC2/digital communications chanel.md",
                 "mode": "source",
                 "source": false
-              }
-            }
-          },
-          {
-            "id": "2aa939ea30c1d7b4",
-            "type": "leaf",
-            "state": {
-              "type": "release-notes",
-              "state": {
-                "currentVersion": "1.1.9"
-              }
+              },
+              "icon": "lucide-file",
+              "title": "digital communications chanel"
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -50,7 +41,9 @@
               "type": "file-explorer",
               "state": {
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
             }
           },
           {
@@ -65,7 +58,9 @@
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical"
-              }
+              },
+              "icon": "lucide-search",
+              "title": "Search"
             }
           },
           {
@@ -73,14 +68,26 @@
             "type": "leaf",
             "state": {
               "type": "starred",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
+            }
+          },
+          {
+            "id": "7894777e9c8b5e52",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
             }
           }
         ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 461.5
   },
   "right": {
     "id": "2b2bb4e895c43ada",
@@ -96,7 +103,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md",
+                "file": "TC2/digital communications chanel.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -104,7 +111,9 @@
                 "searchQuery": "",
                 "backlinkCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for digital communications chanel"
             }
           },
           {
@@ -113,10 +122,12 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md",
+                "file": "TC2/digital communications chanel.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
-              }
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from digital communications chanel"
             }
           },
           {
@@ -127,7 +138,9 @@
               "state": {
                 "sortOrder": "frequency",
                 "useHierarchy": true
-              }
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
             }
           },
           {
@@ -136,8 +149,10 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "CT3/Lecture 4/Excercises.md"
-              }
+                "file": "TC2/digital communications chanel.md"
+              },
+              "icon": "lucide-list",
+              "title": "Outline of digital communications chanel"
             }
           },
           {
@@ -145,15 +160,19 @@
             "type": "leaf",
             "state": {
               "type": "calendar",
-              "state": {}
+              "state": {},
+              "icon": "lucide-file",
+              "title": "Plugin no longer active"
             }
           },
           {
-            "id": "7be63fa9afe97557",
+            "id": "9c8df03f4392c864",
             "type": "leaf",
             "state": {
               "type": "reminder-list",
-              "state": {}
+              "state": {},
+              "icon": "clock",
+              "title": "Reminders"
             }
           }
         ],
@@ -171,20 +190,37 @@
       "canvas:Create new canvas": false,
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
-      "command-palette:Open command palette": false
+      "command-palette:Open command palette": false,
+      "obsidian-git:Open Git source control": false
     }
   },
-  "active": "2aa939ea30c1d7b4",
+  "active": "c34e84fd43054e9d",
   "lastOpenFiles": [
-    "CT3/Lecture 1/Non-Linear Control Systems.md",
-    "CT3/Lecture 2/Lyapunov Theory.md",
-    "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
-    "OS/Labs/1/Intro to Unix.md",
-    "OS/Labs/1/Excersise.md",
-    "Optimization Techniques/5/2..md",
+    "TC2/Eucledian Distance.md",
+    "TC2/Intro.md",
+    "TC2/Isidoros' amazing sigma function.md",
+    "TC2/Norm.md",
+    "TC2/Signal Space.md",
+    "TC2/Simmilarity.md",
+    "TC2/Power Efficiency.md",
+    "TC2/Q-function.md",
+    "TC2/linear dependance.md",
+    "TC2/Dimension.md",
+    "Microeconomics/choice structures.md",
+    "README.md",
     "TODOS.md",
-    "Optimization Techniques/3/Convexity.md",
-    "Parallel & Distributed Systems/Bitonic Sorting.md",
-    "Optimization Techniques/3/Excercises.md"
+    "TC2/digital communications chanel.md",
+    "TC2/Constellation.md",
+    "TC2/Symbol.md",
+    "TC2/Aditive White Gaussian Noise-AWGN.md",
+    "Optimization Techniques/2/Maths Prerequisites.md",
+    "TC2/Inner Product.md",
+    "Parallel & Distributed Systems/Project 2/Ekfwnhsh.md",
+    "CT3/Resources.md",
+    "CT3/Contents.md",
+    "CT3/Lecture 3/Immutable Set Theorems.md",
+    "CT3/Lecture 4/Excercises.md",
+    "Data Analysis/2/Excersises.md",
+    "DynamicalSystems/Dynamical Systems.md"
   ]
 }
