@@ -196,6 +196,9 @@
   },
   "active": "c34e84fd43054e9d",
   "lastOpenFiles": [
+    "TC2/Dimension.md",
+    "TC2/digital communications chanel.md",
+    "TC2/Orthogonality.md",
     "TC2/Eucledian Distance.md",
     "TC2/Intro.md",
     "TC2/Isidoros' amazing sigma function.md",
@@ -205,11 +208,9 @@
     "TC2/Power Efficiency.md",
     "TC2/Q-function.md",
     "TC2/linear dependance.md",
-    "TC2/Dimension.md",
     "Microeconomics/choice structures.md",
     "README.md",
     "TODOS.md",
-    "TC2/digital communications chanel.md",
     "TC2/Constellation.md",
     "TC2/Symbol.md",
     "TC2/Aditive White Gaussian Noise-AWGN.md",
@@ -220,7 +221,6 @@
     "CT3/Contents.md",
     "CT3/Lecture 3/Immutable Set Theorems.md",
     "CT3/Lecture 4/Excercises.md",
-    "Data Analysis/2/Excersises.md",
-    "DynamicalSystems/Dynamical Systems.md"
+    "Data Analysis/2/Excersises.md"
   ]
 }
