@@ -1,3 +1,5 @@
+
+
 In this [[noise]] model we consider an intermediate between the sender and the reciever in which Gaussian noise is added. As such the recieved signal is:$$r(t) = s(t) + n(t)$$
 - The [[Spectral Power Density]] of $n(t)$ is constant accross all frequences:$$S_n(f)=N_0/2,\,f
 \in (-\infty, \infty)$$
