@@ -6,4 +6,7 @@ In this [[noise]] model we consider an intermediate between the sender and the r
 - The [[Commucative probability function]] of $n(t)$ is$$F_n(x)=\int_{-\infty}^{x/\sigma}f(y)\,dy=1-Q(\frac{x}{\sigma})$$ 
 where $Q$ is the [[Q-function]].
 
- - It is used  
+ - It is used to simmulate the common problem case of telecomunications.
+
+### Typical signal:
+$$r(t) = s_i(t) + n(t)$$ where $s_i$ is the [[symbol]] and $n$ the gaussian white noise.
