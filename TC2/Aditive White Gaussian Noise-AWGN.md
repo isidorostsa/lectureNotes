@@ -15,4 +15,4 @@ where $Q$ is the [[Q-function]].
  - It is used to simmulate the common problem case of telecomunications.
 
 ### Typical signal:
-$$r(t) = s_i(t) + n(t)$$ where $s_i$ is the [[symbol]] and $n$ the gaussian white noise.
+$$r(t) = s_i(t) + n(t)$$ where $s_i$ is the [[symbol]] and $n$ the gaussian white noise. This is given to be [[Demodulation]]

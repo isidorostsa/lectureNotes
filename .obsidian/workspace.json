@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "TC2/Aditive White Gaussian Noise-AWGN.md",
+                "file": "Demodulation.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Aditive White Gaussian Noise-AWGN"
+              "title": "Demodulation"
             }
           }
         ]
@@ -196,9 +196,10 @@
   },
   "active": "baedac1dcf3972bb",
   "lastOpenFiles": [
+    "TC2/Aditive White Gaussian Noise-AWGN.md",
+    "Demodulation.md",
     "Pasted image 20250106201408.png",
     "TC2/Q-function.md",
-    "TC2/Aditive White Gaussian Noise-AWGN.md",
     "Commucative probability function.md",
     "Self Similarity.md",
     "Spectral Power Density.md",
